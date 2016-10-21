@@ -1,3 +1,6 @@
 # RobotWar
 
-waddup son
+## Constitution du groupe
+ - Barnini Nicholas
+ - Ferrero Karl
+ - Deï Léonard
