@@ -66,8 +66,6 @@ public class Case extends JLabel {
 	    int x2 = (xLabel*7)/8;
 	    int y2 = yLabel/8;
 		g.drawLine(x1, y1, x2, y2);
-		System.out.println("TEST1");
-		System.out.println(x1+" "+ y1+" "+ x2+" "+ y2);
 		
 		// Dessiner la barre de vie
 		
@@ -82,8 +80,6 @@ public class Case extends JLabel {
 	    x2 = (int) positionFinLigneVerte;
 	    y2 = yLabel/8;
 		g.drawLine(x1, y1, x2, y2);
-		System.out.println("TEST2");
-		System.out.println(x1+" "+ y1+" "+ x2+" "+ y2);
 
 	}
 
