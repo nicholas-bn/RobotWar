@@ -1,5 +1,9 @@
 package gui;
 
-public class CaseGrille {
+import javax.swing.JLabel;
 
+public class CaseGrille extends JLabel {
+
+	
+	
 }
