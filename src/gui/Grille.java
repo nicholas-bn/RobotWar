@@ -32,19 +32,11 @@ public class Grille extends JLabel {
 		// Construction de la grille :
 		for (int row = 0; row < nbLignes; row++) {
 			for (int col = 0; col < nbColonnes; col++) {
-				// Création d'une case TODO remplacer par la case CaseGrille
-				Random rand = new Random();
-				float r = rand.nextFloat();
-				float g = rand.nextFloat();
-				float b = rand.nextFloat();
-				Color randomColor = new Color(r, g, b);
-
-				JLabel label = new JLabel();
-				label.setOpaque(true);
-				label.setBackground(randomColor);
-
+				// Création d'une case 
+				Case caseGrille = new Case();
+				
 				// Ajout de la case à la grille
-				add(label, row, col);
+				add(caseGrille, row, col);
 			}
 		}
 	}

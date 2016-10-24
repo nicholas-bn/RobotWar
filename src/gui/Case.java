@@ -7,9 +7,9 @@ import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class CaseGrille extends JLabel {
+public class Case extends JLabel {
 
-	public CaseGrille() {
+	public Case() {
 		super();
 		
 		// Opaque pour permettre de mettre un background de couleur
@@ -31,7 +31,7 @@ public class CaseGrille extends JLabel {
 		g.setColor(Color.black);
 
 		// Dessine au milieu du JLabel
-		g.fillOval(this.getSize().width/2, this.getSize().height/2, 50, 50);
+		g.fillOval(this.getSize().width/2 -25, this.getSize().height/2 -25, 50, 50);
 
 	}
 
@@ -41,7 +41,7 @@ public class CaseGrille extends JLabel {
 		jf.setSize(100, 100);
 		jf.setLocation(100, 100);
 
-		CaseGrille cg = new CaseGrille();
+		Case cg = new Case();
 
 		jf.add(cg);
 		jf.setVisible(true);
