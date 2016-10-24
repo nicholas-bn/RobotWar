@@ -7,8 +7,18 @@ import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+/**
+ * Classe représentant une case de la grille
+ * 
+ * @author Barnini Nicholas
+ *
+ */
+@SuppressWarnings("serial")
 public class Case extends JLabel {
 
+	/**
+	 * Constructeur de la classe {@link Case}
+	 */
 	public Case() {
 		super();
 		
@@ -25,13 +35,25 @@ public class Case extends JLabel {
 
 	}
 
+	
+	/**
+	 * Méthode paintComponent de {@link Case}
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.setColor(Color.black);
 
+		// Taille du label
+		int xLabel = this.getSize().width;
+		int yLabel = this.getSize().height;
+		
+		// Centre du label
+		int xDraw = xLabel / 2 ;
+		int yDraw = yLabel / 2 ;
+		
 		// Dessine au milieu du JLabel
-		g.fillOval(this.getSize().width/2 -25, this.getSize().height/2 -25, 50, 50);
+		g.fillOval((xLabel - xDraw)/2, (yLabel - yDraw)/2, xDraw, yDraw);
 
 	}
 
