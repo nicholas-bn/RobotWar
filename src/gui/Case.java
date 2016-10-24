@@ -62,6 +62,8 @@ public class Case extends JLabel {
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setSize(100, 100);
 		jf.setLocation(100, 100);
+		//test commit
+		System.out.println("madaaaaame");
 
 		Case cg = new Case();
 
