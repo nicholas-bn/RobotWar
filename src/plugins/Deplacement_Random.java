@@ -38,9 +38,12 @@ public class Deplacement_Random {
 	}
 
 	/**
-	 * Retourne la liste des déplacements possibles du robot
+	 * Retourne la liste des déplacements possibles du robot <br>
 	 * 
-	 * TODO gérer les coins + emplacement déja prit par un robot
+	 * On laisse la possibilité au robot de ne pas se déplacer (de se déplacer
+	 * sur sa position actuelle)
+	 * 
+	 * TODO emplacement déja prit par un robot
 	 * 
 	 * @param x
 	 * @param y
@@ -48,11 +51,19 @@ public class Deplacement_Random {
 	 */
 	public ArrayList<Point> getListeDeplacementsPossibles(int x, int y) {
 
+		// Informations concernant la taille de la grille
+		int nbColonneMax = Grille.getNbcolonnesmax();
+		int nbLigneMax = Grille.getNblignesmax();
+
+		// Liste des différents points (déplacement) possible
 		ArrayList<Point> listPoints = new ArrayList<>();
 
 		// Calcul de toutes les positions possibles :
 		for (int row = y - 1; row <= y + 1; row++) {
 			for (int col = x - 1; col <= x + 1; col++) {
+				// Cas où le robot se trouve dans un coin
+				if (row < 0 || col < 0 || row >= nbLigneMax || col >= nbColonneMax)
+					continue;
 				// Un déplacement possible
 				Point casePossible = new Point(row, col);
 
