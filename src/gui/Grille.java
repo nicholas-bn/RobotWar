@@ -19,25 +19,40 @@ public class Grille extends JLabel {
 	/** Nombre max de cases par lignes */
 	private static final int nbLignes = 10;
 
+	private Case[][] elementsGrille;
+
 	/**
 	 * Constructeur de la classe {@link Grille}
 	 */
 	public Grille() {
 		super();
 		// Layout utilisé
-		setLayout(new GridLayout(10, 10));
+		setLayout(new GridLayout(nbLignes, nbColonnes));
+
+		elementsGrille = new Case[nbLignes][nbColonnes];
 
 		// Construction de la grille :
 		for (int row = 0; row < nbLignes; row++) {
 			for (int col = 0; col < nbColonnes; col++) {
-				// Création d'une case 
+				// Création d'une case
 				Case caseGrille = new Case();
-				
+
 				// Ajout de la case à la grille
 				add(caseGrille, row, col);
+
+				elementsGrille[row][col] = caseGrille;
 			}
 		}
+		
+		Robot test = new Robot();
+		test.seDeplacer(this);
 	}
+
+	public Case[][] getElementsGrille() {
+		return elementsGrille;
+	}
+	
+	
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Test de la classe Grille");

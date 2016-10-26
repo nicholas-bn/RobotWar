@@ -15,7 +15,6 @@ public class Test_Dynamic_Loading extends Component{
 	
 	
 	public void dessiner(int width, int height, Graphics g){
-		System.out.println("DESSSSSSSSSSSSSSSSSINER");
 		this.width=width;
 		this.height=height;
 		paint(g);
@@ -28,7 +27,6 @@ public class Test_Dynamic_Loading extends Component{
 	public void paint(Graphics g) {
 		super.paint(g);
 		
-		System.out.println("waddup");
 		g.setColor(Color.black);
 
 		// Taille du label
