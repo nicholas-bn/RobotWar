@@ -44,8 +44,6 @@ public class Grille extends JLabel {
 			}
 		}
 		
-		Robot test = new Robot();
-		test.seDeplacer(this);
 	}
 
 	public Case[][] getElementsGrille() {

@@ -5,7 +5,7 @@ import java.awt.Point;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import plugins.Test_Deplacement_Random;
+import plugins.Deplacement_Random;
 
 public class Robot {
 
@@ -16,7 +16,7 @@ public class Robot {
 	/** Nombre de points d'actions diponibles */
 	private static int ptAction;
 	/** Nombre de points de mouvements diponibles */
-	private static int ptMouvement = 1;
+	private static int ptMouvement;
 	/** Coordonnées */
 	private Point Point;
 
@@ -64,13 +64,14 @@ public class Robot {
 		try {
 			Class c = Class.forName("plugins.Test_Deplacement_Random");
 
-			Test_Deplacement_Random instance = (Test_Deplacement_Random) c.newInstance();
+			Deplacement_Random instance = (Deplacement_Random) c.newInstance();
 
 			Method m = c.getMethod("choisirDeplacement", Grille.class, Robot.class);
 
 			Point p = (java.awt.Point) m.invoke(instance, grille, this);
 
-			System.out.println(p);
+			setPoint(p);
+
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
