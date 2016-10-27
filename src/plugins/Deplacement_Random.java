@@ -27,7 +27,7 @@ public class Deplacement_Random {
 		int pm = robot.getPtMouvement();
 
 		// List des deplacements possibles
-		ArrayList<Point> listDeplacements = getListeDeplacementsPossibles(x, y);
+		ArrayList<Point> listDeplacements = getListeDeplacementsPossibles(x, y, pm);
 
 		// Choix du déplacement aléatoirement
 		Random rand = new Random();
@@ -49,7 +49,7 @@ public class Deplacement_Random {
 	 * @param y
 	 * @return
 	 */
-	public ArrayList<Point> getListeDeplacementsPossibles(int x, int y) {
+	public ArrayList<Point> getListeDeplacementsPossibles(int x, int y, int pm) {
 
 		// Informations concernant la taille de la grille
 		int nbColonneMax = Grille.getNbcolonnesmax();
@@ -59,8 +59,10 @@ public class Deplacement_Random {
 		ArrayList<Point> listPoints = new ArrayList<>();
 
 		// Calcul de toutes les positions possibles :
-		for (int row = y - 1; row <= y + 1; row++) {
-			for (int col = x - 1; col <= x + 1; col++) {
+		// - en foncton de la pos de départ
+		// - et du nombre de pm
+		for (int row = y - pm; row <= y + pm; row++) {
+			for (int col = x - pm; col <= x + pm; col++) {
 				// Cas où le robot se trouve dans un coin
 				if (row < 0 || col < 0 || row >= nbLigneMax || col >= nbColonneMax)
 					continue;
