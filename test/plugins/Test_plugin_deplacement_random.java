@@ -34,7 +34,7 @@ public class Test_plugin_deplacement_random {
 
 		// Liste des déplacements possibles du robot
 		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot.getPoint().x,
-				robot.getPoint().y, robot.getPtMouvement());
+				robot.getPoint().y, robot.getPtMouvement(), grille);
 
 		assertEquals("Nombre de déplacements possibles", 9, listDeplacementsPossibles.size());
 
@@ -53,7 +53,7 @@ public class Test_plugin_deplacement_random {
 
 		// Liste des déplacements possibles du robot
 		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot.getPoint().x,
-				robot.getPoint().y, robot.getPtMouvement());
+				robot.getPoint().y, robot.getPtMouvement(), grille);
 
 		assertEquals("Nombre de déplacements possibles", 4, listDeplacementsPossibles.size());
 
@@ -73,9 +73,35 @@ public class Test_plugin_deplacement_random {
 
 		// Liste des déplacements possibles du robot
 		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot.getPoint().x,
-				robot.getPoint().y, robot.getPtMouvement());
+				robot.getPoint().y, robot.getPtMouvement(), grille);
 
 		assertEquals("Nombre de déplacements possibles", 9, listDeplacementsPossibles.size());
+
+		for (int i = 0; i < 10; i++) {
+			Point nouvellePosition = deplacement.choisirDeplacement(grille, robot);
+			assertTrue("La nouvelle position est correcte", listDeplacementsPossibles.contains(nouvellePosition));
+		}
+
+	}
+
+	@Test
+	public void deplacement_aléatoire_dun_robot_avec_un_autre_robot_sur_la_grille() {
+		// Position de départ du robot
+		robot.setPoint(new Point(0, 0));
+		robot.setPtMouvement(1);
+		assertEquals("Position initiale du robot", robot.getPoint(), new Point(0, 0));
+
+		// On crée un deuxieme robot à coté du premier
+		Robot r2 = new Robot();
+		r2.setPoint(new Point(0, 1));
+		// On le place sur la grille
+		grille.getElementsGrille()[0][1].setRobot(r2);
+
+		// Liste des déplacements possibles du robot
+		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot.getPoint().x,
+				robot.getPoint().y, robot.getPtMouvement(), grille);
+
+		assertEquals("Nombre de déplacements possibles", 3, listDeplacementsPossibles.size());
 
 		for (int i = 0; i < 10; i++) {
 			Point nouvellePosition = deplacement.choisirDeplacement(grille, robot);
