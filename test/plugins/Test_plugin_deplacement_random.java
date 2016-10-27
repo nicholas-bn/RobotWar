@@ -110,4 +110,32 @@ public class Test_plugin_deplacement_random {
 
 	}
 
+	@Test
+	public void deplacement_aléatoire_dun_robot_entoure_par_dautres_robots() {
+		// Position de départ du robot
+		robot.setPoint(new Point(0, 0));
+		robot.setPtMouvement(1);
+		assertEquals("Position initiale du robot", robot.getPoint(), new Point(0, 0));
+
+		// On crée un deuxieme robot que je place tout autour du robot 1
+		Robot r2 = new Robot();
+		r2.setPoint(new Point(0, 1));
+		// On le place sur la grille
+		grille.getElementsGrille()[0][1].setRobot(r2);
+		grille.getElementsGrille()[1][1].setRobot(r2);
+		grille.getElementsGrille()[1][0].setRobot(r2);
+
+		// Liste des déplacements possibles du robot
+		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot.getPoint().x,
+				robot.getPoint().y, robot.getPtMouvement(), grille);
+
+		assertEquals("Nombre de déplacements possibles", 1, listDeplacementsPossibles.size());
+
+		for (int i = 0; i < 10; i++) {
+			Point nouvellePosition = deplacement.choisirDeplacement(grille, robot);
+			assertEquals("Nouvelle position", robot.getPoint(), new Point(0, 0));
+		}
+
+	}
+
 }
