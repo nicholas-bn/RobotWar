@@ -10,9 +10,9 @@ import plugins.Deplacement_Random;
 public class Robot {
 
 	/** Portée de l'arme */
-	private static int Portee;
+	private int Portee;
 	/** Nombre de vie */
-	private static int Vie;
+	private int Vie;
 	/** Nombre de points d'actions diponibles */
 	private static int ptAction;
 	/** Nombre de points de mouvements diponibles */
@@ -20,35 +20,35 @@ public class Robot {
 	/** Coordonnées */
 	private Point Point;
 
-	public static int getPortee() {
+	public int getPortee() {
 		return Portee;
 	}
 
-	public static void setPortee(int portee) {
+	public void setPortee(int portee) {
 		Portee = portee;
 	}
 
-	public static int getVie() {
+	public int getVie() {
 		return Vie;
 	}
 
-	public static void setVie(int vie) {
+	public void setVie(int vie) {
 		Vie = vie;
 	}
 
-	public static int getPtAction() {
+	public int getPtAction() {
 		return ptAction;
 	}
 
-	public static void setPtAction(int ptAction) {
+	public void setPtAction(int ptAction) {
 		Robot.ptAction = ptAction;
 	}
 
-	public static int getPtMouvement() {
+	public int getPtMouvement() {
 		return ptMouvement;
 	}
 
-	public static void setPtMouvement(int ptMouvement) {
+	public void setPtMouvement(int ptMouvement) {
 		Robot.ptMouvement = ptMouvement;
 	}
 
