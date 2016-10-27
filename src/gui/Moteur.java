@@ -24,7 +24,7 @@ public class Moteur {
 		// Instantiation de la grille de jeu
 		creationDeLaGrilleDeJeu();
 
-		//Création des robots
+		// Création des robots
 		for (int k = 0; k < i; k++) {
 			robot = new Robot();
 			int randomX = (int) (Math.random() * (Grille.getNbcolonnesmax() - 0));
@@ -32,6 +32,7 @@ public class Moteur {
 			Point point = new Point(randomX, randomY);
 			robot.setPoint(point);
 			robot.setPtMouvement(1);
+			robot.setPortee(2);
 			grille.getElementsGrille()[randomX][randomY].setRobot(robot);
 			list.add(robot);
 		}
@@ -58,26 +59,25 @@ public class Moteur {
 	 * Méthode qui s'occupe de la gestion des tours
 	 */
 	public void gestionDesTours() {
-		
-		
+
 		// Boucle pour chaque tour de jeu :
 		for (int i = 0; i < 10; i++) {
-		try {
-			System.out.println("Tour : "+(i+1));
-			TimeUnit.SECONDS.sleep(1); }
-		 catch (InterruptedException e) {
-			e.printStackTrace();
+			try {
+				System.out.println("Tour : " + (i + 1));
+				TimeUnit.SECONDS.sleep(1);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			for (Robot robot : list) {
+				// On demande au robot de se déplacer
+				robot.seDeplacer(grille);
+				robot.attaquer(grille);
+			}
 		}
-		for (Robot robot : list){
-			// On demande au robot de se déplacer
-			robot.seDeplacer(grille);
-		} 
-		}
-
 
 	}
 
-	public static void main(String[] args) {	
+	public static void main(String[] args) {
 
 		Moteur m = new Moteur(5);
 

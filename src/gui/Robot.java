@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import plugins.Attaque_de_Base;
 import plugins.Deplacement_Random;
 
 public class Robot {
@@ -26,6 +27,11 @@ public class Robot {
 	Class<?> plugin_deplacement;
 	/** Instance de la classe qui va choisir les déplacements du robot */
 	Deplacement_Random instance;
+	
+	/** Classe qui va choisir le robot à attaquer */
+	Class<?> plugin_attaque;
+	/** Instance de la classe qui va choisir quel robot à prendre pour cible */
+	Attaque_de_Base instanceAttaque;
 
 	/**
 	 * Constructeur de la classe {@link Robot}
@@ -36,6 +42,8 @@ public class Robot {
 		try {
 			plugin_deplacement = Class.forName("plugins.Deplacement_Random");
 			instance = (Deplacement_Random) plugin_deplacement.newInstance();
+			plugin_attaque = Class.forName("plugins.Attaque_de_Base");
+			instanceAttaque = (Attaque_de_Base) plugin_attaque.newInstance();
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
@@ -88,6 +96,33 @@ public class Robot {
 
 	public void setCouleur(Color couleur) {
 		this.couleur = couleur;
+	}
+	
+	/**
+	 * Méthode qui permet au robot d'attaquer un autre robot
+	 * 
+	 * @param grille
+	 */
+	public void attaquer(Grille grille) {
+		try {
+			// La méthode du plugin qui permet de choisir un déplacement
+			Method m = plugin_attaque.getMethod("choisirCible", Grille.class, Robot.class);
+			Robot r = (Robot) m.invoke(instanceAttaque, grille, this);
+			if(r != null)
+				System.out.println("Le robot "+ this +" attaque le robot "+ r);
+			
+		} catch (NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
