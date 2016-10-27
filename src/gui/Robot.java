@@ -22,12 +22,14 @@ public class Robot {
 	private Point Point;
 	/** Couleur */
 	private Color couleur;
+	/** Indice du robot */
+	private int indice;
 
 	/** Classe qui va choisir les déplacements du robots */
 	Class<?> plugin_deplacement;
 	/** Instance de la classe qui va choisir les déplacements du robot */
 	Deplacement_Random instance;
-	
+
 	/** Classe qui va choisir le robot à attaquer */
 	Class<?> plugin_attaque;
 	/** Instance de la classe qui va choisir quel robot à prendre pour cible */
@@ -97,7 +99,15 @@ public class Robot {
 	public void setCouleur(Color couleur) {
 		this.couleur = couleur;
 	}
-	
+
+	public int getIndice() {
+		return indice;
+	}
+
+	public void setIndice(int indice) {
+		this.indice = indice;
+	}
+
 	/**
 	 * Méthode qui permet au robot d'attaquer un autre robot
 	 * 
@@ -108,9 +118,9 @@ public class Robot {
 			// La méthode du plugin qui permet de choisir un déplacement
 			Method m = plugin_attaque.getMethod("choisirCible", Grille.class, Robot.class);
 			Robot r = (Robot) m.invoke(instanceAttaque, grille, this);
-			if(r != null)
-				System.out.println("Le robot "+ this +" attaque le robot "+ r);
-			
+			if (r != null)
+				System.out.println("Le robot " + this + " attaque le robot " + r);
+
 		} catch (NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
@@ -157,5 +167,9 @@ public class Robot {
 			e.printStackTrace();
 		}
 
+	}
+
+	public String toString() {
+		return "Robot " + this.getIndice() + "( X:" + this.getPoint().getX() + " Y:" + this.getPoint().getY()+")";
 	}
 }

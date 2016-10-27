@@ -27,6 +27,7 @@ public class Moteur {
 		// Création des robots
 		for (int k = 0; k < i; k++) {
 			robot = new Robot();
+			robot.setIndice(k);
 			int randomX = (int) (Math.random() * (Grille.getNbcolonnesmax() - 0));
 			int randomY = (int) (Math.random() * (Grille.getNblignesmax() - 0));
 			Point point = new Point(randomX, randomY);
