@@ -61,8 +61,8 @@ public class Deplacement_Random {
 		// Calcul de toutes les positions possibles :
 		// - en foncton de la pos de départ
 		// - et du nombre de pm
-		for (int row = y - pm; row <= y + pm; row++) {
-			for (int col = x - pm; col <= x + pm; col++) {
+		for (int row = x - pm; row <= x + pm; row++) {
+			for (int col = y - pm; col <= y + pm; col++) {
 				// Cas où le robot se trouve dans un coin
 				if (row < 0 || col < 0 || row >= nbLigneMax || col >= nbColonneMax)
 					continue;

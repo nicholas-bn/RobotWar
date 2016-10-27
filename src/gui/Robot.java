@@ -21,6 +21,26 @@ public class Robot {
 	private Point Point;
 	/** Couleur */
 	private Color couleur;
+	Class c;
+	Deplacement_Random instance;
+
+	public Robot() {
+
+		try {
+			c = Class.forName("plugins.Deplacement_Random");
+			instance = (Deplacement_Random) c.newInstance();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 	public int getPortee() {
 		return Portee;
@@ -72,19 +92,23 @@ public class Robot {
 
 	public void seDeplacer(Grille grille) {
 		try {
-			Class c = Class.forName("plugins.Test_Deplacement_Random");
-
-			Deplacement_Random instance = (Deplacement_Random) c.newInstance();
 
 			Method m = c.getMethod("choisirDeplacement", Grille.class, Robot.class);
 
 			Point p = (java.awt.Point) m.invoke(instance, grille, this);
+			
+			Point pointDepart = getPoint();
+			
+			System.out.println("Depart :" + pointDepart);
+			grille.getElementsGrille()[pointDepart.x][pointDepart.y].setRobot(null);
 
 			setPoint(p);
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Deplacement :" + p);
+
+			grille.getElementsGrille()[p.x][p.y].setRobot(this);
+			grille.repaint();
+
 		} catch (NoSuchMethodException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,9 +122,6 @@ public class Robot {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

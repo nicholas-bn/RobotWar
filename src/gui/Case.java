@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Random;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -28,6 +28,8 @@ public class Case extends JLabel {
 	public Case() {
 		super();
 		this.setRobot(null);
+		
+		setBorder(BorderFactory.createLineBorder(Color.black));
 	}
 
 	public Robot getRobot() {
@@ -77,6 +79,9 @@ public class Case extends JLabel {
 			}
 		}
 	
+		else{
+			setBackground(null);
+		}
 	
 
 	// g.setColor(Color.black);
