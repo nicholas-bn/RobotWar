@@ -4,14 +4,19 @@ import java.awt.Point;
 
 public class Moteur {
 		
-		Robot r = new Robot();
-		Grille grille = new Grille();
-		int randomx = (int)(Math.random()*(Grille.getNbcolonnesmax()-0));
-		int randomy = (int)(Math.random()*(Grille.getNblignesmax()-0));
-		Point point = new Point(randomx, randomy);
+	Robot r = new Robot();
+	Grille grille = new Grille();
 		
-		r.setPoint(point);
-		r.setPtMouvement(1);
+		public Moteur (){ 
+			
+			int randomx = (int)(Math.random()*(Grille.getNbcolonnesmax()-0));
+			int randomy = (int)(Math.random()*(Grille.getNblignesmax()-0));
+			Point point = new Point(randomx, randomy);
+			r.setPoint(point);
+			r.setPtMouvement(1);
+			
+		}
+		
 		
 		public void gestionTour() {
 			r.seDeplacer(grille);
@@ -20,8 +25,7 @@ public class Moteur {
 		
 		public static void main(String[] args) {
 			
-			r.setPoint(point);
-			r.setPtMouvement(1);
+			Moteur m = new Moteur();
 		    
 			
 		}
