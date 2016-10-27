@@ -14,9 +14,9 @@ public class Robot {
 	/** Nombre de vie */
 	private int Vie;
 	/** Nombre de points d'actions diponibles */
-	private static int ptAction;
+	private int ptAction;
 	/** Nombre de points de mouvements diponibles */
-	private static int ptMouvement;
+	private int ptMouvement;
 	/** Coordonnées */
 	private Point Point;
 
@@ -41,7 +41,7 @@ public class Robot {
 	}
 
 	public void setPtAction(int ptAction) {
-		Robot.ptAction = ptAction;
+		ptAction = ptAction;
 	}
 
 	public int getPtMouvement() {
@@ -49,7 +49,7 @@ public class Robot {
 	}
 
 	public void setPtMouvement(int ptMouvement) {
-		Robot.ptMouvement = ptMouvement;
+		ptMouvement = ptMouvement;
 	}
 
 	public Point getPoint() {
