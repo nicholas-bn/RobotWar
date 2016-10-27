@@ -21,22 +21,22 @@ public class Robot {
 	private Point Point;
 	/** Couleur */
 	private Color couleur;
-	Class c;
+
+	/** Classe qui va choisir les déplacements du robots */
+	Class<?> plugin_deplacement;
+	/** Instance de la classe qui va choisir les déplacements du robot */
 	Deplacement_Random instance;
 
+	/**
+	 * Constructeur de la classe {@link Robot}
+	 */
 	public Robot() {
 
+		// Chargement de la classe qui s'occupe des déplacements du robot
 		try {
-			c = Class.forName("plugins.Deplacement_Random");
-			instance = (Deplacement_Random) c.newInstance();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
+			plugin_deplacement = Class.forName("plugins.Deplacement_Random");
+			instance = (Deplacement_Random) plugin_deplacement.newInstance();
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
 
@@ -90,39 +90,35 @@ public class Robot {
 		this.couleur = couleur;
 	}
 
+	/**
+	 * Méthode qui permet au robot de se déplacer sur la grille
+	 * 
+	 * @param grille
+	 */
 	public void seDeplacer(Grille grille) {
+
 		try {
+			// La méthode du plugin qui permet de choisir un déplacement
+			Method m = plugin_deplacement.getMethod("choisirDeplacement", Grille.class, Robot.class);
 
-			Method m = c.getMethod("choisirDeplacement", Grille.class, Robot.class);
-
+			// Point choisie par le plugin
 			Point p = (java.awt.Point) m.invoke(instance, grille, this);
-			
+
+			// Position initiale du robot
 			Point pointDepart = getPoint();
-			
-			System.out.println("Depart :" + pointDepart);
+			// On l'enlève de sa position initiale
+			// TODO faire une méthode
 			grille.getElementsGrille()[pointDepart.x][pointDepart.y].setRobot(null);
 
+			// On affecte au robot sa nouvelle position
 			setPoint(p);
-
-			System.out.println("Deplacement :" + p);
-
+			// On le place sur la grille avec sa nouvelle position
 			grille.getElementsGrille()[p.x][p.y].setRobot(this);
-			grille.repaint();
 
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
+			// On redessine la grille
+			grille.repaint();
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException e) {
 			e.printStackTrace();
 		}
 
