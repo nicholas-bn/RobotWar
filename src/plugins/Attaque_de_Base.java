@@ -29,12 +29,12 @@ public class Attaque_de_Base {
 		ArrayList<Robot> listRobotAttaquable = getListeAttaquesPossibles(robot.getPoint().x, robot.getPoint().y,
 				robot.getPortee(), grille);
 		int tailleArray = listRobotAttaquable.size();
-		if(tailleArray !=0) {
-			// On définit le premier robot comme la cible 
+		if (tailleArray != 0) {
+			// On définit le premier robot comme la cible
 			Robot r = listRobotAttaquable.get(0);
-	
+
 			// Si la liste a plus de deux robots on parcours
-			if(tailleArray>1) {
+			if (tailleArray > 1) {
 				for (int i = 1; i < tailleArray; i++) {
 					if (listRobotAttaquable.get(i).getVie() < r.getVie())
 						r = listRobotAttaquable.get(i);
@@ -63,7 +63,8 @@ public class Attaque_de_Base {
 		// On instancie la liste de robots à retourner
 		ArrayList<Robot> listRobot = new ArrayList<Robot>();
 
-		// On parcours la zone entourant le robot et si il y a un robot on ajoute
+		// On parcours la zone entourant le robot et si il y a un robot on
+		// ajoute
 		for (int row = x - portée; row <= x + portée; row++) {
 			for (int col = y - portée; col <= y + portée; col++) {
 
@@ -71,7 +72,10 @@ public class Attaque_de_Base {
 				if (row < 0 || col < 0 || row >= nbLigneMax || col >= nbColonneMax)
 					continue;
 
-				// On regarde s'il n'y a pas déja un robot sur cette case
+				if (row == x && col == y)
+					continue;
+
+				// On regarde s'il y a un robot sur cette case
 				if (grille.getElementsGrille()[row][col].getRobot() != null)
 					listRobot.add(grille.getElementsGrille()[row][col].getRobot());
 			}

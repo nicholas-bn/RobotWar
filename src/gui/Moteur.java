@@ -33,7 +33,7 @@ public class Moteur {
 			Point point = new Point(randomX, randomY);
 			robot.setPoint(point);
 			robot.setPtMouvement(1);
-			robot.setPortee(2);
+			robot.setPortee(1);
 			grille.getElementsGrille()[randomX][randomY].setRobot(robot);
 			list.add(robot);
 		}
