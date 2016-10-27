@@ -5,18 +5,17 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.Random;
 
 import gui.Case;
 
 public class Test_Dynamic_Loading extends Component{
 	
-	int width;
-	int height;
+	Case laCase;
 	
 	
-	public void dessiner(int width, int height, Graphics g){
-		this.width=width;
-		this.height=height;
+	public void dessiner(Case c, Graphics g){
+		this.laCase=c;
 		paint(g);
 	}
 	
@@ -27,11 +26,15 @@ public class Test_Dynamic_Loading extends Component{
 	public void paint(Graphics g) {
 		super.paint(g);
 		
+		this.laCase.setOpaque(true);
+		//this.laCase.setBackground(laCase.getRobot().getCouleur());
+		this.laCase.setBackground(Color.red);
+		
 		g.setColor(Color.black);
 
 		// Taille du label
-		int xLabel = this.width;
-		int yLabel = this.height;
+		int xLabel = laCase.getWidth();
+		int yLabel = laCase.getHeight();
 
 		// Centre du label
 		int xDraw = xLabel / 2;

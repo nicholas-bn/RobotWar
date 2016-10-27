@@ -1,6 +1,6 @@
 package gui;
 
-import java.awt.Graphics;
+import java.awt.Color;
 import java.awt.Point;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -19,6 +19,8 @@ public class Robot {
 	private int ptMouvement;
 	/** Coordonnées */
 	private Point Point;
+	/** Couleur */
+	private Color couleur;
 
 	public int getPortee() {
 		return Portee;
@@ -58,6 +60,14 @@ public class Robot {
 
 	public void setPoint(Point point) {
 		this.Point = point;
+	}
+
+	public Color getCouleur() {
+		return couleur;
+	}
+
+	public void setCouleur(Color couleur) {
+		this.couleur = couleur;
 	}
 
 	public void seDeplacer(Grille grille) {
