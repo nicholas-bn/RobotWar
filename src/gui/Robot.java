@@ -41,7 +41,7 @@ public class Robot {
 	}
 
 	public void setPtAction(int ptAction) {
-		ptAction = ptAction;
+		this.ptAction = ptAction;
 	}
 
 	public int getPtMouvement() {
@@ -49,7 +49,7 @@ public class Robot {
 	}
 
 	public void setPtMouvement(int ptMouvement) {
-		ptMouvement = ptMouvement;
+		this.ptMouvement = ptMouvement;
 	}
 
 	public Point getPoint() {
