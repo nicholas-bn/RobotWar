@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
@@ -14,7 +15,7 @@ import javax.swing.JFrame;
  */
 public class Moteur {
 
-	ArrayList<Robot> list = new ArrayList<>();
+	ArrayList<Robot> listeRobots = new ArrayList<>();
 
 	Grille grille;
 	Robot robot;
@@ -24,19 +25,7 @@ public class Moteur {
 		// Instantiation de la grille de jeu
 		creationDeLaGrilleDeJeu();
 
-		// Création des robots
-		for (int k = 0; k < i; k++) {
-			robot = new Robot();
-			robot.setIndice(k);
-			int randomX = (int) (Math.random() * (Grille.getNbcolonnesmax() - 0));
-			int randomY = (int) (Math.random() * (Grille.getNblignesmax() - 0));
-			Point point = new Point(randomX, randomY);
-			robot.setPoint(point);
-			robot.setPtMouvement(1);
-			robot.setPortee(1);
-			grille.getElementsGrille()[randomX][randomY].setRobot(robot);
-			list.add(robot);
-		}
+		placementDesRobots(i);
 
 		// Démarrage des tours
 		gestionDesTours();
@@ -57,6 +46,49 @@ public class Moteur {
 	}
 
 	/**
+	 * Méthode qui place les robots aléatoirement sur la grille
+	 * 
+	 * @param nbRobot
+	 */
+	private void placementDesRobots(int nbRobot) {
+		// Liste des toutes les positions possibles :
+		ArrayList<Point> listePositions = new ArrayList<>();
+
+		// Remplissage de cette liste
+		for (int row = 0; row < Grille.getNblignesmax(); row++) {
+			for (int col = 0; col < Grille.getNbcolonnesmax(); col++) {
+				listePositions.add(new Point(row, col));
+			}
+		}
+
+		// Création des robots :
+		for (int i = 1; i <= nbRobot; i++) {
+			// Création d'un robot
+			robot = new Robot();
+			robot.setIndice(i);
+			robot.setPtMouvement(1);
+			robot.setPortee(1);
+
+			// Choix de sa position de départ
+			Random rand = new Random();
+			// Un random dans la liste des positions
+			Point positionChoisie = listePositions.get(rand.nextInt(listePositions.size()));
+
+			// On affecte cette position au robot
+			robot.setPoint(positionChoisie);
+			// On ajoute le robot à la grille
+			grille.getElementsGrille()[positionChoisie.x][positionChoisie.y].setRobot(robot);
+
+			// Ajout du robot à la liste des robots
+			listeRobots.add(robot);
+
+			// On enlève la position de la liste des positions possibles
+			listePositions.remove(positionChoisie);
+		}
+
+	}
+
+	/**
 	 * Méthode qui s'occupe de la gestion des tours
 	 */
 	public void gestionDesTours() {
@@ -69,7 +101,7 @@ public class Moteur {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			for (Robot robot : list) {
+			for (Robot robot : listeRobots) {
 				// On demande au robot de se déplacer
 				robot.seDeplacer(grille);
 				robot.attaquer(grille);
@@ -80,7 +112,7 @@ public class Moteur {
 
 	public static void main(String[] args) {
 
-		Moteur m = new Moteur(5);
+		Moteur m = new Moteur(10);
 
 	}
 }

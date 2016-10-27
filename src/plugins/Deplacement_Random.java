@@ -68,10 +68,13 @@ public class Deplacement_Random {
 				if (row < 0 || col < 0 || row >= nbLigneMax || col >= nbColonneMax)
 					continue;
 
-				// On regarde s'il n'y a pas déja un robot sur cette case
-				if (grille.getElementsGrille()[row][col].getRobot() != null)
-					continue;
-
+				// Si on n'est pas sur le point où se trouve le robot
+				// initialement
+				if (!(row == x && col == y)) {
+					// On regarde s'il n'y a pas déja un robot sur cette case
+					if (grille.getElementsGrille()[row][col].getRobot() != null)
+						continue;
+				}
 				// Un déplacement possible
 				Point casePossible = new Point(row, col);
 
