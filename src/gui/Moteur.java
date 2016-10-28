@@ -15,17 +15,33 @@ import javax.swing.JFrame;
  */
 public class Moteur {
 
+	/** Liste des robots */
 	ArrayList<Robot> listeRobots = new ArrayList<>();
 
+	/** Grille de jeu */
 	Grille grille;
-	Robot robot;
 
-	public Moteur(int i) {
+	/**
+	 * Constructeur de la classe Moteur
+	 * 
+	 * @param nbRobots
+	 *            nombre de robots à placer
+	 */
+	public Moteur(int nbRobots) {
+
+		// ----------------------------------
+		// 1) Phase de mise en route du jeu :
+		// ----------------------------------
 
 		// Instantiation de la grille de jeu
 		creationDeLaGrilleDeJeu();
 
-		placementDesRobots(i);
+		// Le moteur place les robots aléatoirement sur la grille
+		placementDesRobots(nbRobots);
+
+		// --------------------
+		// 2) Le jeu commence :
+		// --------------------
 
 		// Démarrage des tours
 		gestionDesTours();
@@ -60,15 +76,17 @@ public class Moteur {
 				listePositions.add(new Point(row, col));
 			}
 		}
-
+		
 		// Création des robots :
 		for (int i = 1; i <= nbRobot; i++) {
 			// Création d'un robot
-			robot = new Robot();
+			Robot robot = new Robot();
 			robot.setIndice(i);
 			robot.setPtMouvement(1);
 			robot.setPortee(1);
+			robot.setVie(100);
 
+			
 			// Choix de sa position de départ
 			Random rand = new Random();
 			// Un random dans la liste des positions
@@ -76,6 +94,7 @@ public class Moteur {
 
 			// On affecte cette position au robot
 			robot.setPoint(positionChoisie);
+			
 			// On ajoute le robot à la grille
 			grille.getElementsGrille()[positionChoisie.x][positionChoisie.y].setRobot(robot);
 
@@ -93,26 +112,74 @@ public class Moteur {
 	 */
 	public void gestionDesTours() {
 
+		boolean finDePartie = false;
+
 		// Boucle pour chaque tour de jeu :
-		for (int i = 0; i < 10; i++) {
-			try {
-				System.out.println("Tour : " + (i + 1));
-				TimeUnit.SECONDS.sleep(1);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+		while (finDePartie != true) {
+			// System.out.println("Tour : " + (i + 1));
+
+			// Temps entre chaque tour
+//			try {
+//				TimeUnit.SECONDS.sleep(1);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+			// Pour chaque robots :
 			for (Robot robot : listeRobots) {
+				// Temps entre chaque tour
+				try {
+					TimeUnit.MILLISECONDS.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				// Il faut que le robot soit vivant pour jouer
+				if (!robot.isVivant()) {
+					continue;
+				}
+
 				// On demande au robot de se déplacer
 				robot.seDeplacer(grille);
-				robot.attaquer(grille);
+
+				// On demande au robot d'attaquer une cible
+				Robot cible = robot.attaquer(grille);
+
+				// On regarde si le robot est mort
+				gestionMortRobot(cible);
+			}
+
+			int nbRobotVivant = 0;
+			for (Robot robot : listeRobots) {
+				if (robot.isVivant()) {
+					nbRobotVivant += 1;
+				}
+			}
+
+			if (nbRobotVivant == 1) {
+				finDePartie = true;
+
+				System.out.println("Fin de la partie");
 			}
 		}
 
 	}
 
+	private void gestionMortRobot(Robot cible) {
+		if (cible != null) {
+			// Si le robot est mort
+			if (!cible.isVivant()) {
+				// Position du robot ciblé
+				Point positionCible = cible.getPoint();
+
+				// On le retire de liste
+				grille.getElementsGrille()[positionCible.x][positionCible.y].setRobot(null);
+			}
+		}
+	}
+
 	public static void main(String[] args) {
 
-		Moteur m = new Moteur(10);
+		Moteur m = new Moteur(5);
 
 	}
 }

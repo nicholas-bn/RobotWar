@@ -15,9 +15,9 @@ import javax.swing.JLabel;
 public class Grille extends JLabel {
 
 	/** Nombre max de cases par colonnes */
-	private static final int nbColonnesMax = 10;
+	private static final int nbColonnesMax = 5;
 	/** Nombre max de cases par lignes */
-	private static final int nbLignesMax = 10;
+	private static final int nbLignesMax = 5;
 
 	private Case[][] elementsGrille;
 
