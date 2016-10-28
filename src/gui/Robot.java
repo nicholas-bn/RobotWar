@@ -171,7 +171,22 @@ public class Robot {
 		}
 
 	}
+	
+	/**
+	 * Méthode qui permet de savoir si un robot est toujours vivant
+	 * 
+	 */
+	public boolean isVivant(){
+		if(this.getVie()>0)
+			return true;
+		return false;
+	}
 
+	
+	/**
+	 * Override du toString pour afficher les valeurs importantes
+	 * 
+	 */
 	public String toString() {
 		return "Robot " + this.getIndice() + "( X:" + this.getPoint().getX() + " Y:" + this.getPoint().getY()+")";
 	}
