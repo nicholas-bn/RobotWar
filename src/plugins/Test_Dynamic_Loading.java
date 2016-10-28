@@ -46,12 +46,16 @@ public class Test_Dynamic_Loading extends Component {
 		int xDraw = xLabel / 2;
 		int yDraw = yLabel / 2;
 
-		// Dessine au milieu du JLabel
+		// Dessine le cercle au milieu du JLabel
 		g.fillOval((xLabel - xDraw) / 2, (yLabel - yDraw) / 2, xDraw, yDraw);
+		
+		// Dessine le trait du canon
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setStroke(new BasicStroke(3));
+		g.drawLine(xDraw, yDraw, ((7 * xLabel) / 8), yDraw);
 
 		// Dessiner le background de la barre de vie
 		g.setColor(Color.white);
-		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(3));
 		int x1 = xLabel / 8;
 		int y1 = yLabel / 8;
