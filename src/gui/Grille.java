@@ -15,17 +15,19 @@ import javax.swing.JLabel;
 public class Grille extends JLabel {
 
 	/** Nombre max de cases par colonnes */
-	private static final int nbColonnesMax = 5;
+	private static int nbColonnesMax = 5;
 	/** Nombre max de cases par lignes */
-	private static final int nbLignesMax = 5;
+	private static int nbLignesMax = 5;
 
 	private Case[][] elementsGrille;
 
 	/**
 	 * Constructeur de la classe {@link Grille}
 	 */
-	public Grille() {
+	public Grille(int xGrille, int yGrille) {
 		super();
+		this.nbColonnesMax = xGrille;
+		this.nbLignesMax = yGrille;
 		// Layout utilisé
 		setLayout(new GridLayout(nbLignesMax, nbColonnesMax));
 
@@ -60,7 +62,7 @@ public class Grille extends JLabel {
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Test de la classe Grille");
-		Grille grille = new Grille();
+		Grille grille = new Grille(10, 10);
 		frame.setContentPane(grille);
 
 		frame.setVisible(true);

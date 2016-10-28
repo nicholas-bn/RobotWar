@@ -29,14 +29,14 @@ public class Moteur {
 	 * @param nbRobots
 	 *            nombre de robots à placer
 	 */
-	public Moteur(int nbRobots) {
+	public Moteur(int nbRobots, int xGrille, int yGrille) {
 
 		// ----------------------------------
 		// 1) Phase de mise en route du jeu :
 		// ----------------------------------
 
 		// Instantiation de la grille de jeu
-		creationDeLaGrilleDeJeu();
+		creationDeLaGrilleDeJeu(xGrille, yGrille);
 
 		// Le moteur place les robots aléatoirement sur la grille
 		placementDesRobots(nbRobots);
@@ -52,8 +52,8 @@ public class Moteur {
 	/**
 	 * Méthode qui crée un grille de jeu
 	 */
-	private void creationDeLaGrilleDeJeu() {
-		grille = new Grille();
+	private void creationDeLaGrilleDeJeu(int xGrille, int yGrille) {
+		grille = new Grille(xGrille, yGrille);
 
 		// TEST : On place la grille dans une JFrame
 		JFrame frame = new JFrame("Test de la classe Grille");
@@ -181,7 +181,7 @@ public class Moteur {
 
 	public static void main(String[] args) {
 
-		Moteur m = new Moteur(2);
+		Moteur m = new Moteur(2, 10 ,10);
 
 	}
 }

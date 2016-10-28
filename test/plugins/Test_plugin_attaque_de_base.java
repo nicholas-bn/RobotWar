@@ -24,7 +24,7 @@ public class Test_plugin_attaque_de_base {
 		robotAttaquant = new Robot();
 		robotVictimeFaible = new Robot();
 		robotVictime = new Robot();
-		grille = new Grille();
+		grille = new Grille(10, 10);
 	}
 
 	@Test

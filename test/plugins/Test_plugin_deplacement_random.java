@@ -21,7 +21,7 @@ public class Test_plugin_deplacement_random {
 	public void init_objets() {
 		deplacement = new Deplacement_Random();
 		robot = new Robot();
-		grille = new Grille();
+		grille = new Grille(10, 10);
 
 	}
 
