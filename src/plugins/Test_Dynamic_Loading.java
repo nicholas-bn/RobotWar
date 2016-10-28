@@ -9,32 +9,29 @@ import java.util.Random;
 
 import gui.Case;
 
-public class Test_Dynamic_Loading extends Component{
-	
-	Case laCase;
-	
-	
-	public void dessiner(Case c, Graphics g){
-		this.laCase=c;
-		paint(g);
+public class Test_Dynamic_Loading extends Component {
+
+	public void dessiner(Case c, Graphics g) {
+
+		paint(g, c);
 	}
-	
+
 	/**
 	 * Méthode paintComponent de {@link Case}
+	 * 
+	 * @param c
 	 */
-
-	public void paint(Graphics g) {
+	public void paint(Graphics g, Case c) {
 		super.paint(g);
-		
-		this.laCase.setOpaque(true);
-		this.laCase.setBackground(laCase.getRobot().getCouleur());
-		//this.laCase.setBackground(Color.red);
-		
+
+		c.setOpaque(true);
+		c.setBackground(c.getRobot().getCouleur());
+
 		g.setColor(Color.black);
 
 		// Taille du label
-		int xLabel = laCase.getWidth();
-		int yLabel = laCase.getHeight();
+		int xLabel = c.getWidth();
+		int yLabel = c.getHeight();
 
 		// Centre du label
 		int xDraw = xLabel / 2;

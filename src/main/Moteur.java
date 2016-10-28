@@ -181,7 +181,7 @@ public class Moteur {
 
 	public static void main(String[] args) {
 
-		Moteur m = new Moteur(5);
+		Moteur m = new Moteur(2);
 
 	}
 }
