@@ -40,6 +40,7 @@ public class Attaque_de_Base {
 						r = listRobotAttaquable.get(i);
 				}
 			}
+			r.setVie(0);
 			return r;
 		} else
 			return null;
