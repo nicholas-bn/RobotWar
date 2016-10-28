@@ -1,4 +1,4 @@
-package gui;
+package main;
 
 import java.awt.Color;
 import java.awt.Point;
@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Random;
 
+import gui.Grille;
 import plugins.Attaque_de_Base;
 import plugins.Deplacement_Random;
 

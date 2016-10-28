@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import gui.Grille;
-import gui.Robot;
+import main.Robot;
 
 // TODO changer le nom
 public class Deplacement_Random {

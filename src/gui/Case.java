@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import main.Robot;
 import plugins.Test_Dynamic_Loading;
 
 /**

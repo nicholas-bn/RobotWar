@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import gui.Grille;
-import gui.Robot;
+import main.Robot;
 
 /**
  * Classe représentant une case de la grille

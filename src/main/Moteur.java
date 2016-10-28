@@ -1,4 +1,4 @@
-package gui;
+package main;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -6,6 +6,8 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
+
+import gui.Grille;
 
 /**
  * Moteur du jeu
