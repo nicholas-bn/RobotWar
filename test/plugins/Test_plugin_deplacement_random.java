@@ -93,9 +93,8 @@ public class Test_plugin_deplacement_random {
 
 		// On crée un deuxieme robot à coté du premier
 		Robot r2 = new Robot();
-		r2.setPoint(new Point(0, 1));
 		// On le place sur la grille
-		grille.getElementsGrille()[0][1].setRobot(r2);
+		grille.deplacerRobot(r2, new Point(0, 1));
 
 		// Liste des déplacements possibles du robot
 		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot.getPoint().x,

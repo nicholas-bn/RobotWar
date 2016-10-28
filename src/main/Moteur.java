@@ -78,7 +78,7 @@ public class Moteur {
 				listePositions.add(new Point(row, col));
 			}
 		}
-		
+
 		// Création des robots :
 		for (int i = 1; i <= nbRobot; i++) {
 			// Création d'un robot
@@ -88,17 +88,13 @@ public class Moteur {
 			robot.setPortee(1);
 			robot.setVie(100);
 
-			
 			// Choix de sa position de départ
 			Random rand = new Random();
 			// Un random dans la liste des positions
 			Point positionChoisie = listePositions.get(rand.nextInt(listePositions.size()));
 
-			// On affecte cette position au robot
-			robot.setPoint(positionChoisie);
-			
 			// On ajoute le robot à la grille
-			grille.getElementsGrille()[positionChoisie.x][positionChoisie.y].setRobot(robot);
+			grille.deplacerRobot(robot, positionChoisie);
 
 			// Ajout du robot à la liste des robots
 			listeRobots.add(robot);
@@ -121,11 +117,11 @@ public class Moteur {
 			// System.out.println("Tour : " + (i + 1));
 
 			// Temps entre chaque tour
-//			try {
-//				TimeUnit.SECONDS.sleep(1);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
+			// try {
+			// TimeUnit.SECONDS.sleep(1);
+			// } catch (InterruptedException e) {
+			// e.printStackTrace();
+			// }
 			// Pour chaque robots :
 			for (Robot robot : listeRobots) {
 				// Temps entre chaque tour
@@ -134,7 +130,7 @@ public class Moteur {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				
+
 				// Il faut que le robot soit vivant pour jouer
 				if (!robot.isVivant()) {
 					continue;
@@ -170,18 +166,15 @@ public class Moteur {
 		if (cible != null) {
 			// Si le robot est mort
 			if (!cible.isVivant()) {
-				// Position du robot ciblé
-				Point positionCible = cible.getPoint();
-
-				// On le retire de liste
-				grille.getElementsGrille()[positionCible.x][positionCible.y].setRobot(null);
+				// On le retire de la grille
+				grille.retirerRobot(cible);
 			}
 		}
 	}
 
 	public static void main(String[] args) {
 
-		Moteur m = new Moteur(2, 10 ,10);
+		Moteur m = new Moteur(2, 10, 10);
 
 	}
 }

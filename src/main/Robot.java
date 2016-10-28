@@ -40,17 +40,15 @@ public class Robot {
 	/** Instance de la classe qui va choisir quel robot à prendre pour cible */
 	Attaque_de_Base instanceAttaque;
 
-	/** Classe qui va choisir le robot à attaquer */
+	/** Classe qui va choisir l'apparence d'un robot */
 	Class<?> plugin_apparence;
-	/** Instance de la classe qui va choisir quel robot à prendre pour cible */
+	/** Instance de la classe qui va dessiner le robot */
 	Test_Dynamic_Loading instanceApparence;
 
 	/**
 	 * Constructeur de la classe {@link Robot}
 	 */
 	public Robot() {
-
-		// Chargement de la classe qui s'occupe des déplacements du robot
 		try {
 			// Chargement du plugin "Deplacement"
 			plugin_deplacement = Class.forName("plugins.Deplacement_Random");
@@ -63,17 +61,16 @@ public class Robot {
 			// Chargement du plugin "Apparence"
 			plugin_apparence = Class.forName("plugins.Test_Dynamic_Loading");
 			instanceApparence = (Test_Dynamic_Loading) plugin_apparence.newInstance();
-			
+
 			// La méthode du plugin qui permet de choisir la couleur du robot
 			Method m = plugin_apparence.getMethod("getCouleur");
 			Color couleur = (Color) m.invoke(instanceApparence);
 			this.setCouleur(couleur);
-			
+
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException
 				| SecurityException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	public int getPortee() {
@@ -139,26 +136,22 @@ public class Robot {
 	 */
 	public Robot attaquer(Grille grille) {
 		try {
-			// La méthode du plugin qui permet de choisir un déplacement
+			// La méthode du plugin qui permet de choisir une cible
 			Method m = plugin_attaque.getMethod("choisirCible", Grille.class, Robot.class);
-			Robot r = (Robot) m.invoke(instanceAttaque, grille, this);
-			if (r != null) {
-				System.out.println("Le robot " + this + " attaque le robot " + r);
-				return r;
-			}
 
-		} catch (NoSuchMethodException | SecurityException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
+			// Cette méthode retourne un robot "cible"
+			Robot robotCible = (Robot) m.invoke(instanceAttaque, grille, this);
+
+			// Si un robot a été choisi
+			if (robotCible != null) {
+				System.out.println("Le robot " + this + " attaque le robot " + robotCible);
+				return robotCible;
+			}
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
+				| SecurityException e) {
 			e.printStackTrace();
 		}
+
 		return null;
 	}
 
@@ -168,27 +161,37 @@ public class Robot {
 	 * @param grille
 	 */
 	public void seDeplacer(Grille grille) {
-
 		try {
 			// La méthode du plugin qui permet de choisir un déplacement
 			Method m = plugin_deplacement.getMethod("choisirDeplacement", Grille.class, Robot.class);
 
 			// Point choisie par le plugin
-			Point p = (java.awt.Point) m.invoke(instanceDeplacement, grille, this);
+			Point posChoisie = (java.awt.Point) m.invoke(instanceDeplacement, grille, this);
 
-			// Position initiale du robot
-			Point pointDepart = getPoint();
-			// On l'enlève de sa position initiale
-			// TODO faire une méthode
-			grille.getElementsGrille()[pointDepart.x][pointDepart.y].setRobot(null);
-
-			// On affecte au robot sa nouvelle position
-			setPoint(p);
-			// On le place sur la grille avec sa nouvelle position
-			grille.getElementsGrille()[p.x][p.y].setRobot(this);
+			// On déplace le robot sur la grille
+			grille.deplacerRobot(this, posChoisie);
 
 			// On redessine la grille
 			grille.repaint();
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Méthode qui permet de dessiner le robot
+	 * 
+	 * @param g
+	 * @param caseRobot
+	 */
+	public void dessiner(Graphics g, Case caseRobot) {
+		try {
+			Method m = plugin_apparence.getMethod("dessiner", Case.class, Graphics.class);
+
+			// Méthode qui va décider elle même le robot
+			m.invoke(instanceApparence, caseRobot, g);
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {
 			e.printStackTrace();
@@ -214,14 +217,4 @@ public class Robot {
 		return "Robot " + this.getIndice() + "( X:" + this.getPoint().getX() + " Y:" + this.getPoint().getY() + ")";
 	}
 
-	public void dessiner(Graphics g, Case caseRobot) {
-		try {
-			Method m = plugin_apparence.getMethod("dessiner", Case.class, Graphics.class);
-			m.invoke(instanceApparence, caseRobot, g);
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			e.printStackTrace();
-		}
-
-	}
 }
