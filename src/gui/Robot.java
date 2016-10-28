@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Point;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Random;
 
 import plugins.Attaque_de_Base;
 import plugins.Deplacement_Random;
@@ -49,7 +50,11 @@ public class Robot {
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
-
+		Random rand = new Random();
+		float r = rand.nextFloat();
+		float g = rand.nextFloat();
+		float b = rand.nextFloat();
+		this.setCouleur(new Color(r, g, b));
 	}
 
 	public int getPortee() {

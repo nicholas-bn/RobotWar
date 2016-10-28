@@ -27,8 +27,8 @@ public class Test_Dynamic_Loading extends Component{
 		super.paint(g);
 		
 		this.laCase.setOpaque(true);
-		//this.laCase.setBackground(laCase.getRobot().getCouleur());
-		this.laCase.setBackground(Color.red);
+		this.laCase.setBackground(laCase.getRobot().getCouleur());
+		//this.laCase.setBackground(Color.red);
 		
 		g.setColor(Color.black);
 
