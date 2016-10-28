@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import gui.Grille;
-import gui.Robot;
+import main.Robot;
 
 public class Test_plugin_deplacement_random {
 
