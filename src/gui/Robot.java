@@ -113,13 +113,15 @@ public class Robot {
 	 * 
 	 * @param grille
 	 */
-	public void attaquer(Grille grille) {
+	public Robot attaquer(Grille grille) {
 		try {
 			// La méthode du plugin qui permet de choisir un déplacement
 			Method m = plugin_attaque.getMethod("choisirCible", Grille.class, Robot.class);
 			Robot r = (Robot) m.invoke(instanceAttaque, grille, this);
-			if (r != null)
+			if (r != null) {
 				System.out.println("Le robot " + this + " attaque le robot " + r);
+				return r;
+			}
 
 		} catch (NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
@@ -133,6 +135,7 @@ public class Robot {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	/**
