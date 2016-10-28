@@ -52,22 +52,28 @@ public class Robot {
 
 		// Chargement de la classe qui s'occupe des déplacements du robot
 		try {
+			// Chargement du plugin "Deplacement"
 			plugin_deplacement = Class.forName("plugins.Deplacement_Random");
 			instanceDeplacement = (Deplacement_Random) plugin_deplacement.newInstance();
-			
+
+			// Chargement du plugin "Attaque"
 			plugin_attaque = Class.forName("plugins.Attaque_de_Base");
 			instanceAttaque = (Attaque_de_Base) plugin_attaque.newInstance();
 
+			// Chargement du plugin "Apparence"
 			plugin_apparence = Class.forName("plugins.Test_Dynamic_Loading");
 			instanceApparence = (Test_Dynamic_Loading) plugin_apparence.newInstance();
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			
+			// La méthode du plugin qui permet de choisir la couleur du robot
+			Method m = plugin_apparence.getMethod("getCouleur");
+			Color couleur = (Color) m.invoke(instanceApparence);
+			this.setCouleur(couleur);
+			
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException
+				| SecurityException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
-		Random rand = new Random();
-		float r = rand.nextFloat();
-		float g = rand.nextFloat();
-		float b = rand.nextFloat();
-		this.setCouleur(new Color(r, g, b));
+		
 	}
 
 	public int getPortee() {
