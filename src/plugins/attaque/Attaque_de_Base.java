@@ -1,4 +1,4 @@
-package plugins;
+package plugins.attaque;
 
 import java.awt.Point;
 import java.util.ArrayList;

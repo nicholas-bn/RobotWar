@@ -9,9 +9,9 @@ import java.util.Random;
 
 import gui.Case;
 import gui.Grille;
-import plugins.Attaque_de_Base;
-import plugins.Deplacement_Random;
-import plugins.Graphisme_de_Base;
+import plugins.attaque.Attaque_de_Base;
+import plugins.deplacement.Deplacement_Random;
+import plugins.graphisme.Graphisme_de_Base;
 
 public class Robot {
 
@@ -51,15 +51,15 @@ public class Robot {
 	public Robot() {
 		try {
 			// Chargement du plugin "Deplacement"
-			plugin_deplacement = Class.forName("plugins.Deplacement_Random");
+			plugin_deplacement = Class.forName("plugins.deplacement.Deplacement_Random");
 			instanceDeplacement = (Deplacement_Random) plugin_deplacement.newInstance();
 
 			// Chargement du plugin "Attaque"
-			plugin_attaque = Class.forName("plugins.Attaque_de_Base");
+			plugin_attaque = Class.forName("plugins.attaque.Attaque_de_Base");
 			instanceAttaque = (Attaque_de_Base) plugin_attaque.newInstance();
 
 			// Chargement du plugin "Apparence"
-			plugin_apparence = Class.forName("plugins.Graphisme_de_Base");
+			plugin_apparence = Class.forName("plugins.graphisme.Graphisme_de_Base");
 			instanceApparence = (Graphisme_de_Base) plugin_apparence.newInstance();
 
 			// La méthode du plugin qui permet de choisir la couleur du robot

@@ -1,4 +1,4 @@
-package plugins;
+package plugins.deplacement;
 
 import java.awt.Point;
 import java.util.ArrayList;

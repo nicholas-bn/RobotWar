@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import gui.Grille;
 import main.Robot;
+import plugins.deplacement.Deplacement_Random;
 
 public class Test_plugin_deplacement_random {
 

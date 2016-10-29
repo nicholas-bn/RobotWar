@@ -1,4 +1,4 @@
-package plugins;
+package plugins.graphisme;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

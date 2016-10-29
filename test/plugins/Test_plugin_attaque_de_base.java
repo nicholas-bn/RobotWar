@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import gui.Grille;
 import main.Robot;
+import plugins.attaque.Attaque_de_Base;
 
 public class Test_plugin_attaque_de_base {
 

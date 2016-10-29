@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import main.Robot;
-import plugins.Graphisme_de_Base;
+import plugins.graphisme.Graphisme_de_Base;
 
 /**
  * Classe représentant une case de la grille
