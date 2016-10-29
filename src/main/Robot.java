@@ -11,7 +11,7 @@ import gui.Case;
 import gui.Grille;
 import plugins.Attaque_de_Base;
 import plugins.Deplacement_Random;
-import plugins.Test_Dynamic_Loading;
+import plugins.Graphisme_de_Base;
 
 public class Robot {
 
@@ -43,7 +43,7 @@ public class Robot {
 	/** Classe qui va choisir l'apparence d'un robot */
 	Class<?> plugin_apparence;
 	/** Instance de la classe qui va dessiner le robot */
-	Test_Dynamic_Loading instanceApparence;
+	Graphisme_de_Base instanceApparence;
 
 	/**
 	 * Constructeur de la classe {@link Robot}
@@ -60,7 +60,7 @@ public class Robot {
 
 			// Chargement du plugin "Apparence"
 			plugin_apparence = Class.forName("plugins.Test_Dynamic_Loading");
-			instanceApparence = (Test_Dynamic_Loading) plugin_apparence.newInstance();
+			instanceApparence = (Graphisme_de_Base) plugin_apparence.newInstance();
 
 			// La méthode du plugin qui permet de choisir la couleur du robot
 			Method m = plugin_apparence.getMethod("getCouleur");

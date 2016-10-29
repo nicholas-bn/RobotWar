@@ -9,7 +9,7 @@ import java.util.Random;
 
 import gui.Case;
 
-public class Test_Dynamic_Loading extends Component {
+public class Graphisme_de_Base extends Component {
 
 	public void dessiner(Case c, Graphics g) {
 
