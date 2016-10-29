@@ -146,20 +146,26 @@ public class Moteur {
 				gestionMortRobot(cible);
 			}
 
-			int nbRobotVivant = 0;
-			for (Robot robot : listeRobots) {
-				if (robot.isVivant()) {
-					nbRobotVivant += 1;
-				}
-			}
 
-			if (nbRobotVivant == 1) {
-				finDePartie = true;
+			finDePartie = VerifFinDePartie();
+		}
 
-				System.out.println("Fin de la partie");
+	}
+	
+	private boolean VerifFinDePartie(){
+		int nbRobotVivant = 0;
+		for (Robot robot : listeRobots) {
+			if (robot.isVivant()) {
+				nbRobotVivant += 1;
 			}
 		}
 
+		if (nbRobotVivant == 1) {
+			System.out.println("Fin de la partie");
+			return true;
+		}
+		
+		return false;
 	}
 
 	private void gestionMortRobot(Robot cible) {
