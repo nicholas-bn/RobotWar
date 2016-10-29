@@ -132,7 +132,7 @@ public class Test_plugin_deplacement_random {
 
 		for (int i = 0; i < 10; i++) {
 			Point nouvellePosition = deplacement.choisirDeplacement(grille, robot);
-			assertEquals("Nouvelle position", robot.getPoint(), new Point(0, 0));
+			assertEquals("Nouvelle position", nouvellePosition, new Point(0, 0));
 		}
 
 	}
