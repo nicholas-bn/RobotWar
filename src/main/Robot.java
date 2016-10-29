@@ -48,6 +48,15 @@ public class Robot {
 	 * Constructeur de la classe {@link Robot}
 	 */
 	public Robot() {
+
+		//Initialisation de la portee du robot à 1
+		Portee = 1;
+		//Initialisation de la vie du robot à 100
+		Vie = 100;
+		//Initialisation des points d'actions du robot à 1
+		ptAction = 1;
+		//Initialisation des points de mouvements du robot à 1
+		ptMouvement = 1;
 		try {
 			// Chargement du plugin "Deplacement"
 			plugin_deplacement = Class.forName("plugins.deplacement.Deplacement_Random");
