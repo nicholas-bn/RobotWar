@@ -72,7 +72,7 @@ public class Deplacement_Random {
 				// initialement
 				if (!(row == x && col == y)) {
 					// On regarde s'il n'y a pas déja un robot sur cette case
-					if (grille.getElementsGrille()[row][col].getRobot() != null)
+					if (grille.getRobotFromPoint(new Point(row, col)) != null)
 						continue;
 				}
 				// Un déplacement possible

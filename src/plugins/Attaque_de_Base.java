@@ -77,8 +77,8 @@ public class Attaque_de_Base {
 					continue;
 
 				// On regarde s'il y a un robot sur cette case
-				if (grille.getElementsGrille()[row][col].getRobot() != null)
-					listRobot.add(grille.getElementsGrille()[row][col].getRobot());
+				if (grille.getRobotFromPoint(new Point(row, col)) != null)
+					listRobot.add(grille.getRobotFromPoint(new Point(row, col)));
 			}
 		}
 		return listRobot;

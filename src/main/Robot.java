@@ -59,7 +59,7 @@ public class Robot {
 			instanceAttaque = (Attaque_de_Base) plugin_attaque.newInstance();
 
 			// Chargement du plugin "Apparence"
-			plugin_apparence = Class.forName("plugins.Test_Dynamic_Loading");
+			plugin_apparence = Class.forName("plugins.Graphisme_de_Base");
 			instanceApparence = (Graphisme_de_Base) plugin_apparence.newInstance();
 
 			// La méthode du plugin qui permet de choisir la couleur du robot
