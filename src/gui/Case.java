@@ -2,15 +2,11 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import main.Robot;
-import plugins.graphisme.Graphisme_de_Base;
 
 /**
  * Classe représentant une case de la grille

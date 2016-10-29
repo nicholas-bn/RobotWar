@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Random;
 
 import gui.Case;
 import gui.Grille;

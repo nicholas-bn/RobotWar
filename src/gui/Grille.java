@@ -3,7 +3,6 @@ package gui;
 import java.awt.GridLayout;
 import java.awt.Point;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import main.Robot;

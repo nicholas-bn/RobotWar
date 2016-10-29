@@ -9,6 +9,7 @@ import java.util.Random;
 
 import gui.Case;
 
+@SuppressWarnings("serial")
 public class Graphisme_de_Base extends Component {
 
 	public void dessiner(Case c, Graphics g) {
@@ -48,7 +49,7 @@ public class Graphisme_de_Base extends Component {
 
 		// Dessine le cercle au milieu du JLabel
 		g.fillOval((xLabel - xDraw) / 2, (yLabel - yDraw) / 2, xDraw, yDraw);
-		
+
 		// Dessine le trait du canon
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(3));

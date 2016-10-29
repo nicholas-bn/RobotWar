@@ -2,7 +2,6 @@ package plugins.attaque;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Random;
 
 import gui.Grille;
 import main.Robot;

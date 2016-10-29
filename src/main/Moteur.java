@@ -173,8 +173,6 @@ public class Moteur {
 	}
 
 	public static void main(String[] args) {
-
-		Moteur m = new Moteur(2, 10, 10);
-
+		new Moteur(2, 10, 10);
 	}
 }
