@@ -52,8 +52,8 @@ public class Deplacement_Random {
 		int pm = robot.getPtMouvement();
 		
 		// Informations concernant la taille de la grille
-		int nbColonneMax = Grille.getNbcolonnesmax();
-		int nbLigneMax = Grille.getNblignesmax();
+		int nbColonneMax = grille.getNbcolonnesmax();
+		int nbLigneMax = grille.getNblignesmax();
 
 		// Liste des différents points (déplacement) possible
 		ArrayList<Point> listPoints = new ArrayList<>();

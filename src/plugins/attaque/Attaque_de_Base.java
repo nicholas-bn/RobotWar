@@ -61,8 +61,8 @@ public class Attaque_de_Base {
 		int portée = r.getPortee();
 
 		// Informations concernant la taille de la grille
-		int nbColonneMax = Grille.getNbcolonnesmax();
-		int nbLigneMax = Grille.getNblignesmax();
+		int nbColonneMax = grille.getNbcolonnesmax();
+		int nbLigneMax = grille.getNblignesmax();
 
 		// On instancie la liste de robots à retourner
 		ArrayList<Robot> listRobot = new ArrayList<Robot>();

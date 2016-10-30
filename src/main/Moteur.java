@@ -75,8 +75,8 @@ public class Moteur {
 		ArrayList<Point> listePositions = new ArrayList<>();
 
 		// Remplissage de cette liste
-		for (int row = 0; row < Grille.getNblignesmax(); row++) {
-			for (int col = 0; col < Grille.getNbcolonnesmax(); col++) {
+		for (int row = 0; row < grille.getNblignesmax(); row++) {
+			for (int col = 0; col < grille.getNbcolonnesmax(); col++) {
 				listePositions.add(new Point(row, col));
 			}
 		}
