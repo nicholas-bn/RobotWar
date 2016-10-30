@@ -89,7 +89,6 @@ public class Test_plugin_deplacement_random {
 	public void deplacement_aléatoire_dun_robot_avec_un_autre_robot_sur_la_grille() {
 		// Position de départ du robot
 		robot.setPoint(new Point(0, 0));
-		robot.setPtMouvement(1);
 		assertEquals("Position initiale du robot", robot.getPoint(), new Point(0, 0));
 
 		// On crée un deuxieme robot à coté du premier
@@ -114,7 +113,6 @@ public class Test_plugin_deplacement_random {
 	public void deplacement_aléatoire_dun_robot_entoure_par_dautres_robots() {
 		// Position de départ du robot
 		robot.setPoint(new Point(0, 0));
-		robot.setPtMouvement(1);
 		assertEquals("Position initiale du robot", robot.getPoint(), new Point(0, 0));
 
 		// On crée un deuxieme robot que je place tout autour du robot 1

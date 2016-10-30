@@ -84,9 +84,6 @@ public class Moteur {
 			// Création d'un robot
 			Robot robot = new Robot();
 			robot.setIndice(i);
-			robot.setPtMouvement(1);
-			robot.setPortee(1);
-			robot.setVie(100);
 
 			// Choix de sa position de départ
 			Random rand = new Random();
