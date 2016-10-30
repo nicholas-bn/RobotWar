@@ -17,9 +17,9 @@ import main.Robot;
 public class Grille extends JLabel {
 
 	/** Nombre max de cases par colonnes */
-	private static int nbColonnesMax = 5;
+	private int nbColonnesMax;
 	/** Nombre max de cases par lignes */
-	private static int nbLignesMax = 5;
+	private int nbLignesMax;
 
 	private Case[][] elementsGrille;
 
@@ -28,8 +28,8 @@ public class Grille extends JLabel {
 	 */
 	public Grille(int xGrille, int yGrille) {
 		super();
-		Grille.nbColonnesMax = xGrille;
-		Grille.nbLignesMax = yGrille;
+		this.nbColonnesMax = xGrille;
+		this.nbLignesMax = yGrille;
 		// Layout utilisé
 		setLayout(new GridLayout(nbLignesMax, nbColonnesMax));
 
@@ -54,11 +54,11 @@ public class Grille extends JLabel {
 		return elementsGrille;
 	}
 
-	public static int getNbcolonnesmax() {
+	public int getNbcolonnesmax() {
 		return nbColonnesMax;
 	}
 
-	public static int getNblignesmax() {
+	public int getNblignesmax() {
 		return nbLignesMax;
 	}
 

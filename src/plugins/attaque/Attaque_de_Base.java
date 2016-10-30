@@ -25,8 +25,7 @@ public class Attaque_de_Base {
 	public Robot choisirCible(Grille grille, Robot robot) {
 
 		// On récupere la liste des robots attaquable
-		ArrayList<Robot> listRobotAttaquable = getListeAttaquesPossibles(robot.getPoint().x, robot.getPoint().y,
-				robot.getPortee(), grille);
+		ArrayList<Robot> listRobotAttaquable = getListeAttaquesPossibles(robot, grille);
 		int tailleArray = listRobotAttaquable.size();
 		if (tailleArray != 0) {
 			// On définit le premier robot comme la cible
@@ -54,11 +53,16 @@ public class Attaque_de_Base {
 	 * @return ArrayList<Robot>
 	 */
 
-	public ArrayList<Robot> getListeAttaquesPossibles(int x, int y, int portée, Grille grille) {
+	private ArrayList<Robot> getListeAttaquesPossibles(Robot r, Grille grille) {
+
+		// On récupère les valeurs des attributs du Robot
+		int x = r.getPoint().x;
+		int y = r.getPoint().y;
+		int portée = r.getPortee();
 
 		// Informations concernant la taille de la grille
-		int nbColonneMax = Grille.getNbcolonnesmax();
-		int nbLigneMax = Grille.getNblignesmax();
+		int nbColonneMax = grille.getNbcolonnesmax();
+		int nbLigneMax = grille.getNblignesmax();
 
 		// On instancie la liste de robots à retourner
 		ArrayList<Robot> listRobot = new ArrayList<Robot>();
@@ -76,10 +80,55 @@ public class Attaque_de_Base {
 					continue;
 
 				// On regarde s'il y a un robot sur cette case
-				if (grille.getRobotFromPoint(new Point(row, col)) != null)
-					listRobot.add(grille.getRobotFromPoint(new Point(row, col)));
+				if (grille.getRobotFromPoint(new Point(row, col)) != null) {
+					// On vérifie qu'il soit à portée
+					if (isAtReachNoDiagonal(row, x, col, y, r.getPortee())) {
+						listRobot.add(grille.getRobotFromPoint(new Point(row, col)));
+					}
+				}
 			}
 		}
 		return listRobot;
+	}
+
+	/**
+	 * Définie si un robot est portée ou non
+	 * 
+	 * @param x1
+	 *            - Position X du robot visé
+	 * @param x2
+	 *            - Position X du robot attaquant
+	 * @param y1
+	 *            - Position Y du robot visé
+	 * @param y2
+	 *            - Position Y du robot attaquant
+	 * @param portée
+	 *            - Correspond à la portée du robot attaquant
+	 * 
+	 * @return boolean - true si à portée
+	 */
+	private boolean isAtReachNoDiagonal(int x1, int x2, int y1, int y2, int portée) {
+
+		int differenceX = 0;
+		int differenceY = 0;
+
+		// On récupère la différence entre les X
+		if (x1 < x2)
+			differenceX = x2 - x1;
+		else
+			differenceX = x1 - x2;
+
+		// On récupère la différence entre les Y
+		if (y1 < y2)
+			differenceY = y2 - y1;
+		else
+			differenceY = y1 - y2;
+
+		// Si l'addition des deux différence (X,Y) est inférieur ou égal à la
+		// portée cela signifie que le robot est à portée de tir
+		if (differenceX + differenceY <= portée)
+			return true;
+		else
+			return false;
 	}
 }

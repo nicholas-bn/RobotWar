@@ -22,6 +22,8 @@ public class Moteur {
 
 	/** Grille de jeu */
 	Grille grille;
+	
+	JFrame frame;
 
 	/**
 	 * Constructeur de la classe Moteur
@@ -56,7 +58,7 @@ public class Moteur {
 		grille = new Grille(xGrille, yGrille);
 
 		// TEST : On place la grille dans une JFrame
-		JFrame frame = new JFrame("Test de la classe Grille");
+		frame = new JFrame("Test de la classe Grille");
 		frame.setContentPane(grille);
 		frame.setVisible(true);
 		frame.setSize(500, 500);
@@ -73,8 +75,8 @@ public class Moteur {
 		ArrayList<Point> listePositions = new ArrayList<>();
 
 		// Remplissage de cette liste
-		for (int row = 0; row < Grille.getNblignesmax(); row++) {
-			for (int col = 0; col < Grille.getNbcolonnesmax(); col++) {
+		for (int row = 0; row < grille.getNblignesmax(); row++) {
+			for (int col = 0; col < grille.getNbcolonnesmax(); col++) {
 				listePositions.add(new Point(row, col));
 			}
 		}
@@ -143,10 +145,11 @@ public class Moteur {
 				gestionMortRobot(cible);
 			}
 
-
+			frame.repaint();
+			
 			finDePartie = VerifFinDePartie();
 		}
-
+		frame.repaint();
 	}
 	
 	private boolean VerifFinDePartie(){
@@ -176,6 +179,6 @@ public class Moteur {
 	}
 
 	public static void main(String[] args) {
-		new Moteur(2, 10, 10);
+		new Moteur(2, 4, 4);
 	}
 }

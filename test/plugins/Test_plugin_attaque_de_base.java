@@ -36,7 +36,6 @@ public class Test_plugin_attaque_de_base {
 		grille.deplacerRobot(robotAttaquant, new Point(0, 0));
 
 		// Initialisation du robot se faisant attaquer
-		robotVictime.setPortee(2);
 		grille.deplacerRobot(robotVictime, new Point(3, 3));
 
 		// Le robot étant à la limite de la portée, il n'est pas pris en compte
@@ -47,11 +46,10 @@ public class Test_plugin_attaque_de_base {
 	public void test_lorsque_le_robot_est_juste_à_la_limite_de_la_portée() {
 
 		// Initialisation du robot attaquant
-		robotAttaquant.setPortee(2);
+		robotAttaquant.setPortee(4);
 		grille.deplacerRobot(robotAttaquant, new Point(0, 0));
 
 		// Initialisation du robot se faisant attaquer
-		robotVictime.setPortee(2);
 		grille.deplacerRobot(robotVictime, new Point(2, 2));
 
 		// Le robot étant le seul à être à portée est attaqué
@@ -71,7 +69,7 @@ public class Test_plugin_attaque_de_base {
 
 		// Initialisation du robot se faisant attaquer ayant le moins de vie
 		robotVictimeFaible.setVie(90);
-		grille.deplacerRobot(robotVictimeFaible, new Point(3, 3));
+		grille.deplacerRobot(robotVictimeFaible, new Point(1, 1));
 
 		// Le robot étant le seul à être à portée est attaqué
 		assertTrue(attaque.choisirCible(grille, robotAttaquant).equals(robotVictimeFaible));
