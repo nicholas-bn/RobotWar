@@ -55,6 +55,7 @@ public class Attaque_de_Base {
 
 	private ArrayList<Robot> getListeAttaquesPossibles(Robot r, Grille grille) {
 
+		// On récupère les valeurs des attributs du Robot
 		int x = r.getPoint().x;
 		int y = r.getPoint().y;
 		int portée = r.getPortee();
@@ -115,7 +116,6 @@ public class Attaque_de_Base {
 		if (x1 < x2)
 			differenceX = x2 - x1;
 		else
-
 			differenceX = x1 - x2;
 
 		// On récupère la différence entre les Y
@@ -123,13 +123,6 @@ public class Attaque_de_Base {
 			differenceY = y2 - y1;
 		else
 			differenceY = y1 - y2;
-
-		// System.out.println("x1: " + x1);
-		// System.out.println("x2: " + x2);
-		// System.out.println("y1: " + y1);
-		// System.out.println("y2: " + y2);
-		// System.out.println("differenceX " + differenceX);
-		// System.out.println("differenceY " + differenceY);
 
 		// Si l'addition des deux différence (X,Y) est inférieur ou égal à la
 		// portée cela signifie que le robot est à portée de tir

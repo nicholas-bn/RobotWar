@@ -34,8 +34,7 @@ public class Test_plugin_deplacement_random {
 		assertEquals("Position initiale du robot", robot.getPoint(), new Point(1, 1));
 
 		// Liste des déplacements possibles du robot
-		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot.getPoint().x,
-				robot.getPoint().y, robot.getPtMouvement(), grille);
+		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot, grille);
 
 		assertEquals("Nombre de déplacements possibles", 9, listDeplacementsPossibles.size());
 
@@ -53,8 +52,7 @@ public class Test_plugin_deplacement_random {
 		assertEquals("Position initiale du robot", robot.getPoint(), new Point(0, 9));
 
 		// Liste des déplacements possibles du robot
-		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot.getPoint().x,
-				robot.getPoint().y, robot.getPtMouvement(), grille);
+		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot, grille);
 
 		assertEquals("Nombre de déplacements possibles", 4, listDeplacementsPossibles.size());
 
@@ -73,8 +71,7 @@ public class Test_plugin_deplacement_random {
 		assertEquals("Position initiale du robot", robot.getPoint(), new Point(0, 9));
 
 		// Liste des déplacements possibles du robot
-		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot.getPoint().x,
-				robot.getPoint().y, robot.getPtMouvement(), grille);
+		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot, grille);
 
 		assertEquals("Nombre de déplacements possibles", 9, listDeplacementsPossibles.size());
 
@@ -98,8 +95,7 @@ public class Test_plugin_deplacement_random {
 		grille.deplacerRobot(r2, new Point(0, 1));
 
 		// Liste des déplacements possibles du robot
-		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot.getPoint().x,
-				robot.getPoint().y, robot.getPtMouvement(), grille);
+		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot, grille);
 
 		assertEquals("Nombre de déplacements possibles", 3, listDeplacementsPossibles.size());
 
@@ -126,8 +122,7 @@ public class Test_plugin_deplacement_random {
 		grille.getElementsGrille()[1][0].setRobot(r2);
 
 		// Liste des déplacements possibles du robot
-		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot.getPoint().x,
-				robot.getPoint().y, robot.getPtMouvement(), grille);
+		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot, grille);
 
 		assertEquals("Nombre de déplacements possibles", 1, listDeplacementsPossibles.size());
 

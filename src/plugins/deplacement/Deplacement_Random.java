@@ -18,16 +18,9 @@ public class Deplacement_Random {
 	 * @return
 	 */
 	public Point choisirDeplacement(Grille grille, Robot robot) {
-		// Position actuelle du robot
-		Point posActuelle = robot.getPoint();
-		int x = posActuelle.x;
-		int y = posActuelle.y;
-
-		// Nombre de points de mouvement du robot
-		int pm = robot.getPtMouvement();
 
 		// List des deplacements possibles
-		ArrayList<Point> listDeplacements = getListeDeplacementsPossibles(x, y, pm, grille);
+		ArrayList<Point> listDeplacements = getListeDeplacementsPossibles(robot, grille);
 
 		// Choix du déplacement aléatoirement
 		Random rand = new Random();
@@ -48,8 +41,16 @@ public class Deplacement_Random {
 	 * @param y
 	 * @return
 	 */
-	public ArrayList<Point> getListeDeplacementsPossibles(int x, int y, int pm, Grille grille) {
+	public ArrayList<Point> getListeDeplacementsPossibles(Robot robot, Grille grille) {
+		
+		// Position actuelle du robot
+		Point posActuelle = robot.getPoint();
+		int x = posActuelle.x;
+		int y = posActuelle.y;
 
+		// Nombre de points de mouvement du robot
+		int pm = robot.getPtMouvement();
+		
 		// Informations concernant la taille de la grille
 		int nbColonneMax = Grille.getNbcolonnesmax();
 		int nbLigneMax = Grille.getNblignesmax();
@@ -75,14 +76,58 @@ public class Deplacement_Random {
 					if (grille.getRobotFromPoint(new Point(row, col)) != null)
 						continue;
 				}
-				// Un déplacement possible
-				Point casePossible = new Point(row, col);
-
-				// On l'ajoute à la liste
-				listPoints.add(casePossible);
+				
+				if(isAtReachNoDiagonal(row, x, col, y, pm)){
+					// Un déplacement possible
+					Point casePossible = new Point(row, col);
+	
+					// On l'ajoute à la liste
+					listPoints.add(casePossible);
+				}
 			}
 		}
 		return listPoints;
 	}
 
+	/**
+	 * Définie si un robot est à portée d'une case
+	 * 
+	 * @param x1
+	 *            - Position X de la case à testé
+	 * @param x2
+	 *            - Position X du robot
+	 * @param y1
+	 *            - Position Y de la case à testé
+	 * @param y2
+	 *            - Position Y du robot
+	 * @param pm
+	 *            - Correspond aux points de mouvement du robot
+	 * 
+	 * @return boolean - true si à portée
+	 */
+	private boolean isAtReachNoDiagonal(int x1, int x2, int y1, int y2, int portée) {
+
+		int differenceX = 0;
+		int differenceY = 0;
+
+		// On récupère la différence entre les X
+		if (x1 < x2)
+			differenceX = x2 - x1;
+		else
+			differenceX = x1 - x2;
+
+		// On récupère la différence entre les Y
+		if (y1 < y2)
+			differenceY = y2 - y1;
+		else
+			differenceY = y1 - y2;
+
+		// Si l'addition des deux différence (X,Y) est inférieur ou égal à la
+		// portée cela signifie que le robot est à portée de mouvement
+		if (differenceX + differenceY <= portée)
+			return true;
+		else
+			return false;
+	}
+	
 }
