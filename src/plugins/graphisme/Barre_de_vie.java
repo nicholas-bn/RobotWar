@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import gui.Case;
+import main.Robot;
 
 /**
  * Plugin qui affiche une barre de vie au dessus du robot
@@ -34,9 +35,10 @@ public class Barre_de_vie extends Graphisme_de_Base {
 		int y2 = yLabel / 8;
 		g.drawLine(x1, y1, x2, y2);
 
-		// Dessiner la barre de vie TODO A ENLEVER PLUS TARD: on prendra la vie
-		// du robot
-		float vie = 0.50f;
+		Robot robot = c.getRobot();
+
+		// Vie actuelle du robot
+		float vie = robot.getVie() / 100f;
 		float tailleLigne = (xLabel - (xLabel / 4)) * vie;
 		float positionFinLigneVerte = (xLabel / 8) + tailleLigne;
 

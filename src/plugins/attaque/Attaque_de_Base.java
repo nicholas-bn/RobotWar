@@ -15,6 +15,8 @@ import main.Robot;
 
 public class Attaque_de_Base {
 
+	private final int degats = 50;
+
 	/**
 	 * Choisit une cible
 	 * 
@@ -38,7 +40,8 @@ public class Attaque_de_Base {
 						r = listRobotAttaquable.get(i);
 				}
 			}
-			r.setVie(0);
+			// Le robot subit des dégats
+			r.setVie(r.getVie() - degats);
 			return r;
 		} else
 			return null;
