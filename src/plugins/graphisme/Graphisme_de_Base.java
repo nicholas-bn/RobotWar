@@ -38,21 +38,7 @@ public class Graphisme_de_Base extends Component {
 
 		g.setColor(Color.black);
 
-		// Taille du label
-		int xLabel = c.getWidth();
-		int yLabel = c.getHeight();
-
-		// Centre du label
-		int xDraw = xLabel / 2;
-		int yDraw = yLabel / 2;
-
-		// Dessine le cercle au milieu du JLabel
-		g.fillOval((xLabel - xDraw) / 2, (yLabel - yDraw) / 2, xDraw, yDraw);
-
-		// Dessine le trait du canon
-		Graphics2D g2 = (Graphics2D) g;
-		g2.setStroke(new BasicStroke(3));
-		g.drawLine(xDraw, yDraw, ((7 * xLabel) / 8), yDraw);
+		
 
 	}
 }

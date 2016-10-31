@@ -74,6 +74,7 @@ public class Moteur {
 		// Chargement des plugins GRAPHISME :
 		gestionnairePlugins.chargerPlugin("plugins.graphisme.Graphisme_de_Base", TypePlugin.GRAPHISME);
 		gestionnairePlugins.chargerPlugin("plugins.graphisme.Barre_de_vie", TypePlugin.GRAPHISME);
+		gestionnairePlugins.chargerPlugin("plugins.graphisme.Tourelle", TypePlugin.GRAPHISME);
 
 		// Chargement du plugin ATTAQUE :
 		gestionnairePlugins.chargerPlugin("plugins.attaque.Attaque_de_Base", TypePlugin.ATTAQUE);
