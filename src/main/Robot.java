@@ -123,25 +123,17 @@ public class Robot {
 	 * @param grille
 	 */
 	public Robot attaquer(Grille grille) {
-		try {
-			// // La méthode du plugin qui permet de choisir une cible
-			// Method m = plugin_attaque.getMethod("choisirCible", Grille.class,
-			// Robot.class);
-			//
-			// // Cette méthode retourne un robot "cible"
-			// Robot robotCible = (Robot) m.invoke(instanceAttaque, grille,
-			// this);
-			Robot robotCible = gestionnairePlugins.attaquer(grille, this);
-			// Si un robot a été choisi
-			if (robotCible != null) {
-				System.out.println("Le robot " + this + " attaque le robot " + robotCible);
-				return robotCible;
-			}
-		} catch (IllegalArgumentException | SecurityException e) {
-			e.printStackTrace();
+
+		// On demande au gestionnaire le robot cible (peut etre null)
+		Robot robotCible = gestionnairePlugins.attaquer(grille, this);
+
+		// Si un robot a été choisi
+		if (robotCible != null) {
+			System.out.println("Le robot " + this + " attaque le robot " + robotCible);
 		}
 
-		return null;
+		// On retourne le robot choisit (peut etre null)
+		return robotCible;
 	}
 
 	/**
@@ -150,25 +142,15 @@ public class Robot {
 	 * @param grille
 	 */
 	public void seDeplacer(Grille grille) {
-		try {
-			// // La méthode du plugin qui permet de choisir un déplacement
-			// Method m = plugin_deplacement.getMethod("choisirDeplacement",
-			// Grille.class, Robot.class);
-			//
-			// // Point choisie par le plugin
-			// Point posChoisie = (java.awt.Point) m.invoke(instanceDeplacement,
-			// grille, this);
 
-			Point posChoisie = gestionnairePlugins.seDeplacer(grille, this);
-			// On déplace le robot sur la grille
-			grille.deplacerRobot(this, posChoisie);
+		// On demande au gestionnaire la nouvelle position
+		Point posChoisie = gestionnairePlugins.seDeplacer(grille, this);
 
-			// On redessine la grille
-			grille.repaint();
-		} catch (SecurityException | IllegalArgumentException e) {
-			e.printStackTrace();
-		}
+		// On déplace le robot sur la grille
+		grille.deplacerRobot(this, posChoisie);
 
+		// On redessine la grille
+		grille.repaint();
 	}
 
 	/**
@@ -178,17 +160,9 @@ public class Robot {
 	 * @param caseRobot
 	 */
 	public void dessiner(Graphics g, Case caseRobot) {
-		try {
-			// Method m = plugin_apparence.getMethod("dessiner", Case.class,
-			// Graphics.class);
 
-			// // Méthode qui va décider elle même le robot
-			// m.invoke(instanceApparence, caseRobot, g);
-			gestionnairePlugins.dessiner(g, caseRobot);
-		} catch (SecurityException | IllegalArgumentException e) {
-			e.printStackTrace();
-		}
-
+		// On demande au gestionnaire de dessiner le robot
+		gestionnairePlugins.dessiner(g, caseRobot);
 	}
 
 	/**
