@@ -14,6 +14,8 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JFrame;
 
 import gui.Grille;
+import plugins.Gestionnaire_Plugins;
+import plugins.TypePlugin;
 
 /**
  * Moteur du jeu
@@ -33,8 +35,11 @@ public class Moteur {
 	JFrame frame;
 
 	/** Chemin vers le fichier pour stocker l'état des plugins */
-	private final String PATH_TO_FILE= "src/ressources/test.txt";
-	
+	private final String PATH_TO_FILE = "src/ressources/test.txt";
+
+	/** Gestionnaire des plugins */
+	private Gestionnaire_Plugins gestionnairePlugins;
+
 	/**
 	 * Constructeur de la classe Moteur
 	 * 
@@ -43,22 +48,39 @@ public class Moteur {
 	 */
 	public Moteur(int nbRobots, int xGrille, int yGrille) {
 
-		// ----------------------------------
-		// 1) Phase de mise en route du jeu :
-		// ----------------------------------
+		// - PREPARATION DU JEU :
 
-		// Instantiation de la grille de jeu
+		// 1) Initialisation des plugins
+		initialisationDesPlugins();
+
+		// 2) Instantiation de la grille de jeu
 		creationDeLaGrilleDeJeu(xGrille, yGrille);
 
-		// Le moteur place les robots aléatoirement sur la grille
+		// 3) Placement des robots
 		placementDesRobots(nbRobots);
 
-		// --------------------
-		// 2) Le jeu commence :
-		// --------------------
+		// - DEBUT DU JEU :
 
-		// Démarrage des tours
+		// Lancement du jeu
 		gestionDesTours();
+	}
+
+	/**
+	 * Méthode qui initialise tous les différents plugins du jeu
+	 */
+	private void initialisationDesPlugins() {
+		gestionnairePlugins = new Gestionnaire_Plugins();
+
+		// Chargement des plugins GRAPHISME :
+		gestionnairePlugins.chargerPlugin("plugins.graphisme.Graphisme_de_Base", TypePlugin.GRAPHISME);
+		gestionnairePlugins.chargerPlugin("plugins.graphisme.Barre_de_vie", TypePlugin.GRAPHISME);
+
+		// Chargement du plugin ATTAQUE :
+		gestionnairePlugins.chargerPlugin("plugins.attaque.Attaque_de_Base", TypePlugin.ATTAQUE);
+
+		// Chargement du plugin DEPLACEMENT :
+		gestionnairePlugins.chargerPlugin("plugins.deplacement.Deplacement_Random", TypePlugin.DEPLACEMENT);
+
 	}
 
 	/**
@@ -78,7 +100,7 @@ public class Moteur {
 				System.exit(0);
 			}
 		});
-		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 	}
 
 	/**
@@ -100,7 +122,7 @@ public class Moteur {
 		// Création des robots :
 		for (int i = 1; i <= nbRobot; i++) {
 			// Création d'un robot
-			Robot robot = new Robot();
+			Robot robot = new Robot(gestionnairePlugins);
 			robot.setIndice(i);
 
 			// Choix de sa position de départ
@@ -193,14 +215,14 @@ public class Moteur {
 			}
 		}
 	}
-	
-	private void sauvegardeEtatPlugin(){
+
+	private void sauvegardeEtatPlugin() {
 		File f = new File(PATH_TO_FILE);
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(f, "UTF-8");
 			writer.println("Fin de partie");
-		    writer.close();
+			writer.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

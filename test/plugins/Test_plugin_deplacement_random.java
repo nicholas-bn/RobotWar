@@ -17,11 +17,24 @@ public class Test_plugin_deplacement_random {
 	Deplacement_Random deplacement;
 	Robot robot;
 	Grille grille;
+	private Gestionnaire_Plugins gestionnairePlugins;
 
 	@Before
 	public void init_objets() {
+		gestionnairePlugins = new Gestionnaire_Plugins();
+
+		// Chargement des plugins GRAPHISME :
+		gestionnairePlugins.chargerPlugin("plugins.graphisme.Graphisme_de_Base", TypePlugin.GRAPHISME);
+		gestionnairePlugins.chargerPlugin("plugins.graphisme.Barre_de_vie", TypePlugin.GRAPHISME);
+
+		// Chargement du plugin ATTAQUE :
+		gestionnairePlugins.chargerPlugin("plugins.attaque.Attaque_de_Base", TypePlugin.ATTAQUE);
+
+		// Chargement du plugin DEPLACEMENT :
+		gestionnairePlugins.chargerPlugin("plugins.deplacement.Deplacement_Random", TypePlugin.DEPLACEMENT);
+
 		deplacement = new Deplacement_Random();
-		robot = new Robot();
+		robot = new Robot(gestionnairePlugins);
 		grille = new Grille(10, 10);
 
 	}
@@ -107,7 +120,7 @@ public class Test_plugin_deplacement_random {
 		assertEquals("Position initiale du robot", robot.getPosition(), new Point(0, 0));
 
 		// On crée un deuxieme robot à coté du premier
-		Robot r2 = new Robot();
+		Robot r2 = new Robot(gestionnairePlugins);
 		// On le place sur la grille
 		grille.deplacerRobot(r2, new Point(0, 1));
 
@@ -130,7 +143,7 @@ public class Test_plugin_deplacement_random {
 		assertEquals("Position initiale du robot", robot.getPosition(), new Point(0, 0));
 
 		// On crée un deuxieme robot que je place tout autour du robot 1
-		Robot r2 = new Robot();
+		Robot r2 = new Robot(gestionnairePlugins);
 		r2.setPosition(new Point(0, 1));
 		// On le place sur la grille
 		grille.getElementsGrille()[0][1].setRobot(r2);

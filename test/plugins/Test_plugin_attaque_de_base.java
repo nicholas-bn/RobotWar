@@ -21,10 +21,22 @@ public class Test_plugin_attaque_de_base {
 
 	@Before
 	public void test() {
+		Gestionnaire_Plugins gestionnairePlugins = new Gestionnaire_Plugins();
+
+		// Chargement des plugins GRAPHISME :
+		gestionnairePlugins.chargerPlugin("plugins.graphisme.Graphisme_de_Base", TypePlugin.GRAPHISME);
+		gestionnairePlugins.chargerPlugin("plugins.graphisme.Barre_de_vie", TypePlugin.GRAPHISME);
+
+		// Chargement du plugin ATTAQUE :
+		gestionnairePlugins.chargerPlugin("plugins.attaque.Attaque_de_Base", TypePlugin.ATTAQUE);
+
+		// Chargement du plugin DEPLACEMENT :
+		gestionnairePlugins.chargerPlugin("plugins.deplacement.Deplacement_Random", TypePlugin.DEPLACEMENT);
+		
 		attaque = new Attaque_de_Base();
-		robotAttaquant = new Robot();
-		robotVictimeFaible = new Robot();
-		robotVictime = new Robot();
+		robotAttaquant = new Robot(gestionnairePlugins);
+		robotVictimeFaible = new Robot(gestionnairePlugins);
+		robotVictime = new Robot(gestionnairePlugins);
 		grille = new Grille(10, 10);
 	}
 
