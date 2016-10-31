@@ -3,15 +3,10 @@ package main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 import gui.Case;
 import gui.Grille;
 import plugins.Gestionnaire_Plugins;
-import plugins.attaque.Attaque_de_Base;
-import plugins.deplacement.Deplacement_Random;
-import plugins.graphisme.Graphisme_de_Base;
 
 public class Robot {
 
