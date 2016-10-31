@@ -44,7 +44,7 @@ public class Deplacement_Random {
 	public ArrayList<Point> getListeDeplacementsPossibles(Robot robot, Grille grille) {
 		
 		// Position actuelle du robot
-		Point posActuelle = robot.getPoint();
+		Point posActuelle = robot.getPosition();
 		int x = posActuelle.x;
 		int y = posActuelle.y;
 

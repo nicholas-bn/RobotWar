@@ -56,8 +56,8 @@ public class Attaque_de_Base {
 	private ArrayList<Robot> getListeAttaquesPossibles(Robot r, Grille grille) {
 
 		// On récupère les valeurs des attributs du Robot
-		int x = r.getPoint().x;
-		int y = r.getPoint().y;
+		int x = r.getPosition().x;
+		int y = r.getPosition().y;
 		int portée = r.getPortee();
 
 		// Informations concernant la taille de la grille

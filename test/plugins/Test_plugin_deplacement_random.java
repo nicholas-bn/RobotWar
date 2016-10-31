@@ -29,9 +29,9 @@ public class Test_plugin_deplacement_random {
 	@Test
 	public void deplacement_aléatoire_dun_robot_avec_un_pm() {
 		// Position de départ du robot
-		robot.setPoint(new Point(5, 5));
+		robot.setPosition(new Point(5, 5));
 		robot.setPtMouvement(1);
-		assertEquals("Position initiale du robot", robot.getPoint(), new Point(5, 5));
+		assertEquals("Position initiale du robot", robot.getPosition(), new Point(5, 5));
 
 		// Liste des déplacements possibles du robot
 		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot, grille);
@@ -47,9 +47,9 @@ public class Test_plugin_deplacement_random {
 	@Test
 	public void deplacement_aléatoire_dun_robot_avec_deux_pm() {
 		// Position de départ du robot
-		robot.setPoint(new Point(5, 5));
+		robot.setPosition(new Point(5, 5));
 		robot.setPtMouvement(2);
-		assertEquals("Position initiale du robot", robot.getPoint(), new Point(5, 5));
+		assertEquals("Position initiale du robot", robot.getPosition(), new Point(5, 5));
 
 		// Liste des déplacements possibles du robot
 		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot, grille);
@@ -65,9 +65,9 @@ public class Test_plugin_deplacement_random {
 	@Test
 	public void deplacement_aléatoire_dun_robot_qui_se_trouve_dans_un_coin() {
 		// Position de départ du robot
-		robot.setPoint(new Point(0, 9));
+		robot.setPosition(new Point(0, 9));
 		robot.setPtMouvement(1);
-		assertEquals("Position initiale du robot", robot.getPoint(), new Point(0, 9));
+		assertEquals("Position initiale du robot", robot.getPosition(), new Point(0, 9));
 
 		// Liste des déplacements possibles du robot
 		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot, grille);
@@ -84,9 +84,9 @@ public class Test_plugin_deplacement_random {
 	@Test
 	public void deplacement_aléatoire_dun_robot_qui_se_trouve_dans_un_coin_et_a_deux_pm() {
 		// Position de départ du robot
-		robot.setPoint(new Point(0, 9));
+		robot.setPosition(new Point(0, 9));
 		robot.setPtMouvement(2);
-		assertEquals("Position initiale du robot", robot.getPoint(), new Point(0, 9));
+		assertEquals("Position initiale du robot", robot.getPosition(), new Point(0, 9));
 
 		// Liste des déplacements possibles du robot
 		ArrayList<Point> listDeplacementsPossibles = deplacement.getListeDeplacementsPossibles(robot, grille);
@@ -103,8 +103,8 @@ public class Test_plugin_deplacement_random {
 	@Test
 	public void deplacement_aléatoire_dun_robot_avec_un_autre_robot_sur_la_grille() {
 		// Position de départ du robot
-		robot.setPoint(new Point(0, 0));
-		assertEquals("Position initiale du robot", robot.getPoint(), new Point(0, 0));
+		robot.setPosition(new Point(0, 0));
+		assertEquals("Position initiale du robot", robot.getPosition(), new Point(0, 0));
 
 		// On crée un deuxieme robot à coté du premier
 		Robot r2 = new Robot();
@@ -126,12 +126,12 @@ public class Test_plugin_deplacement_random {
 	@Test
 	public void deplacement_aléatoire_dun_robot_entoure_par_dautres_robots() {
 		// Position de départ du robot
-		robot.setPoint(new Point(0, 0));
-		assertEquals("Position initiale du robot", robot.getPoint(), new Point(0, 0));
+		robot.setPosition(new Point(0, 0));
+		assertEquals("Position initiale du robot", robot.getPosition(), new Point(0, 0));
 
 		// On crée un deuxieme robot que je place tout autour du robot 1
 		Robot r2 = new Robot();
-		r2.setPoint(new Point(0, 1));
+		r2.setPosition(new Point(0, 1));
 		// On le place sur la grille
 		grille.getElementsGrille()[0][1].setRobot(r2);
 		grille.getElementsGrille()[1][1].setRobot(r2);

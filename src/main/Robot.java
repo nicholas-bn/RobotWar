@@ -14,18 +14,24 @@ import plugins.graphisme.Graphisme_de_Base;
 
 public class Robot {
 
-	/** Portée de l'arme */
-	private int Portee;
-	/** Nombre de vie */
-	private int Vie;
-	/** Nombre de points d'actions diponibles */
-	private int ptAction;
-	/** Nombre de points de mouvements diponibles */
-	private int ptMouvement;
-	/** Coordonnées */
-	private Point Point;
-	/** Couleur */
+	/** Nombre de point de vie (PV) */
+	private int pv;
+
+	/** Nombre de points d'actions (PA) */
+	private int pa;
+
+	/** Nombre de points de mouvements (PM) */
+	private int pm;
+
+	/** Portée de l'arme (PO) */
+	private int po;
+
+	/** Position du robot */
+	private Point position;
+
+	/** Couleur du robot */
 	private Color couleur;
+
 	/** Indice du robot */
 	private int indice;
 
@@ -49,14 +55,14 @@ public class Robot {
 	 */
 	public Robot() {
 
-		//Initialisation de la portee du robot à 1
-		Portee = 1;
-		//Initialisation de la vie du robot à 100
-		Vie = 100;
-		//Initialisation des points d'actions du robot à 1
-		ptAction = 1;
-		//Initialisation des points de mouvements du robot à 1
-		ptMouvement = 1;
+		// Initialisation de la portee du robot à 1
+		po = 1;
+		// Initialisation de la vie du robot à 100
+		pv = 100;
+		// Initialisation des points d'actions du robot à 1
+		pa = 1;
+		// Initialisation des points de mouvements du robot à 1
+		pm = 1;
 		try {
 			// Chargement du plugin "Deplacement"
 			plugin_deplacement = Class.forName("plugins.deplacement.Deplacement_Random");
@@ -82,43 +88,43 @@ public class Robot {
 	}
 
 	public int getPortee() {
-		return Portee;
+		return po;
 	}
 
 	public void setPortee(int portee) {
-		Portee = portee;
+		po = portee;
 	}
 
 	public int getVie() {
-		return Vie;
+		return pv;
 	}
 
 	public void setVie(int vie) {
-		Vie = vie;
+		pv = vie;
 	}
 
 	public int getPtAction() {
-		return ptAction;
+		return pa;
 	}
 
 	public void setPtAction(int ptAction) {
-		this.ptAction = ptAction;
+		pa = ptAction;
 	}
 
 	public int getPtMouvement() {
-		return ptMouvement;
+		return pm;
 	}
 
 	public void setPtMouvement(int ptMouvement) {
-		this.ptMouvement = ptMouvement;
+		pm = ptMouvement;
 	}
 
-	public Point getPoint() {
-		return Point;
+	public Point getPosition() {
+		return position;
 	}
 
-	public void setPoint(Point point) {
-		this.Point = point;
+	public void setPosition(Point point) {
+		position = point;
 	}
 
 	public Color getCouleur() {
@@ -222,7 +228,7 @@ public class Robot {
 	 * 
 	 */
 	public String toString() {
-		return "Robot " + this.getIndice() + "( X:" + this.getPoint().getX() + " Y:" + this.getPoint().getY() + ")";
+		return "Robot " + this.getIndice() + "( X:" + this.getPosition().getX() + " Y:" + this.getPosition().getY() + ")";
 	}
 
 }

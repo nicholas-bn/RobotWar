@@ -70,7 +70,7 @@ public class Grille extends JLabel {
 	 */
 	public void deplacerRobot(Robot robot, Point posChoisie) {
 		// Position actuelle du robot
-		Point posActuelle = robot.getPoint();
+		Point posActuelle = robot.getPosition();
 
 		// Si ce n'est pas la 1ere fois qu'on ajoute ce robot
 		if (posActuelle != null) {
@@ -82,7 +82,7 @@ public class Grille extends JLabel {
 		elementsGrille[posChoisie.x][posChoisie.y].setRobot(robot);
 
 		// On sauvegarde sa position
-		robot.setPoint(posChoisie);
+		robot.setPosition(posChoisie);
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class Grille extends JLabel {
 	 */
 	public void retirerRobot(Robot robot) {
 		// Position actuelle du robot
-		Point posActuelle = robot.getPoint();
+		Point posActuelle = robot.getPosition();
 
 		// On le retire de la grille
 		elementsGrille[posActuelle.x][posActuelle.y].setRobot(null);
