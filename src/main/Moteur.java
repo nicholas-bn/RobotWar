@@ -1,6 +1,12 @@
 package main;
 
 import java.awt.Point;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -22,9 +28,13 @@ public class Moteur {
 
 	/** Grille de jeu */
 	Grille grille;
-	
+
+	/** Fenêtre de jeu */
 	JFrame frame;
 
+	/** Chemin vers le fichier pour stocker l'état des plugins */
+	private final String PATH_TO_FILE= "src/ressources/test.txt";
+	
 	/**
 	 * Constructeur de la classe Moteur
 	 * 
@@ -62,7 +72,13 @@ public class Moteur {
 		frame.setContentPane(grille);
 		frame.setVisible(true);
 		frame.setSize(500, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent evt) {
+				sauvegardeEtatPlugin();
+				System.exit(0);
+			}
+		});
+		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	/**
@@ -146,13 +162,13 @@ public class Moteur {
 			}
 
 			frame.repaint();
-			
+
 			finDePartie = VerifFinDePartie();
 		}
 		frame.repaint();
 	}
-	
-	private boolean VerifFinDePartie(){
+
+	private boolean VerifFinDePartie() {
 		int nbRobotVivant = 0;
 		for (Robot robot : listeRobots) {
 			if (robot.isVivant()) {
@@ -164,7 +180,7 @@ public class Moteur {
 			System.out.println("Fin de la partie");
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -175,6 +191,22 @@ public class Moteur {
 				// On le retire de la grille
 				grille.retirerRobot(cible);
 			}
+		}
+	}
+	
+	private void sauvegardeEtatPlugin(){
+		File f = new File(PATH_TO_FILE);
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(f, "UTF-8");
+			writer.println("Fin de partie");
+		    writer.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
