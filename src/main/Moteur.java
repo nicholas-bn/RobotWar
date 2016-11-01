@@ -3,11 +3,15 @@ package main;
 import java.awt.Point;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -71,17 +75,82 @@ public class Moteur {
 	private void initialisationDesPlugins() {
 		gestionnairePlugins = new Gestionnaire_Plugins();
 
-		// Chargement des plugins GRAPHISME :
-		gestionnairePlugins.chargerPlugin("plugins.graphisme.Graphisme_de_Base", TypePlugin.GRAPHISME);
-		gestionnairePlugins.chargerPlugin("plugins.graphisme.Barre_de_vie", TypePlugin.GRAPHISME);
-		gestionnairePlugins.chargerPlugin("plugins.graphisme.Tourelle", TypePlugin.GRAPHISME);
+		// On appelle lectureFichier qui permet de renvoyer le 
+		// fichier sous forme d'arraylist de String
+		ArrayList<String> resultatFichier = lectureFichier();
+		
+		// On parcours ligne par ligne pour en suite parser
+		for(String ligne : resultatFichier){
+			ArrayList<String> splitLigne = new ArrayList<String>(Arrays.asList(ligne.split(" ")));
+			
+			// Si le plugin a été sauvegardé à "true" on l'active
+			if(Boolean.parseBoolean(splitLigne.get(2))){
+				// On récupère le type de plugin
+				String type = splitLigne.get(1);
+				TypePlugin typePlugin;
+				if		(type.equals("GRAPHISME")){
+					typePlugin=TypePlugin.GRAPHISME;
+				}
+				else if	(type.equals("ATTAQUE")){
+					typePlugin=TypePlugin.ATTAQUE;
+				}
+				else if	(type.equals("DEPLACEMENT")){
+					typePlugin=TypePlugin.DEPLACEMENT;
+				}
+				else {
+					continue;
+				}
+				
+				// On charge le plugin suivant son type choisi précédemment
+				gestionnairePlugins.chargerPlugin(splitLigne.get(0), typePlugin);
+				
+				System.out.println(splitLigne);
+			}
+		}
 
-		// Chargement du plugin ATTAQUE :
-		gestionnairePlugins.chargerPlugin("plugins.attaque.Attaque_de_Base", TypePlugin.ATTAQUE);
+//		// Chargement des plugins GRAPHISME :
+//		gestionnairePlugins.chargerPlugin("plugins.graphisme.Graphisme_de_Base", TypePlugin.GRAPHISME);
+//		gestionnairePlugins.chargerPlugin("plugins.graphisme.Barre_de_vie", TypePlugin.GRAPHISME);
+//		gestionnairePlugins.chargerPlugin("plugins.graphisme.Tourelle", TypePlugin.GRAPHISME);
+//
+//		// Chargement du plugin ATTAQUE :
+//		gestionnairePlugins.chargerPlugin("plugins.attaque.Attaque_de_Base", TypePlugin.ATTAQUE);
+//
+//		// Chargement du plugin DEPLACEMENT :
+//		gestionnairePlugins.chargerPlugin("plugins.deplacement.Deplacement_Random", TypePlugin.DEPLACEMENT);
 
-		// Chargement du plugin DEPLACEMENT :
-		gestionnairePlugins.chargerPlugin("plugins.deplacement.Deplacement_Random", TypePlugin.DEPLACEMENT);
+	}
 
+	/**
+	 * Permet de retourner sous forme d'arraylist de string le contenu du
+	 * fichier
+	 * 
+	 * @return ArrayList<String>
+	 */
+	private ArrayList<String> lectureFichier() {
+
+		ArrayList<String> resultatFichier = new ArrayList<String>();
+
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader(PATH_TO_FILE));
+			String line = null;
+			// Tant qu'il y a de nouvelles lignes on continue
+			while ((line = br.readLine()) != null) {
+				System.out.println("#" + line);
+				resultatFichier.add(line);
+			}
+
+			br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return resultatFichier;
 	}
 
 	/**
@@ -97,7 +166,7 @@ public class Moteur {
 		frame.setSize(500, 500);
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
-				sauvegardeEtatPlugin();
+				// sauvegardeEtatPlugin();
 				System.exit(0);
 			}
 		});

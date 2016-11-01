@@ -1,1 +1,5 @@
-Fin de partie
+plugins.graphisme.Graphisme_de_Base GRAPHISME true
+plugins.graphisme.Barre_de_vie GRAPHISME true
+plugins.graphisme.Tourelle GRAPHISME true
+plugins.attaque.Attaque_de_Base ATTAQUE true
+plugins.deplacement.Deplacement_Random DEPLACEMENT true

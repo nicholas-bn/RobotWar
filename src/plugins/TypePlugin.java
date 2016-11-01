@@ -1,7 +1,7 @@
 package plugins;
 
 /**
- * Classe indiquand les différents types de plugins possibles
+ * Classe indiquant les différents types de plugins possibles
  * 
  * @author Karl
  *
