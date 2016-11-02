@@ -160,7 +160,7 @@ public class Moteur {
 		grille = new Grille(xGrille, yGrille);
 
 		// TEST : On place la grille dans une JFrame
-		frame = new JFrame("Test de la classe Grille");
+		frame = new JFrame("RobotWar");
 		frame.setContentPane(grille);
 		frame.setVisible(true);
 		frame.setSize(500, 500);
@@ -218,17 +218,12 @@ public class Moteur {
 	public void gestionDesTours() {
 
 		boolean finDePartie = false;
+		int compteur = 0;
 
 		// Boucle pour chaque tour de jeu :
 		while (finDePartie != true) {
-			// System.out.println("Tour : " + (i + 1));
-
-			// Temps entre chaque tour
-			// try {
-			// TimeUnit.SECONDS.sleep(1);
-			// } catch (InterruptedException e) {
-			// e.printStackTrace();
-			// }
+			compteur++;
+			frame.setTitle("RobotWar - Tours : "+compteur);
 			// Pour chaque robots :
 			for (Robot robot : listeRobots) {
 				// Temps entre chaque tour
@@ -269,7 +264,7 @@ public class Moteur {
 		}
 
 		if (nbRobotVivant == 1) {
-			System.out.println("Fin de la partie");
+			frame.setTitle("RobotWar - Fin de partie");
 			return true;
 		}
 
