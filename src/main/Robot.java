@@ -12,6 +12,9 @@ public class Robot {
 
 	/** Nombre de point de vie (PV) */
 	private int pv;
+	
+	/** Nombre de point d'énergie (PE) */
+	private int pe;
 
 	/** Nombre de points d'actions (PA) */
 	private int pa;
@@ -48,6 +51,8 @@ public class Robot {
 		pm = 1;
 		// Initialisation de la portee du robot à 1
 		po = 1;
+		// Initialisation des points d'énergies du robot à 100
+		pe = 100;
 
 		this.gestionnairePlugins = gestionnairePlugins;
 
@@ -78,6 +83,14 @@ public class Robot {
 
 	public void setPtAction(int ptAction) {
 		pa = ptAction;
+	}
+	
+	public int getPtEnergie() {
+		return pe;
+	}
+
+	public void setPtEnergie(int ptEnergie) {
+		pe = ptEnergie;
 	}
 
 	public int getPtMouvement() {

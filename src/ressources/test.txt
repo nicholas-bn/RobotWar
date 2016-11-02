@@ -3,3 +3,4 @@ plugins.graphisme.Barre_de_vie GRAPHISME true
 plugins.graphisme.Tourelle GRAPHISME true
 plugins.attaque.Attaque_de_Base ATTAQUE true
 plugins.deplacement.Deplacement_Random DEPLACEMENT true
+plugins.graphisme.Barre_energie GRAPHISME true
