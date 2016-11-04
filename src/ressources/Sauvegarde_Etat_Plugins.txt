@@ -5,3 +5,4 @@ plugins.attaque.Attaque_de_Base ATTAQUE true
 plugins.deplacement.Deplacement_Random DEPLACEMENT true
 plugins.graphisme.Barre_energie GRAPHISME true
 plugins.graphisme.Image GRAPHISME true
+plugins.graphisme.AfficherNumero GRAPHISME true

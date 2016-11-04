@@ -76,6 +76,7 @@ public class Grille extends JLabel {
 		if (posActuelle != null) {
 			// On vide la case où il était avant
 			elementsGrille[posActuelle.x][posActuelle.y].setRobot(null);
+			elementsGrille[posActuelle.x][posActuelle.y].setText("");
 		}
 
 		// On ajoute le robot dans la case
