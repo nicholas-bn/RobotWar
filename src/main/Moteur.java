@@ -82,9 +82,18 @@ public class Moteur {
 
 		//On instancie les plugins, et on a en retour les plugins activés
 		ArrayList<String> pluginActiver = parserLigneFichier(resultatFichier);
+		
+		// Sauvegarde des plugins qui ont bien été instanciés
+		sauvegardeEtatPlugin(pluginActiver);
 
 	}
 
+	/**
+	 * Instancie les plugins et retourne une liste dans le meme format que le 
+	 * fichier de persistance avec uniquement les plugins s'étant bien instanciés
+	 * 
+	 * @return ArrayList<String>
+	 */
 	private ArrayList<String> parserLigneFichier(ArrayList<String> resultatFichier) {
 		// On créé l'arraylist des plugins qui sont bien instanciés
 		ArrayList<String> pluginActivated = new ArrayList<String>();
@@ -277,12 +286,16 @@ public class Moteur {
 		}
 	}
 
-	private void sauvegardeEtatPlugin() {
+	private void sauvegardeEtatPlugin(ArrayList<String> toWrite) {
 		File f = new File(PATH_TO_FILE);
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(f, "UTF-8");
-			writer.println("Fin de partie");
+			
+			// On écrit ligne par ligne les plugins dans le fichier
+			for(String ligne: toWrite){
+				writer.println(ligne);
+			}
 			writer.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
