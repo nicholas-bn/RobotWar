@@ -1,5 +1,6 @@
 package plugins.graphisme;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JLabel;
@@ -25,6 +26,17 @@ public class AfficherNumero extends Graphisme_de_Base {
 			c.setText(c.getRobot().getIndice() + "");
 			c.setHorizontalTextPosition(JLabel.LEFT);
 			c.setVerticalTextPosition(JLabel.BOTTOM);
+
+			// On récupère la couleur du robot
+			Color background = c.getRobot().getCouleur();
+			
+			// Suivant la couleur du background on modifie la couleur du text
+			if ((background.getRed()+ background.getGreen() + background.getBlue()) < 383 ) {
+				c.setForeground(Color.white);
+			} else {
+				c.setForeground(Color.black);
+			}
+
 		}
 	}
 }
