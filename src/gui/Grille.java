@@ -97,6 +97,9 @@ public class Grille extends JLabel {
 
 		// On le retire de la grille
 		elementsGrille[posActuelle.x][posActuelle.y].setRobot(null);
+		
+		// On mets le setText également à null
+		elementsGrille[posActuelle.x][posActuelle.y].setText("");
 	}
 
 	/**

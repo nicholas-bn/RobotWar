@@ -44,6 +44,10 @@ public class Image extends Graphisme_de_Base {
 		try {
 
 			BufferedImage img = ImageIO.read(new File("src/ressources/bb8.png"));
+			
+			// Si l'image est plus grande que le JLabel, on le met en 0,0
+			// Autrement on on calcule pour mettre le center de la photo 
+			// au centre du JLabel
 			if(img.getWidth()<c.getWidth() || img.getHeight()<c.getHeight()) {
 				int x = (c.getWidth()/2)-(img.getWidth()/2);
 				int y = (c.getHeight()/2)-(img.getHeight()/2);
