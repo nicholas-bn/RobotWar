@@ -44,7 +44,7 @@ public class Gestionnaire_Plugins {
 	 * @param typePlugin
 	 *            type du plugin
 	 */
-	public void chargerPlugin(String nom, TypePlugin typePlugin) {
+	public boolean chargerPlugin(String nom, TypePlugin typePlugin) {
 		try {
 			// On charge la classe
 			Class<?> pluginClass = Class.forName(nom);
@@ -69,13 +69,12 @@ public class Gestionnaire_Plugins {
 				// On l'ajoute dans la liste des plugins Graphisme
 				listPluginsGraphisme.add(plugin);
 			}
+			return true;
 
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			System.out.println("PAS CHARGER COPAIN");
 			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			return false;
 		}
 
 	}

@@ -73,52 +73,48 @@ public class Moteur {
 	 * Méthode qui initialise tous les différents plugins du jeu
 	 */
 	private void initialisationDesPlugins() {
+		// On instancie le gestionnaire de plugins
 		gestionnairePlugins = new Gestionnaire_Plugins();
 
-		// On appelle lectureFichier qui permet de renvoyer le 
+		// On appelle lectureFichier qui permet de renvoyer le
 		// fichier sous forme d'arraylist de String
 		ArrayList<String> resultatFichier = lectureFichier();
+
+		//On instancie les plugins, et on a en retour les plugins activés
+		ArrayList<String> pluginActiver = parserLigneFichier(resultatFichier);
+
+	}
+
+	private ArrayList<String> parserLigneFichier(ArrayList<String> resultatFichier) {
+		// On créé l'arraylist des plugins qui sont bien instanciés
+		ArrayList<String> pluginActivated = new ArrayList<String>();
 		
 		// On parcours ligne par ligne pour en suite parser
-		for(String ligne : resultatFichier){
+		for (String ligne : resultatFichier) {
 			ArrayList<String> splitLigne = new ArrayList<String>(Arrays.asList(ligne.split(" ")));
-			
+
 			// Si le plugin a été sauvegardé à "true" on l'active
-			if(Boolean.parseBoolean(splitLigne.get(2))){
+			if (Boolean.parseBoolean(splitLigne.get(2))) {
 				// On récupère le type de plugin
 				String type = splitLigne.get(1);
 				TypePlugin typePlugin;
-				if		(type.equals("GRAPHISME")){
-					typePlugin=TypePlugin.GRAPHISME;
-				}
-				else if	(type.equals("ATTAQUE")){
-					typePlugin=TypePlugin.ATTAQUE;
-				}
-				else if	(type.equals("DEPLACEMENT")){
-					typePlugin=TypePlugin.DEPLACEMENT;
-				}
-				else {
+				if (type.equals("GRAPHISME")) {
+					typePlugin = TypePlugin.GRAPHISME;
+				} else if (type.equals("ATTAQUE")) {
+					typePlugin = TypePlugin.ATTAQUE;
+				} else if (type.equals("DEPLACEMENT")) {
+					typePlugin = TypePlugin.DEPLACEMENT;
+				} else {
 					continue;
 				}
-				
+
 				// On charge le plugin suivant son type choisi précédemment
-				gestionnairePlugins.chargerPlugin(splitLigne.get(0), typePlugin);
-				
-				System.out.println(splitLigne);
+				if (gestionnairePlugins.chargerPlugin(splitLigne.get(0), typePlugin)) {
+					pluginActivated.add(ligne);
+				}
 			}
 		}
-
-//		// Chargement des plugins GRAPHISME :
-//		gestionnairePlugins.chargerPlugin("plugins.graphisme.Graphisme_de_Base", TypePlugin.GRAPHISME);
-//		gestionnairePlugins.chargerPlugin("plugins.graphisme.Barre_de_vie", TypePlugin.GRAPHISME);
-//		gestionnairePlugins.chargerPlugin("plugins.graphisme.Tourelle", TypePlugin.GRAPHISME);
-//
-//		// Chargement du plugin ATTAQUE :
-//		gestionnairePlugins.chargerPlugin("plugins.attaque.Attaque_de_Base", TypePlugin.ATTAQUE);
-//
-//		// Chargement du plugin DEPLACEMENT :
-//		gestionnairePlugins.chargerPlugin("plugins.deplacement.Deplacement_Random", TypePlugin.DEPLACEMENT);
-
+		return pluginActivated;
 	}
 
 	/**
@@ -223,7 +219,7 @@ public class Moteur {
 		// Boucle pour chaque tour de jeu :
 		while (finDePartie != true) {
 			compteur++;
-			frame.setTitle("RobotWar - Tours : "+compteur);
+			frame.setTitle("RobotWar - Tours : " + compteur);
 			// Pour chaque robots :
 			for (Robot robot : listeRobots) {
 				// Temps entre chaque tour
