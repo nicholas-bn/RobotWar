@@ -171,6 +171,8 @@ public class Gestionnaire_Plugins {
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {
 			e.printStackTrace();
+		} catch (NullPointerException e){
+			e.printStackTrace();
 		}
 
 	}

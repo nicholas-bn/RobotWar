@@ -19,7 +19,8 @@ public class AfficherNumero extends Graphisme_de_Base {
 	public void paint(Graphics g, Case c) {
 		super.paint(g);
 		
-		c.setText(c.getRobot().getIndice()+"");
+		if(c.getRobot() != null)
+			c.setText(c.getRobot().getIndice()+"");
 		c.setHorizontalTextPosition(JLabel.LEFT);
 		c.setVerticalTextPosition(JLabel.BOTTOM);
 	}

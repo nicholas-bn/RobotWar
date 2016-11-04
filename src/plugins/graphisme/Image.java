@@ -41,16 +41,19 @@ public class Image extends Graphisme_de_Base {
 
 		g.setColor(Color.black);
 
-		 try{
-             
-	            BufferedImage img = ImageIO.read(new File("src/ressources/bb8.png"));
-	            g.drawImage(img, c.getWidth()/3, c.getHeight()/3, null);
-	        } catch(IOException e){
-	            e.printStackTrace();
-	        }
-	             }
-		
+		try {
 
+			BufferedImage img = ImageIO.read(new File("src/ressources/bb8.png"));
+			if(img.getWidth()<c.getWidth() || img.getHeight()<c.getHeight()) {
+				int x = (c.getWidth()/2)-(img.getWidth()/2);
+				int y = (c.getHeight()/2)-(img.getHeight()/2);
+				g.drawImage(img, x, y, null);
+			} else {
+				g.drawImage(img, 0, 0, null);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-
+}
