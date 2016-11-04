@@ -39,7 +39,7 @@ public class Moteur {
 	JFrame frame;
 
 	/** Chemin vers le fichier pour stocker l'état des plugins */
-	private final String PATH_TO_FILE = "src/ressources/test.txt";
+	private final String PATH_TO_FILE = "src/ressources/Sauvegarde_Etat_Plugins.txt";
 
 	/** Gestionnaire des plugins */
 	private Gestionnaire_Plugins gestionnairePlugins;
