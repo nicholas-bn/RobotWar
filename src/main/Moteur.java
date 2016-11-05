@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
+import javax.swing.filechooser.FileSystemView;
 
 import graphics.Grille;
 import plugins.Gestionnaire_Plugins;
@@ -41,6 +43,9 @@ public class Moteur {
 	/** Chemin vers le fichier pour stocker l'état des plugins */
 	private final String PATH_TO_FILE = "src/ressources/Sauvegarde_Etat_Plugins.txt";
 
+	/** Chemin vers le fichier pour stocker l'état des plugins */
+	private final String LOG_FILE = "Log_File_RobotWar.txt";
+	
 	/** Gestionnaire des plugins */
 	private Gestionnaire_Plugins gestionnairePlugins;
 
@@ -51,6 +56,13 @@ public class Moteur {
 	 *            nombre de robots à placer
 	 */
 	public Moteur(int nbRobots, int xGrille, int yGrille) {
+		
+		try {
+			System.setOut(new PrintStream(new File(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separator + LOG_FILE)));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		// - PREPARATION DU JEU :
 
