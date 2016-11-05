@@ -43,7 +43,7 @@ public class Moteur {
 	/** Chemin vers le fichier pour stocker l'état des plugins */
 	private final String PATH_TO_FILE = "src/ressources/Sauvegarde_Etat_Plugins.txt";
 
-	/** Chemin vers le fichier pour stocker l'état des plugins */
+	/** Chemin vers le fichier pour stocker les logs */
 	private final String LOG_FILE = "Log_File_RobotWar.txt";
 	
 	/** Gestionnaire des plugins */
@@ -55,13 +55,17 @@ public class Moteur {
 	 * @param nbRobots
 	 *            nombre de robots à placer
 	 */
-	public Moteur(int nbRobots, int xGrille, int yGrille) {
+	public Moteur(int nbRobots, int xGrille, int yGrille, boolean isLog) {
 		
-		try {
-			System.setOut(new PrintStream(new File(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separator + LOG_FILE)));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		// Si on active les logs on redirige la sortie console
+		if(isLog) {
+			try {
+				// Utilisation de paramètres permettant la portabilités de l'application
+				System.setOut(new PrintStream(new File(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separator + LOG_FILE)));
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		// - PREPARATION DU JEU :
@@ -319,6 +323,6 @@ public class Moteur {
 	}
 
 	public static void main(String[] args) {
-		new Moteur(2, 4, 4);
+		new Moteur(2, 4, 4, false);
 	}
 }
