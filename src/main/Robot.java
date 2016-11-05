@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import gui.Case;
-import gui.Grille;
+import graphics.Case;
+import graphics.Grille;
 import plugins.Gestionnaire_Plugins;
 
 public class Robot {

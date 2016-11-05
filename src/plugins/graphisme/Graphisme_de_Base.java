@@ -5,7 +5,7 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.util.Random;
 
-import gui.Case;
+import graphics.Case;
 
 @SuppressWarnings("serial")
 public class Graphisme_de_Base extends Component {

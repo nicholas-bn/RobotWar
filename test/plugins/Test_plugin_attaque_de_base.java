@@ -7,7 +7,7 @@ import java.awt.Point;
 import org.junit.Before;
 import org.junit.Test;
 
-import gui.Grille;
+import graphics.Grille;
 import main.Robot;
 import plugins.attaque.Attaque_de_Base;
 

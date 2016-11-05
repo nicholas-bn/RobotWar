@@ -3,7 +3,7 @@ package plugins.attaque;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import gui.Grille;
+import graphics.Grille;
 import main.Robot;
 
 /**

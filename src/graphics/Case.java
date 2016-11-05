@@ -1,4 +1,4 @@
-package gui;
+package graphics;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -46,12 +46,10 @@ public class Case extends JLabel {
 
 		if (this.getRobot() != null) {
 			robot.dessiner(g, this);
-			setToolTipText("Robot " + robot.getIndice());
 		}
 
 		else {
 			setBackground(null);
-			setToolTipText("");
 		}
 	}
 

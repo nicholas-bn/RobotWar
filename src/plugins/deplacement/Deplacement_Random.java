@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
 
-import gui.Grille;
+import graphics.Grille;
 import main.Robot;
 
 // TODO changer le nom

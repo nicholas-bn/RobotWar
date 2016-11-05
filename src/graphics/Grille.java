@@ -1,4 +1,4 @@
-package gui;
+package graphics;
 
 import java.awt.GridLayout;
 import java.awt.Point;

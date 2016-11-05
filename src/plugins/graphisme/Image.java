@@ -10,7 +10,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
-import gui.Case;
+import graphics.Case;
 
 @SuppressWarnings("serial")
 public class Image extends Graphisme_de_Base {

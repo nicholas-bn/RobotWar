@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import gui.Grille;
+import graphics.Grille;
 import main.Robot;
 import plugins.deplacement.Deplacement_Random;
 

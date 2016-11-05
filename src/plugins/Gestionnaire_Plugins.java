@@ -7,8 +7,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-import gui.Case;
-import gui.Grille;
+import graphics.Case;
+import graphics.Grille;
 import main.Robot;
 import plugins.attaque.Attaque_de_Base;
 import plugins.deplacement.Deplacement_Random;

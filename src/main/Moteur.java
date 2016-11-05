@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
 
-import gui.Grille;
+import graphics.Grille;
 import plugins.Gestionnaire_Plugins;
 import plugins.TypePlugin;
 
