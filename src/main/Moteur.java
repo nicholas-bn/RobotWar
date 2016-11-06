@@ -45,7 +45,7 @@ public class Moteur {
 
 	/** Chemin vers le fichier pour stocker les logs */
 	private final String LOG_FILE = "Log_File_RobotWar.txt";
-	
+
 	/** Gestionnaire des plugins */
 	private Gestionnaire_Plugins gestionnairePlugins;
 
@@ -56,12 +56,15 @@ public class Moteur {
 	 *            nombre de robots à placer
 	 */
 	public Moteur(int nbRobots, int xGrille, int yGrille, boolean isLog) {
-		
+
 		// Si on active les logs on redirige la sortie console
-		if(isLog) {
+		if (isLog) {
 			try {
-				// Utilisation de paramètres permettant la portabilités de l'application
-				System.setOut(new PrintStream(new File(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separator + LOG_FILE)));
+				// Utilisation de paramètres permettant la portabilités de
+				// l'application
+				System.setOut(
+						new PrintStream(new File(FileSystemView.getFileSystemView().getDefaultDirectory().getPath()
+								+ File.separator + LOG_FILE)));
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -96,24 +99,25 @@ public class Moteur {
 		// fichier sous forme d'arraylist de String
 		ArrayList<String> resultatFichier = lectureFichier();
 
-		//On instancie les plugins, et on a en retour les plugins activés
+		// On instancie les plugins, et on a en retour les plugins activés
 		ArrayList<String> pluginActiver = parserLigneFichier(resultatFichier);
-		
+
 		// Sauvegarde des plugins qui ont bien été instanciés
 		sauvegardeEtatPlugin(pluginActiver);
 
 	}
 
 	/**
-	 * Instancie les plugins et retourne une liste dans le meme format que le 
-	 * fichier de persistance avec uniquement les plugins s'étant bien instanciés
+	 * Instancie les plugins et retourne une liste dans le meme format que le
+	 * fichier de persistance avec uniquement les plugins s'étant bien
+	 * instanciés
 	 * 
 	 * @return ArrayList<String>
 	 */
 	private ArrayList<String> parserLigneFichier(ArrayList<String> resultatFichier) {
 		// On créé l'arraylist des plugins qui sont bien instanciés
 		ArrayList<String> pluginActivated = new ArrayList<String>();
-		
+
 		// On parcours ligne par ligne pour en suite parser
 		for (String ligne : resultatFichier) {
 			ArrayList<String> splitLigne = new ArrayList<String>(Arrays.asList(ligne.split(" ")));
@@ -136,7 +140,12 @@ public class Moteur {
 				// On charge le plugin suivant son type choisi précédemment
 				if (gestionnairePlugins.chargerPlugin(splitLigne.get(0), typePlugin)) {
 					pluginActivated.add(ligne);
+				} else {
+					pluginActivated.add(splitLigne.get(0)+ " " + splitLigne.get(1) + " false");
 				}
+			// Si le plugin est à false, on remet la même ligne dans le fichier
+			} else {
+				pluginActivated.add(ligne);
 			}
 		}
 		return pluginActivated;
@@ -307,9 +316,9 @@ public class Moteur {
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(f, "UTF-8");
-			
+
 			// On écrit ligne par ligne les plugins dans le fichier
-			for(String ligne: toWrite){
+			for (String ligne : toWrite) {
 				writer.println(ligne);
 			}
 			writer.close();
