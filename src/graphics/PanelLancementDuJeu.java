@@ -85,6 +85,11 @@ public class PanelLancementDuJeu extends JPanel implements ActionListener {
 
 	}
 
+	/**
+	 * Permet de modifier la liste des plugins affichés
+	 * 
+	 * @param listPlugins
+	 */
 	public void modifierSelectionPlugins(ArrayList<String> listPlugins) {
 		panelChoixPlugins.modifierListePlugins(listPlugins);
 

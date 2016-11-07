@@ -99,6 +99,7 @@ public class PanelChoixRepertoire extends JPanel implements ActionListener {
 			// On récupère le répertoire choisit
 			File jarChoisi = choisirRepertoirePluginsJAR();
 
+			// Si l'utilisateur a fermé la fenetre sans choisir
 			if (jarChoisi == null) {
 				System.err.println("Problème de choix de répertoire");
 				return;

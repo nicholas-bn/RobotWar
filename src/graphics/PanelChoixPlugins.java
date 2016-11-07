@@ -11,10 +11,17 @@ import gui.VueMenuDuJeu;
 
 public class PanelChoixPlugins extends JPanel {
 
+	/** Vue principale */
 	private VueMenuDuJeu vueMenuDuJeu;
 
+	/** Liste des checkbox */
 	private ArrayList<JCheckBox> listCheckBox;
 
+	/**
+	 * Constructeur de la classe {@link PanelChoixPlugins}
+	 * 
+	 * @param vue
+	 */
 	public PanelChoixPlugins(VueMenuDuJeu vue) {
 		super();
 
@@ -25,11 +32,16 @@ public class PanelChoixPlugins extends JPanel {
 		listCheckBox = new ArrayList<>();
 	}
 
+	/**
+	 * Permet de modifier la liste des plugins affichés
+	 * 
+	 * @param listPlugins
+	 */
 	public void modifierListePlugins(ArrayList<String> listPlugins) {
 
 		for (JCheckBox cbOld : listCheckBox) {
 			// On enlève les anciennes checkbox
-			vueMenuDuJeu.remove(cbOld);
+			remove(cbOld);
 		}
 
 		// On vide la liste des checkbox
@@ -52,6 +64,12 @@ public class PanelChoixPlugins extends JPanel {
 		repaint();
 	}
 
+	/**
+	 * Permet de retourner la liste des plugins choisis par l'utilisateur (les
+	 * checkbox sélectionnés)
+	 * 
+	 * @return
+	 */
 	public ArrayList<String> getListPluginsChoisis() {
 		ArrayList<String> listPluginsChoisis = new ArrayList<>();
 
