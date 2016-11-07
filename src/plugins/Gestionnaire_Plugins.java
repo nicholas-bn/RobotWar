@@ -18,6 +18,7 @@ import graphics.Case;
 import graphics.Grille;
 import main.Robot;
 import plugins.attaque.Attaque_de_Base;
+import plugins.deplacement.Deplacement_Intelligent;
 import plugins.deplacement.Deplacement_Random;
 import plugins.graphisme.Graphisme_de_Base;
 
@@ -32,7 +33,7 @@ public class Gestionnaire_Plugins {
 	/** L'instance du plugin d'attaque */
 	Attaque_de_Base pluginAttaque;
 	/** L'instance du plugin de déplacement */
-	Deplacement_Random pluginDeplacement;
+	Deplacement_Intelligent pluginDeplacement;
 	/** La liste des instances des plugins graphismes */
 	ArrayList<Graphisme_de_Base> listPluginsGraphisme;
 
@@ -98,7 +99,7 @@ public class Gestionnaire_Plugins {
 			// Si c'est un plugin de déplacement :
 			if (typePlugin == TypePlugin.DEPLACEMENT) {
 				// On stocke le plugin de déplacement
-				pluginDeplacement = (Deplacement_Random) pluginClass.newInstance();
+				pluginDeplacement = (Deplacement_Intelligent) pluginClass.newInstance();
 			}
 
 			// Si c'est un plugin de graphisme :

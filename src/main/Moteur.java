@@ -343,6 +343,6 @@ public class Moteur {
 	}
 
 	public static void main(String[] args) {
-		new Moteur(4, 4, 4, false);
+		new Moteur(2, 10, 10, false);
 	}
 }

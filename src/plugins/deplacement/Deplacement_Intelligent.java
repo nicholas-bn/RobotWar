@@ -2,7 +2,6 @@ package plugins.deplacement;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Random;
 
 import graphics.Grille;
 import main.Robot;
@@ -22,43 +21,68 @@ public class Deplacement_Intelligent {
 		// List des deplacements possibles
 		ArrayList<Point> listDeplacements = getListeDeplacementsPossibles(robot, grille);
 
-		// Position du déplacement choisi
+		// Position du robot vers lequel on se dirige
 		Point positionRobotPlusProche = chercherLeRobotLePlusProche(grille, robot);
 
 		// Position du déplacement choisi
-		Point positionChoisie = null;
+		Point positionChoisie = choixDeLaCaseDeDéplacement(listDeplacements, positionRobotPlusProche);
 
 		return positionChoisie;
 
 	}
+	
+	/**
+	 * Méthode choisit la case où se déplacer
+	 * 
+	 * @param grille
+	 * @param robot
+	 * @return
+	 */
+	private Point choixDeLaCaseDeDéplacement(ArrayList<Point> listePoint, Point positionRobot) {
+		Point pointRetenu = null;
+		int distancePointEtRobot = 10000;
 
-	public Point chercherLeRobotLePlusProche(Grille grille, Robot robot) {
+		for (Point p : listePoint) {
+			int x;
+			if ((x = distanceNoDiagonal(p.x, positionRobot.x, p.y, positionRobot.y)) < distancePointEtRobot) {
+				distancePointEtRobot = x;
+				pointRetenu = p;
+			}
+		}
+
+		return pointRetenu;
+	}
+
+	/**
+	 * Renvoi la position du robot le plus proche
+	 * 
+	 * @param grille
+	 * @param robot
+	 * @return
+	 */
+	private Point chercherLeRobotLePlusProche(Grille grille, Robot robot) {
 
 		// Point que l'on retourne
-		Point pointChoisi = null;
+		Point pointRobot = null;
 
 		// Initialisation de la distance au max
 		int distanceSauvegarder = grille.getNbcolonnesmax();
 
-		System.out.println("hue");
 		for (int x = 0; x < grille.getNblignesmax(); x++) {
 			for (int y = 0; y < grille.getNbcolonnesmax(); y++) {
 				Robot r;
-				if ((r = grille.getRobotFromPoint(new Point(y, x))) != null) {
+				if ((r = grille.getRobotFromPoint(new Point(x, y))) != null) {
 					int distance;
-					if((distance = distanceNoDiagonal(r.getPosition().x, x, r.getPosition().y, y )) < distanceSauvegarder){
+					if ((distance = distanceNoDiagonal(r.getPosition().x, x, r.getPosition().y,
+							y)) < distanceSauvegarder) {
 						distanceSauvegarder = distance;
+						pointRobot = r.getPosition();
 					}
 				}
 			}
 		}
 
-		return pointChoisi;
-	}
-
-	public static void main(String[] args) {
-		System.out.println("hu");
-		new Deplacement_Intelligent().chercherLeRobotLePlusProche(new Grille(8, 12), null);
+		return pointRobot;
 	}
 
 	/**
