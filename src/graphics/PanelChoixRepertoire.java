@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -72,12 +73,12 @@ public class PanelChoixRepertoire extends JPanel implements ActionListener {
 	 * 
 	 * @return String - Chemin vers le répertoire des plugins
 	 */
-	private String choisirRepertoirePluginsJAR() {
+	private File choisirRepertoirePluginsJAR() {
 		JFileChooser jfc = new JFileChooser("D:\\TRAVAIL\\S7\\Prog_Avancée\\Repertoire_Test_JAR");
-		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		int returnVal = jfc.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			return jfc.getSelectedFile().getAbsolutePath();
+			return jfc.getSelectedFile();
 		}
 		return null;
 	}
@@ -87,16 +88,17 @@ public class PanelChoixRepertoire extends JPanel implements ActionListener {
 		// Si on a cliqué sur le bouton
 		if (action.getSource() == bouton) {
 			// On récupère le répertoire choisit
-			String repertoireChoisi = choisirRepertoirePluginsJAR();
+			File jarChoisi = choisirRepertoirePluginsJAR();
 
-			if (repertoireChoisi == null) {
+			if (jarChoisi == null) {
 				System.err.println("Problème de choix de répertoire");
+				return;
 			}
 			// Modification du texte du label
-			labelRepChoisi.setText(textLabel + repertoireChoisi);
+			labelRepChoisi.setText(textLabel + jarChoisi);
 
 			// On indique à la vue principale qu'on a sélectionné un répertoire
-			vuePrincipale.modifierSelectionPlugins(repertoireChoisi);
+			vuePrincipale.modifierSelectionPlugins(jarChoisi);
 		}
 
 	}

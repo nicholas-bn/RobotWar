@@ -1,13 +1,16 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import graphics.PanelChoixRepertoire;
-import graphics.PanelSelectionPlugins;
+import graphics.PanelLancementDuJeu;
 import main.Moteur;
+import plugins.Gestionnaire_Plugins;
 
 @SuppressWarnings("serial")
 public class VueMenuDuJeu extends JFrame {
@@ -22,13 +25,17 @@ public class VueMenuDuJeu extends JFrame {
 	private PanelChoixRepertoire panelChoixRep;
 
 	/** Panel pour choisir les plugins à utiliser */
-	private PanelSelectionPlugins panelSelectPlugins;
+	private PanelLancementDuJeu panelLancementDuJeu;
+
+	private Gestionnaire_Plugins gestionnairePlugins;
 
 	/**
 	 * Constructeur de la classe {@link VueMenuDuJeu}
 	 */
 	public VueMenuDuJeu() {
 		super(titreFenetre);
+
+		gestionnairePlugins = new Gestionnaire_Plugins();
 
 		initialisationDuPanelPrincipal();
 
@@ -68,9 +75,9 @@ public class VueMenuDuJeu extends JFrame {
 	 * Méthode qui initialise le panel pour choisir les plugins à utiliser
 	 */
 	private void initialisationDuPanelSelectionDesPlugins() {
-		panelSelectPlugins = new PanelSelectionPlugins(this);
+		panelLancementDuJeu = new PanelLancementDuJeu(this);
 
-		panelPrincipal.add(panelSelectPlugins, BorderLayout.SOUTH);
+		panelPrincipal.add(panelLancementDuJeu, BorderLayout.CENTER);
 
 	}
 
@@ -80,15 +87,19 @@ public class VueMenuDuJeu extends JFrame {
 	 * 
 	 * @param repertoireChoisi
 	 */
-	public void modifierSelectionPlugins(String repertoireChoisi) {
-		// TODO Auto-generated method stub
+	public void modifierSelectionPlugins(File jarChoisi) {
+		ArrayList listPlugins = gestionnairePlugins.getListePluginsFromJar(jarChoisi);
+
+		panelLancementDuJeu.modifierSelectionPlugins(listPlugins);
 
 	}
 
 	/**
 	 * Méthode qui lance la partie
+	 * 
+	 * @param listPluginsChoisis
 	 */
-	public void lancerLaPartie() {
+	public void lancerLaPartie(ArrayList<String> listPluginsChoisis) {
 
 		// On ferme cette fenetre
 		dispose();

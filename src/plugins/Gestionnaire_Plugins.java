@@ -3,9 +3,16 @@ package plugins;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 import graphics.Case;
 import graphics.Grille;
@@ -34,6 +41,39 @@ public class Gestionnaire_Plugins {
 	 */
 	public Gestionnaire_Plugins() {
 		listPluginsGraphisme = new ArrayList<Graphisme_de_Base>();
+	}
+
+	public ArrayList<String> getListePluginsFromJar(File file) {
+		ArrayList<String> listPlugins = new ArrayList<>();
+
+		// Si c'est un .jar ou un .zip
+		if (file.getAbsolutePath().endsWith(".jar") || file.getAbsolutePath().endsWith(".zip")) {
+
+			ZipInputStream zip;
+
+			try {
+				zip = new ZipInputStream(new FileInputStream(file));
+
+				ZipEntry entry;
+				// Parcours de tous les éléments du jar
+				while ((entry = zip.getNextEntry()) != null) {
+					// Si c'est un .class
+					if (entry.getName().endsWith(".class")) {
+						// On ajoute le nom du plugins à la liste
+						listPlugins.add(entry.getName());
+					}
+				}
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		return listPlugins;
+
 	}
 
 	/**
@@ -171,7 +211,7 @@ public class Gestionnaire_Plugins {
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {
 			e.printStackTrace();
-		} catch (NullPointerException e){
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 
