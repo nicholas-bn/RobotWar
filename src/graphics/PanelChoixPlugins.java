@@ -23,12 +23,6 @@ public class PanelChoixPlugins extends JPanel {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
 		listCheckBox = new ArrayList<>();
-
-		JCheckBox cb = new JCheckBox("1");
-
-		// On ajoute la checkbox à la liste
-		listCheckBox.add(cb);
-
 	}
 
 	public void modifierListePlugins(ArrayList<String> listPlugins) {
