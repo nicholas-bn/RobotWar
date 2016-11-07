@@ -1,10 +1,12 @@
 package graphics;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -39,10 +41,16 @@ public class PanelLancementDuJeu extends JPanel implements ActionListener {
 
 		vuePrincipale = vue;
 
+		// Espace de séparation
+		add(Box.createRigidArea(new Dimension(0, 10)));
+
 		// Label de texte
 		label = new JLabel("Choisir les plugins : ");
 		label.setAlignmentX(Component.CENTER_ALIGNMENT);
 		add(label);
+
+		// Espace de séparation
+		add(Box.createRigidArea(new Dimension(0, 10)));
 
 		// Panel pour choisir les plugins
 		panelChoixPlugins = new PanelChoixPlugins(vuePrincipale);
@@ -51,11 +59,17 @@ public class PanelLancementDuJeu extends JPanel implements ActionListener {
 		sp.setAlignmentX(Component.CENTER_ALIGNMENT);
 		add(sp);
 
+		// Espace de séparation
+		add(Box.createRigidArea(new Dimension(0, 10)));
+
 		// Bouton pour lancer la partie
 		bouton = new JButton("Lancer la partie");
 		bouton.addActionListener(this);
 		bouton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		add(bouton);
+
+		// Espace de séparation
+		add(Box.createRigidArea(new Dimension(0, 10)));
 	}
 
 	@Override

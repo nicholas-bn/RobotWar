@@ -6,12 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EtchedBorder;
 
 import gui.VueMenuDuJeu;
 
@@ -28,7 +30,7 @@ public class PanelChoixRepertoire extends JPanel implements ActionListener {
 	private JLabel labelRepChoisi;
 
 	/** Texte du label */
-	private static final String textLabel = "Répertoire choisi : ";
+	private static final String textLabel = "JAR choisi : ";
 
 	/** Bouton pour choisir un répertoire */
 	private JButton bouton;
@@ -44,16 +46,20 @@ public class PanelChoixRepertoire extends JPanel implements ActionListener {
 
 		vuePrincipale = vue;
 
+		// Espace de séparation
+		add(Box.createRigidArea(new Dimension(0, 10)));
+
 		// Un label de texte
-		label = new JLabel("Veuillez choisir le répertoire où se trouve les plugins :");
+		label = new JLabel("Veuillez choisir le JAR où se trouve les plugins :");
 		label.setAlignmentX(Component.CENTER_ALIGNMENT);
+		setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		add(label);
 
 		// Espace de séparation
 		add(Box.createRigidArea(new Dimension(0, 10)));
 
 		// Un bouton pour choisir un répertire
-		bouton = new JButton("Choix du répertoire");
+		bouton = new JButton("Choix du JAR");
 		bouton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		bouton.addActionListener(this);
 		add(bouton);
@@ -62,9 +68,12 @@ public class PanelChoixRepertoire extends JPanel implements ActionListener {
 		add(Box.createRigidArea(new Dimension(0, 10)));
 
 		// Un label qui indique le répertoire choisi
-		labelRepChoisi = new JLabel(textLabel);
+		labelRepChoisi = new JLabel();
 		labelRepChoisi.setAlignmentX(Component.CENTER_ALIGNMENT);
 		add(labelRepChoisi);
+
+		// Espace de séparation
+		add(Box.createRigidArea(new Dimension(0, 10)));
 
 	}
 
