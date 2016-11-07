@@ -42,13 +42,11 @@ public class Attaque_de_Base {
 						r = listRobotAttaquable.get(i);
 				}
 			}
-			System.out.println("avant: "+ robot.getPtEnergie());
 			// Le robot utilise de l'energie pour attaquer
 			if (robot.getPtEnergie() >= energie) {
 				robot.setPtEnergie(robot.getPtEnergie() - energie);
 				// Le robot subit des dégats
 				r.setVie(r.getVie() - degats);
-				System.out.println("apres: "+ robot.getPtEnergie());
 			} else{
 				return null;
 			}

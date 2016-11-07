@@ -317,6 +317,7 @@ public class Moteur {
 			if (!cible.isVivant()) {
 				// On le retire de la grille
 				grille.retirerRobot(cible);
+				System.out.println("Mort du robot : "+ cible.getIndice());
 			}
 		}
 	}
