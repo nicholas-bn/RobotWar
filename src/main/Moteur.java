@@ -38,7 +38,10 @@ public class Moteur {
 	Grille grille;
 
 	/** Fenêtre de jeu */
-	JFrame frame;
+	JFrame frame; 
+	
+	/** Regain d'energie par tour **/ 
+	private final int energie = 50;
 
 	/** Chemin vers le fichier pour stocker l'état des plugins */
 	private final String PATH_TO_FILE = "src/ressources/Sauvegarde_Etat_Plugins.txt";
@@ -264,10 +267,17 @@ public class Moteur {
 				}
 
 				// Il faut que le robot soit vivant pour jouer
-				if (!robot.isVivant()) {
+				if (!robot.isVivant()) { 
 					continue;
 				}
-
+				
+				// Boucle pour le regain d'énergie
+				int x;
+				if((x = robot.getPtEnergie() + energie) > 100)
+					robot.setPtEnergie(100);
+				else 
+					robot.setPtEnergie(x);
+					
 				// On demande au robot de se déplacer
 				robot.seDeplacer(grille);
 
@@ -332,6 +342,6 @@ public class Moteur {
 	}
 
 	public static void main(String[] args) {
-		new Moteur(2, 4, 4, false);
+		new Moteur(4, 4, 4, false);
 	}
 }
