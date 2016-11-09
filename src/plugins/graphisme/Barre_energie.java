@@ -46,7 +46,7 @@ public class Barre_energie extends Graphisme_de_Base {
 
 		Robot robot = c.getRobot();
 
-		// Energie actuelle du robot
+		// Energie actuel du robot
 		float energie = robot.getPtEnergie() / 100f;
 		float tailleLigne = (xLabel - (xLabel / 4)) * energie;
 		float positionFinLigneBleu = (xLabel / 8) + tailleLigne;
