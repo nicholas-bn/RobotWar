@@ -30,7 +30,7 @@ public class Deplacement_Intelligent {
 		return positionChoisie;
 
 	}
-	
+
 	/**
 	 * Méthode choisit la case où se déplacer
 	 * 
@@ -39,11 +39,21 @@ public class Deplacement_Intelligent {
 	 * @return
 	 */
 	private Point choixDeLaCaseDeDéplacement(ArrayList<Point> listePoint, Point positionRobot) {
+
+		// On retient le point retenu
 		Point pointRetenu = null;
+
+		// On retient la distance entre les deux
 		int distancePointEtRobot = 10000;
 
+		// On parcours la liste des points
 		for (Point p : listePoint) {
 			int x;
+
+			// Pour chaque point de la liste, on vérifie la distance avec le
+			// point du robot, si la distance est inférieur à la précédente, on
+			// l'enregistre
+
 			if ((x = distanceNoDiagonal(p.x, positionRobot.x, p.y, positionRobot.y)) < distancePointEtRobot) {
 				distancePointEtRobot = x;
 				pointRetenu = p;
@@ -66,22 +76,31 @@ public class Deplacement_Intelligent {
 		Point pointRobot = null;
 
 		// Initialisation de la distance au max
-		int distanceSauvegarder = grille.getNbcolonnesmax();
+		int distanceSauvegarder = grille.getNbcolonnesmax() * 10;
 
+		// On parcours la grille
 		for (int x = 0; x < grille.getNblignesmax(); x++) {
 			for (int y = 0; y < grille.getNbcolonnesmax(); y++) {
 				Robot r;
+
+				// On récupère le robot dans le point (x,y)
 				if ((r = grille.getRobotFromPoint(new Point(x, y))) != null) {
-					int distance;
-					if ((distance = distanceNoDiagonal(r.getPosition().x, x, r.getPosition().y,
-							y)) < distanceSauvegarder) {
-						distanceSauvegarder = distance;
-						pointRobot = r.getPosition();
+
+					// Si ce n'est pas le même robot
+					if (!r.equals(robot)) {
+						int distance;
+
+						// Si la distance est inférieur à celle prédédemment
+						// enregistré
+						if ((distance = distanceNoDiagonal(robot.getPosition().x, x, robot.getPosition().y,
+								y)) < distanceSauvegarder) {
+							distanceSauvegarder = distance;
+							pointRobot = r.getPosition();
+						}
 					}
 				}
 			}
 		}
-
 		return pointRobot;
 	}
 
