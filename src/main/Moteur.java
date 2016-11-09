@@ -261,7 +261,7 @@ public class Moteur {
 			for (Robot robot : listeRobots) {
 				// Temps entre chaque tour
 				try {
-					TimeUnit.MILLISECONDS.sleep(500);
+					TimeUnit.MILLISECONDS.sleep(50);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

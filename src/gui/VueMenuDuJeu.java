@@ -109,7 +109,7 @@ public class VueMenuDuJeu extends JFrame {
 			@Override
 			public void run() {
 				// On lance le moteur de jeu
-				new Moteur(5, 10, 10, false);
+				new Moteur(90, 10, 10, false);
 
 			}
 		}).start();
