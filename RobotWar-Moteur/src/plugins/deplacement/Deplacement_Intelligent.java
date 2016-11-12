@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import graphics.Grille;
 import main.Robot;
 
-public class Deplacement_Intelligent {
+public class Deplacement_Intelligent implements IPluginDeplacement {
 
 	/**
 	 * Cherchera le robot le plus proche de sa position et renverra une position

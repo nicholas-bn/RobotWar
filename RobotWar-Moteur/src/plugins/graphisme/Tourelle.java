@@ -14,10 +14,9 @@ import graphics.Case;
  *
  */
 @SuppressWarnings("serial")
-public class Tourelle extends Graphisme_de_Base {
+public class Tourelle implements IPluginGraphisme {
 
-	public void paint(Graphics g, Case c) {
-		super.paint(g);
+	public void paint(Graphics g, Case c){
 
 		g.setColor(Color.black);
 		
@@ -37,4 +36,5 @@ public class Tourelle extends Graphisme_de_Base {
 		g2.setStroke(new BasicStroke(3));
 		g.drawLine(xDraw, yDraw, ((7 * xLabel) / 8), yDraw);
 	}
+
 }

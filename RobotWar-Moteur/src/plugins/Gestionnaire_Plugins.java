@@ -18,9 +18,12 @@ import graphics.Case;
 import graphics.Grille;
 import main.Robot;
 import plugins.attaque.Attaque_de_Base;
+import plugins.attaque.IPluginAttaque;
 import plugins.deplacement.Deplacement_Intelligent;
 import plugins.deplacement.Deplacement_Random;
+import plugins.deplacement.IPluginDeplacement;
 import plugins.graphisme.Graphisme_de_Base;
+import plugins.graphisme.IPluginGraphisme;
 
 /**
  * La classe qui permet de charger et d'utiliser les différents plugins
@@ -31,17 +34,17 @@ import plugins.graphisme.Graphisme_de_Base;
 public class Gestionnaire_Plugins {
 
 	/** L'instance du plugin d'attaque */
-	Attaque_de_Base pluginAttaque;
+	IPluginAttaque pluginAttaque;
 	/** L'instance du plugin de déplacement */
-	Deplacement_Intelligent pluginDeplacement;
+	IPluginDeplacement pluginDeplacement;
 	/** La liste des instances des plugins graphismes */
-	ArrayList<Graphisme_de_Base> listPluginsGraphisme;
+	ArrayList<IPluginGraphisme> listPluginsGraphisme;
 
 	/**
 	 * Constructeur de la classe {@link Gestionnaire_Plugins}
 	 */
 	public Gestionnaire_Plugins() {
-		listPluginsGraphisme = new ArrayList<Graphisme_de_Base>();
+		listPluginsGraphisme = new ArrayList<IPluginGraphisme>();
 	}
 
 	public ArrayList<String> getListePluginsFromJar(File file) {
@@ -93,19 +96,19 @@ public class Gestionnaire_Plugins {
 			// Si c'est un plugin d'attaque :
 			if (typePlugin == TypePlugin.ATTAQUE) {
 				// On stocke le plugin d'attaque
-				pluginAttaque = (Attaque_de_Base) pluginClass.newInstance();
+				pluginAttaque = (IPluginAttaque) pluginClass.newInstance();
 			}
 
 			// Si c'est un plugin de déplacement :
 			if (typePlugin == TypePlugin.DEPLACEMENT) {
 				// On stocke le plugin de déplacement
-				pluginDeplacement = (Deplacement_Intelligent) pluginClass.newInstance();
+				pluginDeplacement = (IPluginDeplacement) pluginClass.newInstance();
 			}
 
 			// Si c'est un plugin de graphisme :
 			if (typePlugin == TypePlugin.GRAPHISME) {
 				// On stocke le plugin Graphisme avec les autres
-				Graphisme_de_Base plugin = (Graphisme_de_Base) pluginClass.newInstance();
+				IPluginGraphisme plugin = (IPluginGraphisme) pluginClass.newInstance();
 
 				// On l'ajoute dans la liste des plugins Graphisme
 				listPluginsGraphisme.add(plugin);
@@ -203,11 +206,11 @@ public class Gestionnaire_Plugins {
 	 */
 	public void dessiner(Graphics g, Case caseRobot) {
 		try {
-			for (Graphisme_de_Base plugin : listPluginsGraphisme) {
-				Method m = plugin.getClass().getMethod("dessiner", Case.class, Graphics.class);
+			for (IPluginGraphisme plugin : listPluginsGraphisme) {
+				Method m = plugin.getClass().getMethod("paint",Graphics.class,Case.class);
 
 				// Méthode qui va décider elle même le robot
-				m.invoke(plugin, caseRobot, g);
+				m.invoke(plugin,g,caseRobot);
 			}
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {

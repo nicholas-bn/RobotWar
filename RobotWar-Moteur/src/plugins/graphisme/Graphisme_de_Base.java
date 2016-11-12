@@ -8,11 +8,8 @@ import java.util.Random;
 import graphics.Case;
 
 @SuppressWarnings("serial")
-public class Graphisme_de_Base extends Component {
+public class Graphisme_de_Base implements IPluginGraphisme {
 
-	public void dessiner(Case c, Graphics g) {
-		paint(g, c);
-	}
 
 	public Color getCouleur() {
 		Random rand = new Random();
@@ -29,7 +26,6 @@ public class Graphisme_de_Base extends Component {
 	 * @param c
 	 */
 	public void paint(Graphics g, Case c) {
-		super.paint(g);
 
 		c.setOpaque(true);
 		c.setBackground(c.getRobot().getCouleur());
@@ -39,4 +35,5 @@ public class Graphisme_de_Base extends Component {
 		
 
 	}
+
 }

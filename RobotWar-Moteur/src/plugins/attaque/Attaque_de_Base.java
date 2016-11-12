@@ -13,7 +13,7 @@ import main.Robot;
  *
  */
 
-public class Attaque_de_Base {
+public class Attaque_de_Base implements IPluginAttaque{
 
 	private final int degats = 50;
 

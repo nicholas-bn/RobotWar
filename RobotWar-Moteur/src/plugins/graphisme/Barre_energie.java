@@ -15,10 +15,9 @@ import main.Robot;
  *
  */
 @SuppressWarnings("serial")
-public class Barre_energie extends Graphisme_de_Base {
+public class Barre_energie implements IPluginGraphisme {
 
 	public void paint(Graphics g, Case c) {
-		super.paint(g);
 
 		// Taille du label (case)
 		int xLabel = c.getWidth();
@@ -60,4 +59,5 @@ public class Barre_energie extends Graphisme_de_Base {
 		g.drawLine(x1, y1, x2, y2);
 
 	}
+
 }

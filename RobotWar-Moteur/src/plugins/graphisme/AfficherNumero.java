@@ -15,10 +15,10 @@ import graphics.Case;
  *
  */
 @SuppressWarnings("serial")
-public class AfficherNumero extends Graphisme_de_Base {
+public class AfficherNumero implements IPluginGraphisme {
 
 	public void paint(Graphics g, Case c) {
-		super.paint(g);
+		
 
 		// Si la case contient un robot on ajoute son indice et on
 		// spécifie la position du texte
@@ -39,4 +39,5 @@ public class AfficherNumero extends Graphisme_de_Base {
 
 		}
 	}
+
 }

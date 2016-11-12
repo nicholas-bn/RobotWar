@@ -8,7 +8,7 @@ import graphics.Grille;
 import main.Robot;
 
 // TODO changer le nom
-public class Deplacement_Random {
+public class Deplacement_Random implements IPluginDeplacement {
 
 	/**
 	 * Choisit un déplacement aléatoire

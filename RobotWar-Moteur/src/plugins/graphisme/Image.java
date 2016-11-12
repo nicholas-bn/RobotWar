@@ -13,11 +13,8 @@ import javax.imageio.ImageIO;
 import graphics.Case;
 
 @SuppressWarnings("serial")
-public class Image extends Graphisme_de_Base {
+public class Image implements IPluginGraphisme {
 
-	public void dessiner(Case c, Graphics g) {
-		paint(g, c);
-	}
 
 	public Color getCouleur() {
 		Random rand = new Random();
@@ -34,7 +31,6 @@ public class Image extends Graphisme_de_Base {
 	 * @param c
 	 */
 	public void paint(Graphics g, Case c) {
-		super.paint(g);
 
 		c.setOpaque(true);
 		c.setBackground(c.getRobot().getCouleur());
@@ -59,5 +55,6 @@ public class Image extends Graphisme_de_Base {
 			e.printStackTrace();
 		}
 	}
+
 
 }
