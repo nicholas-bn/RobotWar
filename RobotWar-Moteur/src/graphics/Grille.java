@@ -3,7 +3,7 @@ package graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
 
-import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import main.Robot;
 
@@ -14,7 +14,7 @@ import main.Robot;
  *
  */
 @SuppressWarnings("serial")
-public class Grille extends JLabel {
+public class Grille extends JPanel {
 
 	/** Nombre max de cases par colonnes */
 	private int nbColonnesMax;
