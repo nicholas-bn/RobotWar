@@ -1,8 +1,0 @@
-plugins.graphisme.Graphisme_de_Base GRAPHISME true
-plugins.graphisme.Barre_de_vie GRAPHISME true
-plugins.graphisme.Tourelle GRAPHISME true
-plugins.attaque.Attaque_Lourde ATTAQUE true
-plugins.deplacement.Deplacement_Intelligent DEPLACEMENT true
-plugins.graphisme.Barre_energie GRAPHISME true
-plugins.graphisme.Image GRAPHISME true
-plugins.graphisme.AfficherNumero GRAPHISME true
