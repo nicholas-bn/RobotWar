@@ -40,43 +40,70 @@ public class Gestionnaire_Plugins {
 	/** La liste des instances des plugins graphismes */
 	ArrayList<IPluginGraphisme> listPluginsGraphisme;
 
+	ArrayList<File> listPlugins;
+
 	/**
 	 * Constructeur de la classe {@link Gestionnaire_Plugins}
 	 */
 	public Gestionnaire_Plugins() {
 		listPluginsGraphisme = new ArrayList<IPluginGraphisme>();
+		listPlugins = new ArrayList<>();
 	}
 
-	public ArrayList<String> getListePluginsFromJar(File file) {
-		ArrayList<String> listPlugins = new ArrayList<>();
+	public ArrayList<File> getListePluginsFromJar(File file) {
+		// Liste des plugins
+		listPlugins = new ArrayList<>();
 
-		// Si c'est un .jar ou un .zip
-		if (file.getAbsolutePath().endsWith(".jar") || file.getAbsolutePath().endsWith(".zip")) {
+		remplirListePlugins(file);
+		//
+		// // Si c'est un .jar ou un .zip
+		// if (file.getAbsolutePath().endsWith(".jar") ||
+		// file.getAbsolutePath().endsWith(".zip")) {
+		//
+		// ZipInputStream zip;
+		//
+		// try {
+		// zip = new ZipInputStream(new FileInputStream(file));
+		//
+		// ZipEntry entry;
+		// // Parcours de tous les éléments du jar
+		// while ((entry = zip.getNextEntry()) != null) {
+		// // Si c'est un .class
+		// if (entry.getName().endsWith(".class")) {
+		// // On ajoute le nom du plugins à la liste
+		// listPlugins.add(entry.getName());
+		// }
+		// }
+		// } catch (FileNotFoundException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// } catch (IOException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
 
-			ZipInputStream zip;
-
-			try {
-				zip = new ZipInputStream(new FileInputStream(file));
-
-				ZipEntry entry;
-				// Parcours de tous les éléments du jar
-				while ((entry = zip.getNextEntry()) != null) {
-					// Si c'est un .class
-					if (entry.getName().endsWith(".class")) {
-						// On ajoute le nom du plugins à la liste
-						listPlugins.add(entry.getName());
-					}
-				}
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
+		// }
 		return listPlugins;
+
+	}
+
+	private void remplirListePlugins(File file) {
+		// Liste des fichiers dans le répertoire :
+		File[] listFichiers = file.listFiles();
+
+		// On parcourt cette liste de fichiers :
+		for (File fichier : listFichiers) {
+			// Si le fichier est un répertoire :
+			if (fichier.isDirectory()) {
+				// On rappelle la méthode
+				remplirListePlugins(fichier);
+			} else
+			// Si le fichier est un .class
+			if (fichier.getAbsolutePath().endsWith(".class")) {
+				// On ajoute le fichier à la liste des plugins
+				listPlugins.add(fichier);
+			}
+		}
 
 	}
 
@@ -207,10 +234,10 @@ public class Gestionnaire_Plugins {
 	public void dessiner(Graphics g, Case caseRobot) {
 		try {
 			for (IPluginGraphisme plugin : listPluginsGraphisme) {
-				Method m = plugin.getClass().getMethod("paint",Graphics.class,Case.class);
+				Method m = plugin.getClass().getMethod("paint", Graphics.class, Case.class);
 
 				// Méthode qui va décider elle même le robot
-				m.invoke(plugin,g,caseRobot);
+				m.invoke(plugin, g, caseRobot);
 			}
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {
@@ -218,6 +245,11 @@ public class Gestionnaire_Plugins {
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
+
+	}
+
+	public void setListPlugins(ArrayList<File> listPluginsChoisis) {
+		listPlugins = listPluginsChoisis;
 
 	}
 }

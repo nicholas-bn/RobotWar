@@ -1,5 +1,6 @@
 package graphics;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -37,7 +38,7 @@ public class PanelChoixPlugins extends JPanel {
 	 * 
 	 * @param listPlugins
 	 */
-	public void modifierListePlugins(ArrayList<String> listPlugins) {
+	public void modifierListePlugins(ArrayList<File> listPlugins) {
 
 		for (JCheckBox cbOld : listCheckBox) {
 			// On enlève les anciennes checkbox
@@ -48,10 +49,10 @@ public class PanelChoixPlugins extends JPanel {
 		listCheckBox.clear();
 
 		// Pour chaque plugins :
-		for (String plugins : listPlugins) {
+		for (File plugins : listPlugins) {
 
 			// Création d'une checkbox avec comme texte le nom du plugin
-			JCheckBox cb = new JCheckBox(plugins);
+			JCheckBox cb = new JCheckBox(plugins.getName());
 
 			// On ajoute la checkbox à la liste
 			listCheckBox.add(cb);

@@ -38,13 +38,14 @@ public class Moteur {
 	Grille grille;
 
 	/** Fenêtre de jeu */
-	JFrame frame; 
-	
-	/** Regain d'energie par tour **/ 
+	JFrame frame;
+
+	/** Regain d'energie par tour **/
 	private final int energie = 50;
 
 	/** Chemin vers le fichier pour stocker l'état des plugins */
-	private final File PATH_TO_FILE = new File(Moteur.class.getClassLoader().getResource("Sauvegarde_Etat_Plugins.txt").getFile()); 
+	private final File PATH_TO_FILE = new File(
+			Moteur.class.getClassLoader().getResource("Sauvegarde_Etat_Plugins.txt").getFile());
 
 	/** Chemin vers le fichier pour stocker les logs */
 	private final String LOG_FILE = "Log_File_RobotWar.txt";
@@ -57,8 +58,12 @@ public class Moteur {
 	 * 
 	 * @param nbRobots
 	 *            nombre de robots à placer
+	 * @param gestionnairePlugins2
 	 */
-	public Moteur(int nbRobots, int xGrille, int yGrille, boolean isLog) {
+	public Moteur(int nbRobots, int xGrille, int yGrille, boolean isLog, Gestionnaire_Plugins gestionnairePlugins) {
+
+		// On instancie le gestionnaire de plugins
+		this.gestionnairePlugins = gestionnairePlugins;
 
 		// Si on active les logs on redirige la sortie console
 		if (isLog) {
@@ -95,8 +100,6 @@ public class Moteur {
 	 * Méthode qui initialise tous les différents plugins du jeu
 	 */
 	private void initialisationDesPlugins() {
-		// On instancie le gestionnaire de plugins
-		gestionnairePlugins = new Gestionnaire_Plugins();
 
 		// On appelle lectureFichier qui permet de renvoyer le
 		// fichier sous forme d'arraylist de String
@@ -144,9 +147,10 @@ public class Moteur {
 				if (gestionnairePlugins.chargerPlugin(splitLigne.get(0), typePlugin)) {
 					pluginActivated.add(ligne);
 				} else {
-					pluginActivated.add(splitLigne.get(0)+ " " + splitLigne.get(1) + " false");
+					pluginActivated.add(splitLigne.get(0) + " " + splitLigne.get(1) + " false");
 				}
-			// Si le plugin est à false, on remet la même ligne dans le fichier
+				// Si le plugin est à false, on remet la même ligne dans le
+				// fichier
 			} else {
 				pluginActivated.add(ligne);
 			}
@@ -267,17 +271,17 @@ public class Moteur {
 				}
 
 				// Il faut que le robot soit vivant pour jouer
-				if (!robot.isVivant()) { 
+				if (!robot.isVivant()) {
 					continue;
 				}
-				
+
 				// Boucle pour le regain d'énergie
 				int x;
-				if((x = robot.getPtEnergie() + energie) > 100)
+				if ((x = robot.getPtEnergie() + energie) > 100)
 					robot.setPtEnergie(100);
-				else 
+				else
 					robot.setPtEnergie(x);
-					
+
 				// On demande au robot de se déplacer
 				robot.seDeplacer(grille);
 
@@ -317,7 +321,7 @@ public class Moteur {
 			if (!cible.isVivant()) {
 				// On le retire de la grille
 				grille.retirerRobot(cible);
-				System.out.println("Mort du robot : "+ cible.getIndice());
+				System.out.println("Mort du robot : " + cible.getIndice());
 			}
 		}
 	}
@@ -341,7 +345,4 @@ public class Moteur {
 		}
 	}
 
-	public static void main(String[] args) {
-		new Moteur(2, 10, 10, false);
-	}
 }

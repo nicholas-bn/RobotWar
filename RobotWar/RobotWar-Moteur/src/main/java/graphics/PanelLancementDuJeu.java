@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.Box;
@@ -90,7 +91,7 @@ public class PanelLancementDuJeu extends JPanel implements ActionListener {
 	 * 
 	 * @param listPlugins
 	 */
-	public void modifierSelectionPlugins(ArrayList<String> listPlugins) {
+	public void modifierSelectionPlugins(ArrayList<File> listPlugins) {
 		panelChoixPlugins.modifierListePlugins(listPlugins);
 
 	}

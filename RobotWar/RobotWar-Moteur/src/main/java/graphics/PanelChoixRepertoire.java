@@ -84,7 +84,7 @@ public class PanelChoixRepertoire extends JPanel implements ActionListener {
 	 */
 	private File choisirRepertoirePluginsJAR() {
 		JFileChooser jfc = new JFileChooser("D:\\TRAVAIL\\S7\\Prog_Avancée\\Repertoire_Test_JAR");
-		jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		int returnVal = jfc.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			return jfc.getSelectedFile();

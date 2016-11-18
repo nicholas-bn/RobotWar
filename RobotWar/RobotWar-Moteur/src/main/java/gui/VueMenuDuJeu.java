@@ -88,7 +88,7 @@ public class VueMenuDuJeu extends JFrame {
 	 * @param repertoireChoisi
 	 */
 	public void modifierSelectionPlugins(File jarChoisi) {
-		ArrayList listPlugins = gestionnairePlugins.getListePluginsFromJar(jarChoisi);
+		ArrayList<File> listPlugins = gestionnairePlugins.getListePluginsFromJar(jarChoisi);
 
 		panelLancementDuJeu.modifierSelectionPlugins(listPlugins);
 
@@ -101,6 +101,16 @@ public class VueMenuDuJeu extends JFrame {
 	 */
 	public void lancerLaPartie(ArrayList<String> listPluginsChoisis) {
 
+		ArrayList<File> listFile = new ArrayList();
+
+		// On transforme la liste des noms en list de File
+		for (String chemin : listPluginsChoisis) {
+			listFile.add(new File(chemin));
+		}
+
+		// On indique au gestionnaire les plugins à charger
+		gestionnairePlugins.setListPlugins(listFile);
+
 		// On ferme cette fenetre
 		dispose();
 
@@ -109,7 +119,7 @@ public class VueMenuDuJeu extends JFrame {
 			@Override
 			public void run() {
 				// On lance le moteur de jeu
-				new Moteur(90, 10, 10, false);
+				new Moteur(90, 10, 10, false, gestionnairePlugins);
 
 			}
 		}).start();

@@ -95,28 +95,5 @@ public class MyClassLoader extends SecureClassLoader {
 
 		return tab;
 	}
-
-	/**
-	 * Ajoute un fichier dans la liste de path
-	 * 
-	 * @param chemin
-	 */
-	public void addPath(String chemin) {
-		File fichier = new File(chemin);
-		path.add(fichier);
-	}
-
-	public static void main(String[] args) {
-		MyClassLoader cl = new MyClassLoader();
-		// cl.addPath("C:/Users/Karl/Documents/private/Test/bin");
-		cl.addPath("C:/Users/Karl/Documents/private/Test/fichier.jar");
-
-		try {
-			Class classe = cl.loadClass("pack.ClasseTest");
-			System.out.println("On a trouvé : " + classe);
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
+	
 }
