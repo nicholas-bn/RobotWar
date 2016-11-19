@@ -1,4 +1,4 @@
-package plugins.attaque;
+package interfacesPlugins;
 
 import graphics.Grille;
 import main.Robot;

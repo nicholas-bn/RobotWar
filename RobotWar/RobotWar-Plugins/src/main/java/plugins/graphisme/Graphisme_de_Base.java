@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import graphics.Case;
+import interfacesPlugins.IPluginGraphisme;
 
 @SuppressWarnings("serial")
 public class Graphisme_de_Base implements IPluginGraphisme {

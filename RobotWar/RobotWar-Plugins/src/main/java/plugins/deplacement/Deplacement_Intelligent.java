@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import graphics.Grille;
+import interfacesPlugins.IPluginDeplacement;
 import main.Robot;
 
 public class Deplacement_Intelligent implements IPluginDeplacement {

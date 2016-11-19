@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JLabel;
 
 import graphics.Case;
+import interfacesPlugins.IPluginGraphisme;
 
 /**
  * Classe permettant de différencier les robot en affichant dans un coin de la

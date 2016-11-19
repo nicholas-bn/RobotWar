@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import graphics.Case;
+import interfacesPlugins.IPluginGraphisme;
 
 /**
  * Plugin qui affiche une tourelle sur le robot

@@ -11,6 +11,7 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 
 import graphics.Case;
+import interfacesPlugins.IPluginGraphisme;
 
 @SuppressWarnings("serial")
 public class Image implements IPluginGraphisme {

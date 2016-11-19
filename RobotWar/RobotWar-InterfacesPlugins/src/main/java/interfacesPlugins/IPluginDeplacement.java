@@ -1,4 +1,4 @@
-package plugins.deplacement;
+package interfacesPlugins;
 
 import java.awt.Point;
 

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import graphics.Grille;
+import interfacesPlugins.IPluginDeplacement;
 import main.Robot;
 
 // TODO changer le nom

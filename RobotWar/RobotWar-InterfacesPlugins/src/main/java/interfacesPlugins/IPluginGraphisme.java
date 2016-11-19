@@ -1,4 +1,4 @@
-package plugins.graphisme;
+package interfacesPlugins;
 
 import java.awt.Graphics;
 

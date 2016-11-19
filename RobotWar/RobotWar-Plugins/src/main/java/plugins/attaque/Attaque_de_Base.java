@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import graphics.Grille;
+import interfacesPlugins.IPluginAttaque;
 import main.Robot;
 
 /**
