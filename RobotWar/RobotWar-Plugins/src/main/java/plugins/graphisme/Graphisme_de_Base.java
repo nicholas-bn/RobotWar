@@ -1,11 +1,10 @@
 package plugins.graphisme;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
 import java.util.Random;
 
-import graphics.Case;
+import interfacesMoteur.ICase;
 import interfacesPlugins.IPluginGraphisme;
 
 @SuppressWarnings("serial")
@@ -26,7 +25,7 @@ public class Graphisme_de_Base implements IPluginGraphisme {
 	 * 
 	 * @param c
 	 */
-	public void paint(Graphics g, Case c) {
+	public void paint(Graphics g, ICase c) {
 
 		c.setOpaque(true);
 		c.setBackground(c.getRobot().getCouleur());

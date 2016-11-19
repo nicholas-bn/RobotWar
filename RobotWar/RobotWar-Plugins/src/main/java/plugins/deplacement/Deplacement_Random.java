@@ -4,9 +4,9 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
 
-import graphics.Grille;
+import interfacesMoteur.IGrille;
+import interfacesMoteur.IRobot;
 import interfacesPlugins.IPluginDeplacement;
-import main.Robot;
 
 // TODO changer le nom
 public class Deplacement_Random implements IPluginDeplacement {
@@ -18,7 +18,7 @@ public class Deplacement_Random implements IPluginDeplacement {
 	 * @param robot
 	 * @return
 	 */
-	public Point choisirDeplacement(Grille grille, Robot robot) {
+	public Point choisirDeplacement(IGrille grille, IRobot robot) {
 
 		// List des deplacements possibles
 		ArrayList<Point> listDeplacements = getListeDeplacementsPossibles(robot, grille);
@@ -42,7 +42,7 @@ public class Deplacement_Random implements IPluginDeplacement {
 	 * @param y
 	 * @return
 	 */
-	public ArrayList<Point> getListeDeplacementsPossibles(Robot robot, Grille grille) {
+	public ArrayList<Point> getListeDeplacementsPossibles(IRobot robot, IGrille grille) {
 		
 		// Position actuelle du robot
 		Point posActuelle = robot.getPosition();

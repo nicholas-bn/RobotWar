@@ -3,27 +3,17 @@ package plugins;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 import graphics.Case;
 import graphics.Grille;
+import interfacesPlugins.IPluginAttaque;
+import interfacesPlugins.IPluginDeplacement;
+import interfacesPlugins.IPluginGraphisme;
 import main.Robot;
-import plugins.attaque.Attaque_de_Base;
-import plugins.attaque.IPluginAttaque;
-import plugins.deplacement.Deplacement_Intelligent;
-import plugins.deplacement.Deplacement_Random;
-import plugins.deplacement.IPluginDeplacement;
-import plugins.graphisme.Graphisme_de_Base;
-import plugins.graphisme.IPluginGraphisme;
 
 /**
  * La classe qui permet de charger et d'utiliser les différents plugins
@@ -143,7 +133,7 @@ public class Gestionnaire_Plugins {
 			return true;
 
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-			System.out.println("PAS CHARGER COPAIN");
+			System.out.println("Flingué barnini");
 			e.printStackTrace();
 			return false;
 		}

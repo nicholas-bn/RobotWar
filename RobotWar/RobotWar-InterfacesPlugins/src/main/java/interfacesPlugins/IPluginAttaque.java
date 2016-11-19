@@ -1,11 +1,12 @@
 package interfacesPlugins;
 
-import graphics.Grille;
-import main.Robot;
+
+import interfacesMoteur.IGrille;
+import interfacesMoteur.IRobot;
 
 public interface IPluginAttaque {
 	
-	public Robot choisirCible(Grille grille, Robot robot); 
+	public IRobot choisirCible(IGrille grille, IRobot robot); 
 	
 
 }

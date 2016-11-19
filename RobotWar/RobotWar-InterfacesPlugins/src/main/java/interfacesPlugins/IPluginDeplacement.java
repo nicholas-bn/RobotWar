@@ -2,11 +2,11 @@ package interfacesPlugins;
 
 import java.awt.Point;
 
-import graphics.Grille;
-import main.Robot;
+import interfacesMoteur.IGrille;
+import interfacesMoteur.IRobot;
 
 public interface IPluginDeplacement {
 
-	public Point choisirDeplacement(Grille grille, Robot robot);
+	public Point choisirDeplacement(IGrille grille, IRobot robot);
 
 }

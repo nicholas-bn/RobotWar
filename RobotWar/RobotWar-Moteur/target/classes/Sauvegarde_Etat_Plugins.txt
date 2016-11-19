@@ -1,8 +1,8 @@
-plugins.graphisme.Graphisme_de_Base GRAPHISME true
-plugins.graphisme.Barre_de_vie GRAPHISME true
-plugins.graphisme.Tourelle GRAPHISME true
-plugins.attaque.Attaque_Lourde ATTAQUE true
-plugins.deplacement.Deplacement_Intelligent DEPLACEMENT true
-plugins.graphisme.Barre_energie GRAPHISME true
-plugins.graphisme.Image GRAPHISME true
-plugins.graphisme.AfficherNumero GRAPHISME true
+RobotWar-Plugins.src.main.java.plugins.graphisme.Graphisme_de_Base GRAPHISME false
+RobotWar-Plugins.src.main.java.plugins.graphisme.Barre_de_vie GRAPHISME false
+RobotWar-Plugins.src.main.java.plugins.graphisme.Tourelle GRAPHISME false
+RobotWar-Plugins.src.main.java.plugins.attaque.Attaque_Lourde ATTAQUE false
+RobotWar-Plugins.src.main.java.plugins.deplacement.Deplacement_Intelligent DEPLACEMENT false
+RobotWar-Plugins.src.main.java.plugins.graphisme.Barre_energie GRAPHISME false
+RobotWar-Plugins.src.main.java.plugins.graphisme.Image GRAPHISME false
+RobotWar-Plugins.src.main.java.plugins.graphisme.AfficherNumero GRAPHISME false 

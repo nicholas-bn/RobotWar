@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import graphics.Case;
+import interfacesMoteur.ICase;
 import interfacesPlugins.IPluginGraphisme;
 
 /**
@@ -17,7 +17,7 @@ import interfacesPlugins.IPluginGraphisme;
 @SuppressWarnings("serial")
 public class Tourelle implements IPluginGraphisme {
 
-	public void paint(Graphics g, Case c){
+	public void paint(Graphics g, ICase c){
 
 		g.setColor(Color.black);
 		

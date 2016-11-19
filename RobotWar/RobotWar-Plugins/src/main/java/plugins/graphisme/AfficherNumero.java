@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import javax.swing.JLabel;
 
-import graphics.Case;
+import interfacesMoteur.ICase;
 import interfacesPlugins.IPluginGraphisme;
 
 /**
@@ -18,7 +18,7 @@ import interfacesPlugins.IPluginGraphisme;
 @SuppressWarnings("serial")
 public class AfficherNumero implements IPluginGraphisme {
 
-	public void paint(Graphics g, Case c) {
+	public void paint(Graphics g, ICase c) {
 
 		// Si la case contient un robot on ajoute son indice et on
 		// spécifie la position du texte

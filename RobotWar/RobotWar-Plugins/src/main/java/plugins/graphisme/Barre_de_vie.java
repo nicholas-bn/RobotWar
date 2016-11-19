@@ -4,10 +4,11 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Robot;
 
-import graphics.Case;
+import interfacesMoteur.ICase;
+import interfacesMoteur.IRobot;
 import interfacesPlugins.IPluginGraphisme;
-import main.Robot;
 
 /**
  * Plugin qui affiche une barre de vie au dessus du robot
@@ -18,7 +19,7 @@ import main.Robot;
 @SuppressWarnings("serial")
 public class Barre_de_vie implements IPluginGraphisme {
 
-	public void paint(Graphics g, Case c) {
+	public void paint(Graphics g, ICase c) {
 		
 
 		// Taille du label (case)
@@ -45,7 +46,7 @@ public class Barre_de_vie implements IPluginGraphisme {
 		y2 = yLabel / 8;
 		g.drawLine(x1, y1, x2, y2);
 
-		Robot robot = c.getRobot();
+		IRobot robot = c.getRobot();
 
 		// Vie actuelle du robot
 		float vie = robot.getVie() / 100f;

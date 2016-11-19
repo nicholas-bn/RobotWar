@@ -3,9 +3,9 @@ package plugins.deplacement;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import graphics.Grille;
+import interfacesMoteur.IGrille;
+import interfacesMoteur.IRobot;
 import interfacesPlugins.IPluginDeplacement;
-import main.Robot;
 
 public class Deplacement_Intelligent implements IPluginDeplacement {
 
@@ -17,7 +17,7 @@ public class Deplacement_Intelligent implements IPluginDeplacement {
 	 * @param robot
 	 * @return Point
 	 */
-	public Point choisirDeplacement(Grille grille, Robot robot) {
+	public Point choisirDeplacement(IGrille grille, IRobot robot) {
 
 		// List des deplacements possibles
 		ArrayList<Point> listDeplacements = getListeDeplacementsPossibles(robot, grille);
@@ -71,7 +71,7 @@ public class Deplacement_Intelligent implements IPluginDeplacement {
 	 * @param robot
 	 * @return
 	 */
-	private Point chercherLeRobotLePlusProche(Grille grille, Robot robot) {
+	private Point chercherLeRobotLePlusProche(IGrille grille, IRobot robot) {
 
 		// Point que l'on retourne
 		Point pointRobot = null;
@@ -82,7 +82,7 @@ public class Deplacement_Intelligent implements IPluginDeplacement {
 		// On parcours la grille
 		for (int x = 0; x < grille.getNblignesmax(); x++) {
 			for (int y = 0; y < grille.getNbcolonnesmax(); y++) {
-				Robot r;
+				IRobot r;
 
 				// On récupère le robot dans le point (x,y)
 				if ((r = grille.getRobotFromPoint(new Point(x, y))) != null) {
@@ -116,7 +116,7 @@ public class Deplacement_Intelligent implements IPluginDeplacement {
 	 * @param y
 	 * @return
 	 */
-	public ArrayList<Point> getListeDeplacementsPossibles(Robot robot, Grille grille) {
+	public ArrayList<Point> getListeDeplacementsPossibles(IRobot robot, IGrille grille) {
 
 		// Position actuelle du robot
 		Point posActuelle = robot.getPosition();

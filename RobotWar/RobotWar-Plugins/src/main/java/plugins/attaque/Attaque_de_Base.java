@@ -3,9 +3,9 @@ package plugins.attaque;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import graphics.Grille;
+import interfacesMoteur.IGrille;
+import interfacesMoteur.IRobot;
 import interfacesPlugins.IPluginAttaque;
-import main.Robot;
 
 /**
  * Classe représentant une case de la grille
@@ -27,14 +27,14 @@ public class Attaque_de_Base implements IPluginAttaque{
 	 * @param robot
 	 * @return Robot
 	 */
-	public Robot choisirCible(Grille grille, Robot robot) {
+	public IRobot choisirCible(IGrille grille, IRobot robot) {
 
 		// On récupere la liste des robots attaquable
-		ArrayList<Robot> listRobotAttaquable = getListeAttaquesPossibles(robot, grille);
+		ArrayList<IRobot> listRobotAttaquable = getListeAttaquesPossibles(robot, grille);
 		int tailleArray = listRobotAttaquable.size();
 		if (tailleArray != 0) {
 			// On définit le premier robot comme la cible
-			Robot r = listRobotAttaquable.get(0);
+			IRobot r = listRobotAttaquable.get(0);
 
 			// Si la liste a plus de deux robots on parcours
 			if (tailleArray > 1) {
@@ -65,7 +65,7 @@ public class Attaque_de_Base implements IPluginAttaque{
 	 * @return ArrayList<Robot>
 	 */
 
-	private ArrayList<Robot> getListeAttaquesPossibles(Robot r, Grille grille) {
+	private ArrayList<IRobot> getListeAttaquesPossibles(IRobot r, IGrille grille) {
 
 		// On récupère les valeurs des attributs du Robot
 		int x = r.getPosition().x;
@@ -77,7 +77,7 @@ public class Attaque_de_Base implements IPluginAttaque{
 		int nbLigneMax = grille.getNblignesmax();
 
 		// On instancie la liste de robots à retourner
-		ArrayList<Robot> listRobot = new ArrayList<Robot>();
+		ArrayList<IRobot> listRobot = new ArrayList<IRobot>();
 
 		// On parcours la zone entourant le robot et si il y a un robot on
 		// ajoute

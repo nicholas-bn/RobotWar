@@ -5,9 +5,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import graphics.Case;
+import interfacesMoteur.ICase;
+import interfacesMoteur.IRobot;
 import interfacesPlugins.IPluginGraphisme;
-import main.Robot;
 
 /**
  * Plugin qui affiche une barre d'énergie en dessous de la barre de vie
@@ -18,7 +18,7 @@ import main.Robot;
 @SuppressWarnings("serial")
 public class Barre_energie implements IPluginGraphisme {
 
-	public void paint(Graphics g, Case c) {
+	public void paint(Graphics g, ICase c) {
 
 		// Taille du label (case)
 		int xLabel = c.getWidth();
@@ -44,7 +44,7 @@ public class Barre_energie implements IPluginGraphisme {
 		y2 = (yLabel / 6);
 		g.drawLine(x1, y1, x2, y2);
 
-		Robot robot = c.getRobot();
+		IRobot robot = c.getRobot();
 
 		// Energie actuel du robot
 		float energie = robot.getPtEnergie() / 100f;
