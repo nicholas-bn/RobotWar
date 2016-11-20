@@ -1,6 +1,7 @@
 package interfacesMoteur;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Point;
 
 public interface IRobot {
@@ -19,8 +20,12 @@ public interface IRobot {
 
 	int getPtMouvement();
 
-	String getIndice();
+	int getIndice();
 
 	Color getCouleur();
+
+	void dessiner(Graphics g, ICase case1);
+
+	void setPosition(Point posChoisie);
 
 }

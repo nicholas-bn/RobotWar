@@ -78,7 +78,7 @@ public class PanelLancementDuJeu extends JPanel implements ActionListener {
 		// Si on a cliqué sur le bouton
 		if (action.getSource() == bouton) {
 			// Retourne la liste des plugins choisis
-			ArrayList<String> listPluginsChoisis = panelChoixPlugins.getListPluginsChoisis();
+			ArrayList<File> listPluginsChoisis = panelChoixPlugins.getListPluginsChoisis();
 
 			// On lance la partie avec les plugins choisis
 			vuePrincipale.lancerLaPartie(listPluginsChoisis);

@@ -16,7 +16,7 @@ public class PanelChoixPlugins extends JPanel {
 	private VueMenuDuJeu vueMenuDuJeu;
 
 	/** Liste des checkbox */
-	private ArrayList<JCheckBox> listCheckBox;
+	private ArrayList<JCheckBoxPlugins> listCheckBox;
 
 	/**
 	 * Constructeur de la classe {@link PanelChoixPlugins}
@@ -52,7 +52,7 @@ public class PanelChoixPlugins extends JPanel {
 		for (File plugins : listPlugins) {
 
 			// Création d'une checkbox avec comme texte le nom du plugin
-			JCheckBox cb = new JCheckBox(plugins.getName());
+			JCheckBoxPlugins cb = new JCheckBoxPlugins(plugins);
 
 			// On ajoute la checkbox à la liste
 			listCheckBox.add(cb);
@@ -71,15 +71,15 @@ public class PanelChoixPlugins extends JPanel {
 	 * 
 	 * @return
 	 */
-	public ArrayList<String> getListPluginsChoisis() {
-		ArrayList<String> listPluginsChoisis = new ArrayList<>();
+	public ArrayList<File> getListPluginsChoisis() {
+		ArrayList<File> listPluginsChoisis = new ArrayList<>();
 
 		// On parcourt la liste des CheckBox :
-		for (JCheckBox jc : listCheckBox) {
+		for (JCheckBoxPlugins jc : listCheckBox) {
 			// Si elle est cochée
 			if (jc.isSelected()) {
 				// On l'ajoute à la liste des plugins choisis
-				listPluginsChoisis.add(jc.getText());
+				listPluginsChoisis.add(jc.getFile());
 			}
 		}
 		return listPluginsChoisis;

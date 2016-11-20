@@ -101,12 +101,30 @@ public class Moteur {
 	 */
 	private void initialisationDesPlugins() {
 
+		// On récupère la liste des plugins qui ont été choisis
+		ArrayList<File> listPluginsChoisis = gestionnairePlugins.getListPlugins();
+
+		ArrayList<String> pluginsAActiver = new ArrayList<>();
+
+		for (File fichier : listPluginsChoisis) {
+			String chemin = fichier.getAbsolutePath();
+			String tab[] = chemin.split("\\\\");
+			TypePlugin typePlugin = TypePlugin.valueOf(tab[tab.length - 2].toUpperCase());
+
+			String ligne = fichier.getAbsolutePath() + " " + typePlugin + " true";
+
+			pluginsAActiver.add(ligne);
+		}
+
+		// Sauvegarde des plugins qui ont bien été instanciés
+		sauvegardeEtatPlugin(pluginsAActiver);
+
 		// On appelle lectureFichier qui permet de renvoyer le
 		// fichier sous forme d'arraylist de String
-		ArrayList<String> resultatFichier = lectureFichier();
+		// ArrayList<String> resultatFichier = lectureFichier();
 
 		// On instancie les plugins, et on a en retour les plugins activés
-		ArrayList<String> pluginActiver = parserLigneFichier(resultatFichier);
+		ArrayList<String> pluginActiver = parserLigneFichier(pluginsAActiver);
 
 		// Sauvegarde des plugins qui ont bien été instanciés
 		sauvegardeEtatPlugin(pluginActiver);
@@ -130,18 +148,14 @@ public class Moteur {
 
 			// Si le plugin a été sauvegardé à "true" on l'active
 			if (Boolean.parseBoolean(splitLigne.get(2))) {
-				// On récupère le type de plugin
-				String type = splitLigne.get(1);
-				TypePlugin typePlugin;
-				if (type.equals("GRAPHISME")) {
-					typePlugin = TypePlugin.GRAPHISME;
-				} else if (type.equals("ATTAQUE")) {
-					typePlugin = TypePlugin.ATTAQUE;
-				} else if (type.equals("DEPLACEMENT")) {
-					typePlugin = TypePlugin.DEPLACEMENT;
-				} else {
-					continue;
-				}
+				
+				// Chemin où se trouve le plugin
+				String chemin = splitLigne.get(0);
+
+				// Type de plugins
+				String tab[] = chemin.split("\\\\");
+				TypePlugin typePlugin = TypePlugin.valueOf(tab[tab.length - 2].toUpperCase());
+				
 
 				// On charge le plugin suivant son type choisi précédemment
 				if (gestionnairePlugins.chargerPlugin(splitLigne.get(0), typePlugin)) {

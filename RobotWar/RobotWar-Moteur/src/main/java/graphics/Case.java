@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
+import interfacesMoteur.ICase;
+import interfacesMoteur.IRobot;
 import main.Robot;
 
 /**
@@ -15,9 +17,9 @@ import main.Robot;
  *
  */
 @SuppressWarnings("serial")
-public class Case extends JLabel {
+public class Case extends JLabel implements ICase{
 
-	private Robot robot;
+	private IRobot robot;
 
 	/**
 	 * Constructeur de la classe {@link Case}
@@ -29,11 +31,11 @@ public class Case extends JLabel {
 		setBorder(BorderFactory.createLineBorder(Color.black));
 	}
 
-	public Robot getRobot() {
+	public IRobot getRobot() {
 		return robot;
 	}
 
-	public void setRobot(Robot robot) {
+	public void setRobot(IRobot robot) {
 		this.robot = robot;
 	}
 

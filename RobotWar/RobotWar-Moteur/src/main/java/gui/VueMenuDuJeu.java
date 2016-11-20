@@ -99,17 +99,11 @@ public class VueMenuDuJeu extends JFrame {
 	 * 
 	 * @param listPluginsChoisis
 	 */
-	public void lancerLaPartie(ArrayList<String> listPluginsChoisis) {
+	public void lancerLaPartie(ArrayList<File> listPluginsChoisis) {
 
-		ArrayList<File> listFile = new ArrayList();
-
-		// On transforme la liste des noms en list de File
-		for (String chemin : listPluginsChoisis) {
-			listFile.add(new File(chemin));
-		}
-
+		
 		// On indique au gestionnaire les plugins à charger
-		gestionnairePlugins.setListPlugins(listFile);
+		gestionnairePlugins.setListPlugins(listPluginsChoisis);
 
 		// On ferme cette fenetre
 		dispose();

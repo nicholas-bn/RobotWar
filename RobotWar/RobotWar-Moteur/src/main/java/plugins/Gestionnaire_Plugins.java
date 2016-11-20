@@ -10,6 +10,9 @@ import java.util.ArrayList;
 
 import graphics.Case;
 import graphics.Grille;
+import interfacesMoteur.ICase;
+import interfacesMoteur.IGrille;
+import interfacesMoteur.IRobot;
 import interfacesPlugins.IPluginAttaque;
 import interfacesPlugins.IPluginDeplacement;
 import interfacesPlugins.IPluginGraphisme;
@@ -100,15 +103,25 @@ public class Gestionnaire_Plugins {
 	/**
 	 * Méthode qui charge un plugin
 	 * 
-	 * @param nom
+	 * @param chemin
 	 *            nom du plugin
 	 * @param typePlugin
 	 *            type du plugin
 	 */
-	public boolean chargerPlugin(String nom, TypePlugin typePlugin) {
+	public boolean chargerPlugin(String chemin, TypePlugin typePlugin) {
 		try {
+			// On instantie le classeLoader
+			MyClassLoader cl = new MyClassLoader(chemin);
+
+			//
+			File fichier = new File(chemin);
+
+			// Nom du fichier
+			String name = "plugins." + typePlugin.toString().toLowerCase() + "."
+					+ fichier.getName().replace(".class", "");
+
 			// On charge la classe
-			Class<?> pluginClass = Class.forName(nom);
+			Class<?> pluginClass = cl.findClass(name);
 
 			// Si c'est un plugin d'attaque :
 			if (typePlugin == TypePlugin.ATTAQUE) {
@@ -146,27 +159,33 @@ public class Gestionnaire_Plugins {
 	 * @return
 	 */
 	public Color getCouleurRobot() {
-		// La méthode du plugin qui permet de choisir la couleur du robot
-		Method m;
-		try {
-			// On demande à un des plugins graphisme la couleur
-			m = listPluginsGraphisme.get(0).getClass().getMethod("getCouleur");
-			Color couleur = (Color) m.invoke(listPluginsGraphisme.get(0));
-			return couleur;
 
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+		for (IPluginGraphisme plugin : listPluginsGraphisme) {
+			// La méthode du plugin qui permet de choisir la couleur du robot
+			try {
+				// On r
+				Method[] methods = listPluginsGraphisme.get(0).getClass().getMethods();
+
+				for (Method m : methods) {
+					if (m.getName().equals("getCouleur")) {
+						Color couleur = (Color) m.invoke(listPluginsGraphisme.get(0));
+						return couleur;
+					}
+				}
+
+			} catch (SecurityException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+			}
+
 		}
-		return Color.black;
 
+		return Color.black;
 	}
 
 	/**
@@ -177,7 +196,7 @@ public class Gestionnaire_Plugins {
 	public Robot attaquer(Grille grille, Robot robot) {
 		try {
 			// La méthode du plugin qui permet de choisir une cible
-			Method m = pluginAttaque.getClass().getMethod("choisirCible", Grille.class, Robot.class);
+			Method m = pluginAttaque.getClass().getMethod("choisirCible", IGrille.class, IRobot.class);
 
 			// Cette méthode retourne un robot "cible"
 			Robot robotCible = (Robot) m.invoke(pluginAttaque, grille, robot);
@@ -201,7 +220,7 @@ public class Gestionnaire_Plugins {
 	public Point seDeplacer(Grille grille, Robot robot) {
 		try {
 			// La méthode du plugin qui permet de choisir un déplacement
-			Method m = pluginDeplacement.getClass().getMethod("choisirDeplacement", Grille.class, Robot.class);
+			Method m = pluginDeplacement.getClass().getMethod("choisirDeplacement", IGrille.class, IRobot.class);
 
 			// Point choisie par le plugin
 			Point posChoisie = (java.awt.Point) m.invoke(pluginDeplacement, grille, robot);
@@ -224,7 +243,7 @@ public class Gestionnaire_Plugins {
 	public void dessiner(Graphics g, Case caseRobot) {
 		try {
 			for (IPluginGraphisme plugin : listPluginsGraphisme) {
-				Method m = plugin.getClass().getMethod("paint", Graphics.class, Case.class);
+				Method m = plugin.getClass().getMethod("paint", Graphics.class, ICase.class);
 
 				// Méthode qui va décider elle même le robot
 				m.invoke(plugin, g, caseRobot);
@@ -240,6 +259,11 @@ public class Gestionnaire_Plugins {
 
 	public void setListPlugins(ArrayList<File> listPluginsChoisis) {
 		listPlugins = listPluginsChoisis;
+
+	}
+
+	public ArrayList<File> getListPlugins() {
+		return listPlugins;
 
 	}
 }

@@ -6,9 +6,11 @@ import java.awt.Point;
 
 import graphics.Case;
 import graphics.Grille;
+import interfacesMoteur.ICase;
+import interfacesMoteur.IRobot;
 import plugins.Gestionnaire_Plugins;
 
-public class Robot {
+public class Robot implements IRobot{
 
 	/** Nombre de point de vie (PV) */
 	private int pv;
@@ -190,6 +192,13 @@ public class Robot {
 	public String toString() {
 		return "Robot " + this.getIndice() + "( X:" + this.getPosition().getX() + " Y:" + this.getPosition().getY()
 				+ ")";
+	}
+
+
+	@Override
+	public void dessiner(Graphics g, ICase case1) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

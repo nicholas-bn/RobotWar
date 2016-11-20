@@ -5,6 +5,8 @@ import java.awt.Point;
 
 import javax.swing.JPanel;
 
+import interfacesMoteur.IGrille;
+import interfacesMoteur.IRobot;
 import main.Robot;
 
 /**
@@ -14,7 +16,7 @@ import main.Robot;
  *
  */
 @SuppressWarnings("serial")
-public class Grille extends JPanel {
+public class Grille extends JPanel implements IGrille{
 
 	/** Nombre max de cases par colonnes */
 	private int nbColonnesMax;
@@ -68,7 +70,7 @@ public class Grille extends JPanel {
 	 * @param robot
 	 * @param posChoisie
 	 */
-	public void deplacerRobot(Robot robot, Point posChoisie) {
+	public void deplacerRobot(IRobot robot, Point posChoisie) {
 		// Position actuelle du robot
 		Point posActuelle = robot.getPosition();
 
@@ -108,7 +110,7 @@ public class Grille extends JPanel {
 	 * @param point
 	 * @return
 	 */
-	public Robot getRobotFromPoint(Point point) {
+	public IRobot getRobotFromPoint(Point point) {
 		return elementsGrille[point.x][point.y].getRobot();
 	}
 
