@@ -5,6 +5,8 @@ import java.awt.Color;
 public interface ICase {
 
 	IRobot getRobot();
+	
+	void setRobot(IRobot robot);
 
 	void setText(String string);
 

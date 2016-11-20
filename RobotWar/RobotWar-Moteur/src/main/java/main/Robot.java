@@ -169,12 +169,12 @@ public class Robot implements IRobot{
 	 * @param g
 	 * @param caseRobot
 	 */
-	public void dessiner(Graphics g, Case caseRobot) {
+	public void dessiner(Graphics g, ICase caseRobot) {
 
 		// On demande au gestionnaire de dessiner le robot
-		gestionnairePlugins.dessiner(g, caseRobot);
+		gestionnairePlugins.dessiner(g, (Case) caseRobot);
 	}
-
+	
 	/**
 	 * Méthode qui permet de savoir si un robot est toujours vivant
 	 * 
@@ -194,11 +194,6 @@ public class Robot implements IRobot{
 				+ ")";
 	}
 
-
-	@Override
-	public void dessiner(Graphics g, ICase case1) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

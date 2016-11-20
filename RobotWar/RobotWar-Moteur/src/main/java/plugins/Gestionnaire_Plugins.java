@@ -185,7 +185,7 @@ public class Gestionnaire_Plugins {
 
 		}
 
-		return Color.black;
+		return Color.WHITE;
 	}
 
 	/**

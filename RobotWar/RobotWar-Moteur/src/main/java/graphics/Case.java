@@ -46,7 +46,7 @@ public class Case extends JLabel implements ICase{
 	public void paint(Graphics g) {
 		super.paint(g);
 
-		if (this.getRobot() != null) {
+		if (robot != null) {
 			robot.dessiner(g, this);
 		}
 

@@ -15,7 +15,6 @@ import interfacesPlugins.IPluginGraphisme;
  * @author Nicho
  *
  */
-@SuppressWarnings("serial")
 public class AfficherNumero implements IPluginGraphisme {
 
 	public void paint(Graphics g, ICase c) {

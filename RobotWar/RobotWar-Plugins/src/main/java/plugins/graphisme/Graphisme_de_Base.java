@@ -26,6 +26,8 @@ public class Graphisme_de_Base implements IPluginGraphisme {
 	 * @param c
 	 */
 	public void paint(Graphics g, ICase c) {
+		
+		System.out.println("dessin");
 
 		c.setOpaque(true);
 		c.setBackground(c.getRobot().getCouleur());
