@@ -142,7 +142,7 @@ public class Moteur {
 		frame = new JFrame("RobotWar");
 		frame.setContentPane(grille);
 		frame.setVisible(true);
-		frame.setSize(500, 500);
+		frame.setSize(700, 700);
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
 				// sauvegardeEtatPlugin();

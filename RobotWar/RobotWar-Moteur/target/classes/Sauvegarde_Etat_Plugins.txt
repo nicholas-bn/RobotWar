@@ -7,4 +7,3 @@ C:\Users\Leo\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graph
 C:\Users\Leo\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\BarreEnergie.class GRAPHISME true
 C:\Users\Leo\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\GraphismeDeBase.class GRAPHISME true
 C:\Users\Leo\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\Image.class GRAPHISME true
-C:\Users\Leo\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\Tourelle.class GRAPHISME true
