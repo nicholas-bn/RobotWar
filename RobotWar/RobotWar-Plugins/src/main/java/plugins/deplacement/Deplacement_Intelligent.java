@@ -184,10 +184,8 @@ public class Deplacement_Intelligent implements IPluginDeplacement {
 
 		// Si l'addition des deux différence (X,Y) est inférieur ou égal à la
 		// portée cela signifie que le robot est à portée de mouvement
-		if (distanceNoDiagonal(x1, x2, y1, y2) <= portée)
-			return true;
-		else
-			return false;
+		return (distanceNoDiagonal(x1, x2, y1, y2) <= portée);
+		
 	}
 
 	/**

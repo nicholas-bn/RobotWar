@@ -1,6 +1,0 @@
-C:\Users\Karl\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\attaque\Attaque_de_Base.class ATTAQUE true
-C:\Users\Karl\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\deplacement\Deplacement_Intelligent.class DEPLACEMENT true
-C:\Users\Karl\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\AfficherNumero.class GRAPHISME true
-C:\Users\Karl\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\Barre_de_vie.class GRAPHISME true
-C:\Users\Karl\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\Graphisme_de_Base.class GRAPHISME true
-C:\Users\Karl\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\Tourelle.class GRAPHISME true
