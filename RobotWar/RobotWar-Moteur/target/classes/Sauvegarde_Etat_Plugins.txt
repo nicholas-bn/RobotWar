@@ -1,8 +1,5 @@
-plugins.graphisme.Graphisme_de_Base GRAPHISME true
-plugins.graphisme.Barre_de_vie GRAPHISME true
-plugins.graphisme.Tourelle GRAPHISME true
-plugins.attaque.Attaque_Lourde ATTAQUE true
-plugins.deplacement.Deplacement_Intelligent DEPLACEMENT true
-plugins.graphisme.Barre_energie GRAPHISME true
-plugins.graphisme.Image GRAPHISME true
-plugins.graphisme.AfficherNumero GRAPHISME true
+C:\Users\Thronghar\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\attaque\Attaque_de_Base.class ATTAQUE true
+C:\Users\Thronghar\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\deplacement\Deplacement_Intelligent.class DEPLACEMENT true
+C:\Users\Thronghar\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\Barre_de_vie.class GRAPHISME true
+C:\Users\Thronghar\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\Barre_energie.class GRAPHISME true
+C:\Users\Thronghar\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\Graphisme_de_Base.class GRAPHISME true

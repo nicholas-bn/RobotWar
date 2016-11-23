@@ -29,6 +29,14 @@ public class VueMenuDuJeu extends JFrame {
 
 	private Gestionnaire_Plugins gestionnairePlugins;
 
+	public Gestionnaire_Plugins getGestionnairePlugins() {
+		return gestionnairePlugins;
+	}
+
+	public void setGestionnairePlugins(Gestionnaire_Plugins gestionnairePlugins) {
+		this.gestionnairePlugins = gestionnairePlugins;
+	}
+
 	/**
 	 * Constructeur de la classe {@link VueMenuDuJeu}
 	 */

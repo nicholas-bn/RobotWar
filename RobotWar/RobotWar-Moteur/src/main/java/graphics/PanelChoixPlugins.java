@@ -1,14 +1,18 @@
 package graphics;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import gui.VueMenuDuJeu;
+import plugins.Gestionnaire_Plugins;
 
 public class PanelChoixPlugins extends JPanel {
 
@@ -17,6 +21,9 @@ public class PanelChoixPlugins extends JPanel {
 
 	/** Liste des checkbox */
 	private ArrayList<JCheckBoxPlugins> listCheckBox;
+
+	/** Gestionnaire de plugins */
+	private Gestionnaire_Plugins gestionnairePlugins;
 
 	/**
 	 * Constructeur de la classe {@link PanelChoixPlugins}
@@ -28,9 +35,49 @@ public class PanelChoixPlugins extends JPanel {
 
 		vueMenuDuJeu = vue;
 
+		gestionnairePlugins = vueMenuDuJeu.getGestionnairePlugins();
+
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
 		listCheckBox = new ArrayList<>();
+
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader(gestionnairePlugins.PATH_TO_FILE));
+			// Si le fichier est non vide
+			if (br.readLine() != null && br.readLine() != "" && br.readLine() != "\n") {
+				ArrayList<String> listStringSauvegarde = gestionnairePlugins.lectureFichier();
+				ArrayList<File> listFileSauvegarde = new ArrayList<File>();
+				for (String chemin : listStringSauvegarde) {
+					listFileSauvegarde.add(new File(chemin.split(" ")[0]));
+
+				}
+				modifierListePlugins(listFileSauvegarde);
+
+				cocherPlugins(listStringSauvegarde);
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void cocherPlugins(ArrayList<String> listStringSauvegarde) {
+		for (String s : listStringSauvegarde) {
+			String[] tab = s.split(" ");
+
+			if (tab[2].equalsIgnoreCase("true")) {
+				for (JCheckBoxPlugins jcb : listCheckBox) {
+					if (jcb.getFile().getAbsolutePath().equals(tab[0])) {
+						jcb.setSelected(true);
+					}
+				}
+			}
+		}
+
 	}
 
 	/**

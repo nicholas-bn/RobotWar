@@ -44,10 +44,6 @@ public class Moteur {
 	/** Regain d'energie par tour **/
 	private final int energie = 50;
 
-	/** Chemin vers le fichier pour stocker l'état des plugins */
-	private final File PATH_TO_FILE = new File(
-			Moteur.class.getClassLoader().getResource("Sauvegarde_Etat_Plugins.txt").getFile());
-
 	/** Chemin vers le fichier pour stocker les logs */
 	private final String LOG_FILE = "Log_File_RobotWar.txt";
 
@@ -121,91 +117,20 @@ public class Moteur {
 		}
 
 		// Sauvegarde des plugins qui ont bien été instanciés
-		sauvegardeEtatPlugin(pluginsAActiver);
+		gestionnairePlugins.sauvegardeEtatPlugin(pluginsAActiver);
 
 		// On appelle lectureFichier qui permet de renvoyer le
 		// fichier sous forme d'arraylist de String
 		// ArrayList<String> resultatFichier = lectureFichier();
 
 		// On instancie les plugins, et on a en retour les plugins activés
-		ArrayList<String> pluginActiver = parserLigneFichier(pluginsAActiver);
+		ArrayList<String> pluginActiver = gestionnairePlugins.parserLigneFichier(pluginsAActiver);
 
 		// Sauvegarde des plugins qui ont bien été instanciés
-		sauvegardeEtatPlugin(pluginActiver);
+		gestionnairePlugins.sauvegardeEtatPlugin(pluginActiver);
 
 	}
 
-	/**
-	 * Instancie les plugins et retourne une liste dans le meme format que le
-	 * fichier de persistance avec uniquement les plugins s'étant bien
-	 * instanciés
-	 * 
-	 * @return ArrayList<String>
-	 */
-	private ArrayList<String> parserLigneFichier(ArrayList<String> resultatFichier) {
-		// On créé l'arraylist des plugins qui sont bien instanciés
-		ArrayList<String> pluginActivated = new ArrayList<String>();
-
-		// On parcours ligne par ligne pour en suite parser
-		for (String ligne : resultatFichier) {
-			ArrayList<String> splitLigne = new ArrayList<String>(Arrays.asList(ligne.split(" ")));
-
-			// Si le plugin a été sauvegardé à "true" on l'active
-			if (Boolean.parseBoolean(splitLigne.get(2))) {
-
-				// Chemin où se trouve le plugin
-				String chemin = splitLigne.get(0);
-
-				// Type de plugins
-				String tab[] = chemin.split("\\\\");
-				TypePlugin typePlugin = TypePlugin.valueOf(tab[tab.length - 2].toUpperCase());
-
-				// On charge le plugin suivant son type choisi précédemment
-				if (gestionnairePlugins.chargerPlugin(splitLigne.get(0), typePlugin)) {
-					pluginActivated.add(ligne);
-				} else {
-					pluginActivated.add(splitLigne.get(0) + " " + splitLigne.get(1) + " false");
-				}
-				// Si le plugin est à false, on remet la même ligne dans le
-				// fichier
-			} else {
-				pluginActivated.add(ligne);
-			}
-		}
-		return pluginActivated;
-	}
-
-	/**
-	 * Permet de retourner sous forme d'arraylist de string le contenu du
-	 * fichier
-	 * 
-	 * @return ArrayList<String>
-	 */
-	private ArrayList<String> lectureFichier() {
-
-		ArrayList<String> resultatFichier = new ArrayList<String>();
-
-		BufferedReader br;
-		try {
-			br = new BufferedReader(new FileReader(PATH_TO_FILE));
-			String line = null;
-			// Tant qu'il y a de nouvelles lignes on continue
-			while ((line = br.readLine()) != null) {
-				System.out.println("#" + line);
-				resultatFichier.add(line);
-			}
-
-			br.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return resultatFichier;
-	}
 
 	/**
 	 * Méthode qui crée un grille de jeu
@@ -343,23 +268,5 @@ public class Moteur {
 		}
 	}
 
-	private void sauvegardeEtatPlugin(ArrayList<String> toWrite) {
-		PrintWriter writer;
-		try {
-			writer = new PrintWriter(PATH_TO_FILE, "UTF-8");
-
-			// On écrit ligne par ligne les plugins dans le fichier
-			for (String ligne : toWrite) {
-				writer.println(ligne);
-			}
-			writer.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
 }
