@@ -50,7 +50,7 @@ public class PanelChoixRepertoire extends JPanel implements ActionListener {
 		add(Box.createRigidArea(new Dimension(0, 10)));
 
 		// Un label de texte
-		label = new JLabel("Veuillez choisir le JAR où se trouve les plugins :");
+		label = new JLabel("Veuillez choisir le répertoire où se trouve les plugins :");
 		label.setAlignmentX(Component.CENTER_ALIGNMENT);
 		setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		add(label);
@@ -59,7 +59,7 @@ public class PanelChoixRepertoire extends JPanel implements ActionListener {
 		add(Box.createRigidArea(new Dimension(0, 10)));
 
 		// Un bouton pour choisir un répertire
-		bouton = new JButton("Choix du JAR");
+		bouton = new JButton("Choix du répertoire");
 		bouton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		bouton.addActionListener(this);
 		add(bouton);
@@ -83,7 +83,7 @@ public class PanelChoixRepertoire extends JPanel implements ActionListener {
 	 * @return String - Chemin vers le répertoire des plugins
 	 */
 	private File choisirRepertoirePluginsJAR() {
-		JFileChooser jfc = new JFileChooser("D:\\TRAVAIL\\S7\\Prog_Avancée\\Repertoire_Test_JAR");
+		JFileChooser jfc = new JFileChooser(".");
 		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		int returnVal = jfc.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
