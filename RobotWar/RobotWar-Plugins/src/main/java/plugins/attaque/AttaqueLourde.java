@@ -90,7 +90,7 @@ public class AttaqueLourde implements IPluginAttaque {
 				// On regarde s'il y a un robot sur cette case
 				if (grille.getRobotFromPoint(new Point(row, col)) != null) {
 					// On vérifie qu'il soit à portée
-					if (isAtReachNoDiagonal(row, x, col, y, r.getPortee())) {
+					if (isAtReachNoDiagonal(row, x, col, y,porteeAttaque)) {
 						listRobot.add(grille.getRobotFromPoint(new Point(row, col)));
 					}
 				}
