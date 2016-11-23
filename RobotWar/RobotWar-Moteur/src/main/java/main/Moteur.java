@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileSystemView;
@@ -108,7 +109,10 @@ public class Moteur {
 
 		for (File fichier : listPluginsChoisis) {
 			String chemin = fichier.getAbsolutePath();
-			String tab[] = chemin.split("\\\\");
+			
+			String pattern = Pattern.quote(System.getProperty("file.separator"));
+			String tab[] = chemin.split(pattern);
+			
 			TypePlugin typePlugin = TypePlugin.valueOf(tab[tab.length - 2].toUpperCase());
 
 			String ligne = fichier.getAbsolutePath() + " " + typePlugin + " true";
@@ -148,14 +152,13 @@ public class Moteur {
 
 			// Si le plugin a été sauvegardé à "true" on l'active
 			if (Boolean.parseBoolean(splitLigne.get(2))) {
-				
+
 				// Chemin où se trouve le plugin
 				String chemin = splitLigne.get(0);
 
 				// Type de plugins
 				String tab[] = chemin.split("\\\\");
 				TypePlugin typePlugin = TypePlugin.valueOf(tab[tab.length - 2].toUpperCase());
-				
 
 				// On charge le plugin suivant son type choisi précédemment
 				if (gestionnairePlugins.chargerPlugin(splitLigne.get(0), typePlugin)) {
