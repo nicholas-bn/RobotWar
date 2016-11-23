@@ -12,7 +12,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
 import gui.VueMenuDuJeu;
-import plugins.Gestionnaire_Plugins;
+import plugins.GestionnairePlugins;
 
 public class PanelChoixPlugins extends JPanel {
 
@@ -23,7 +23,7 @@ public class PanelChoixPlugins extends JPanel {
 	private ArrayList<JCheckBoxPlugins> listCheckBox;
 
 	/** Gestionnaire de plugins */
-	private Gestionnaire_Plugins gestionnairePlugins;
+	private GestionnairePlugins gestionnairePlugins;
 
 	/**
 	 * Constructeur de la classe {@link PanelChoixPlugins}

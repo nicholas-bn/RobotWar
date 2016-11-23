@@ -7,7 +7,7 @@ import interfacesMoteur.IGrille;
 import interfacesMoteur.IRobot;
 import interfacesPlugins.IPluginDeplacement;
 
-public class Deplacement_Intelligent implements IPluginDeplacement {
+public class DeplacementIntelligent implements IPluginDeplacement {
 
 	/**
 	 * Cherchera le robot le plus proche de sa position et renverra une position

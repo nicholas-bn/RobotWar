@@ -14,7 +14,7 @@ import interfacesPlugins.IPluginAttaque;
  *
  */
 
-public class Attaque_de_Base implements IPluginAttaque{
+public class AttaqueDeBase implements IPluginAttaque{
 
 	private final int degats = 50;
 

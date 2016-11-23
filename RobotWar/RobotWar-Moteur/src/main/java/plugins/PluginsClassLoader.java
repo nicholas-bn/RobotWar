@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-public class MyClassLoader extends SecureClassLoader {
+public class PluginsClassLoader extends SecureClassLoader {
 	private String cheminDuPlugin;
 
-	public MyClassLoader(String chemin) {
+	public PluginsClassLoader(String chemin) {
 		cheminDuPlugin = chemin;
 	}
 

@@ -17,7 +17,7 @@ import interfacesPlugins.IPluginGraphisme;
  *
  */
 @SuppressWarnings("serial")
-public class Barre_de_vie implements IPluginGraphisme {
+public class BarreDeVie implements IPluginGraphisme {
 
 	public void paint(Graphics g, ICase c) {
 		

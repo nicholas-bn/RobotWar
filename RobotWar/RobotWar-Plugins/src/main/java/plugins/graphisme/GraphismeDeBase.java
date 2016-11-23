@@ -8,7 +8,7 @@ import interfacesMoteur.ICase;
 import interfacesPlugins.IPluginGraphisme;
 
 @SuppressWarnings("serial")
-public class Graphisme_de_Base implements IPluginGraphisme {
+public class GraphismeDeBase implements IPluginGraphisme {
 
 
 	public Color getCouleur() {

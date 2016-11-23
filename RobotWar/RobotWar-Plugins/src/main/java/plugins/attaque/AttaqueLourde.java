@@ -8,7 +8,7 @@ import interfacesMoteur.IRobot;
 import interfacesPlugins.IPluginAttaque;
 
 
-public class Attaque_Lourde implements IPluginAttaque {
+public class AttaqueLourde implements IPluginAttaque {
 
 	private final int degats = 100;
 

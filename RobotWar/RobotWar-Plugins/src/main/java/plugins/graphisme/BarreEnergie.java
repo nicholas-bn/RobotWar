@@ -16,7 +16,7 @@ import interfacesPlugins.IPluginGraphisme;
  *
  */
 @SuppressWarnings("serial")
-public class Barre_energie implements IPluginGraphisme {
+public class BarreEnergie implements IPluginGraphisme {
 
 	public void paint(Graphics g, ICase c) {
 

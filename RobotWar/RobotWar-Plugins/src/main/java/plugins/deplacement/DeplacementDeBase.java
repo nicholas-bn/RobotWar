@@ -9,7 +9,7 @@ import interfacesMoteur.IRobot;
 import interfacesPlugins.IPluginDeplacement;
 
 // TODO changer le nom
-public class Deplacement_Random implements IPluginDeplacement {
+public class DeplacementDeBase implements IPluginDeplacement {
 
 	/**
 	 * Choisit un déplacement aléatoire

@@ -21,7 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.filechooser.FileSystemView;
 
 import graphics.Grille;
-import plugins.Gestionnaire_Plugins;
+import plugins.GestionnairePlugins;
 import plugins.TypePlugin;
 
 /**
@@ -48,7 +48,7 @@ public class Moteur {
 	private final String LOG_FILE = "Log_File_RobotWar.txt";
 
 	/** Gestionnaire des plugins */
-	private Gestionnaire_Plugins gestionnairePlugins;
+	private GestionnairePlugins gestionnairePlugins;
 
 	/**
 	 * Constructeur de la classe Moteur
@@ -57,7 +57,7 @@ public class Moteur {
 	 *            nombre de robots à placer
 	 * @param gestionnairePlugins2
 	 */
-	public Moteur(int nbRobots, int xGrille, int yGrille, boolean isLog, Gestionnaire_Plugins gestionnairePlugins) {
+	public Moteur(int nbRobots, int xGrille, int yGrille, boolean isLog, GestionnairePlugins gestionnairePlugins) {
 
 		// On instancie le gestionnaire de plugins
 		this.gestionnairePlugins = gestionnairePlugins;

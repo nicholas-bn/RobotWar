@@ -32,7 +32,7 @@ import main.Robot;
  * @author Karl
  *
  */
-public class Gestionnaire_Plugins {
+public class GestionnairePlugins {
 
 	/** L'instance du plugin d'attaque */
 	IPluginAttaque pluginAttaque;
@@ -48,9 +48,9 @@ public class Gestionnaire_Plugins {
 			Moteur.class.getClassLoader().getResource("Sauvegarde_Etat_Plugins.txt").getFile());
 	
 	/**
-	 * Constructeur de la classe {@link Gestionnaire_Plugins}
+	 * Constructeur de la classe {@link GestionnairePlugins}
 	 */
-	public Gestionnaire_Plugins() {
+	public GestionnairePlugins() {
 		listPluginsGraphisme = new ArrayList<IPluginGraphisme>();
 		listPlugins = new ArrayList<>();
 	}
@@ -123,7 +123,7 @@ public class Gestionnaire_Plugins {
 	public boolean chargerPlugin(String chemin, TypePlugin typePlugin) {
 		try {
 			// On instantie le classeLoader
-			MyClassLoader cl = new MyClassLoader(chemin);
+			PluginsClassLoader cl = new PluginsClassLoader(chemin);
 
 			//
 			File fichier = new File(chemin);

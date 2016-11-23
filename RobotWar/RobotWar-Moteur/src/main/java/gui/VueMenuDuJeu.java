@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import graphics.PanelChoixRepertoire;
 import graphics.PanelLancementDuJeu;
 import main.Moteur;
-import plugins.Gestionnaire_Plugins;
+import plugins.GestionnairePlugins;
 
 @SuppressWarnings("serial")
 public class VueMenuDuJeu extends JFrame {
@@ -27,13 +27,13 @@ public class VueMenuDuJeu extends JFrame {
 	/** Panel pour choisir les plugins à utiliser */
 	private PanelLancementDuJeu panelLancementDuJeu;
 
-	private Gestionnaire_Plugins gestionnairePlugins;
+	private GestionnairePlugins gestionnairePlugins;
 
-	public Gestionnaire_Plugins getGestionnairePlugins() {
+	public GestionnairePlugins getGestionnairePlugins() {
 		return gestionnairePlugins;
 	}
 
-	public void setGestionnairePlugins(Gestionnaire_Plugins gestionnairePlugins) {
+	public void setGestionnairePlugins(GestionnairePlugins gestionnairePlugins) {
 		this.gestionnairePlugins = gestionnairePlugins;
 	}
 
@@ -43,7 +43,7 @@ public class VueMenuDuJeu extends JFrame {
 	public VueMenuDuJeu() {
 		super(titreFenetre);
 
-		gestionnairePlugins = new Gestionnaire_Plugins();
+		gestionnairePlugins = new GestionnairePlugins();
 
 		initialisationDuPanelPrincipal();
 

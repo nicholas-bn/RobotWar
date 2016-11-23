@@ -8,7 +8,7 @@ import graphics.Case;
 import graphics.Grille;
 import interfacesMoteur.ICase;
 import interfacesMoteur.IRobot;
-import plugins.Gestionnaire_Plugins;
+import plugins.GestionnairePlugins;
 
 public class Robot implements IRobot{
 
@@ -37,14 +37,14 @@ public class Robot implements IRobot{
 	private int indice;
 
 	/** Gestionnaire des plugins */
-	private Gestionnaire_Plugins gestionnairePlugins;
+	private GestionnairePlugins gestionnairePlugins;
 
 	/**
 	 * Constructeur de la classe {@link Robot}
 	 * 
 	 * @param gestionnairePlugins
 	 */
-	public Robot(Gestionnaire_Plugins gestionnairePlugins) {
+	public Robot(GestionnairePlugins gestionnairePlugins) {
 		// Initialisation de la vie du robot à 100
 		pv = 100;
 		// Initialisation des points d'actions du robot à 1
