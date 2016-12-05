@@ -83,7 +83,7 @@ public class PanelChoixRepertoire extends JPanel implements ActionListener {
 	 * @return String - Chemin vers le répertoire des plugins
 	 */
 	private File choisirRepertoirePluginsJAR() {
-		JFileChooser jfc = new JFileChooser(".");
+		JFileChooser jfc = new JFileChooser("../RobotWar-Plugins/target");
 		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		int returnVal = jfc.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {

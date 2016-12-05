@@ -1,5 +1,7 @@
-C:\Users\Karl\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\attaque\AttaqueLourde.class ATTAQUE true
-C:\Users\Karl\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\deplacement\DeplacementIntelligent.class DEPLACEMENT true
-C:\Users\Karl\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\BarreDeVie.class GRAPHISME true
-C:\Users\Karl\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\GraphismeDeBase.class GRAPHISME true
-C:\Users\Karl\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\Tourelle.class GRAPHISME true
+C:\Users\Thronghar\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\attaque\AttaqueLourde.class ATTAQUE true
+C:\Users\Thronghar\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\deplacement\DeplacementIntelligent.class DEPLACEMENT true
+C:\Users\Thronghar\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\AfficherNumero.class GRAPHISME true
+C:\Users\Thronghar\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\BarreDeVie.class GRAPHISME true
+C:\Users\Thronghar\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\BarreEnergie.class GRAPHISME true
+C:\Users\Thronghar\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\GraphismeDeBase.class GRAPHISME true
+C:\Users\Thronghar\git\RobotWar\RobotWar\RobotWar-Plugins\target\classes\plugins\graphisme\Tourelle.class GRAPHISME true
