@@ -26,9 +26,9 @@ public class JCheckBoxPlugins extends JCheckBox {
 	}
 
 	public void traitementTypePlugin() {
-		String chemin = fichier.getAbsolutePath();
-		String tab[] = chemin.split("\\\\");
-		TypePlugin typePlugin = TypePlugin.valueOf(tab[tab.length - 2].toUpperCase());
+		//String chemin = fichier.getAbsolutePath();
+		//String tab[] = chemin.split("\\\\");
+		//TypePlugin typePlugin = TypePlugin.valueOf(tab[tab.length - 2].toUpperCase());
 		
 	}
 

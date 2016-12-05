@@ -18,7 +18,7 @@ public class DeplacementDeBase implements IPluginDeplacement {
 	 * @param robot
 	 * @return
 	 */
-	public Point choisirDeplacement(IGrille grille, IRobot robot) {
+	public Point choisirDeplacement(IRobot robot, IGrille grille) {
 
 		// List des deplacements possibles
 		ArrayList<Point> listDeplacements = getListeDeplacementsPossibles(robot, grille);
@@ -43,7 +43,7 @@ public class DeplacementDeBase implements IPluginDeplacement {
 	 * @return
 	 */
 	public ArrayList<Point> getListeDeplacementsPossibles(IRobot robot, IGrille grille) {
-		
+
 		// Position actuelle du robot
 		Point posActuelle = robot.getPosition();
 		int x = posActuelle.x;
@@ -51,7 +51,7 @@ public class DeplacementDeBase implements IPluginDeplacement {
 
 		// Nombre de points de mouvement du robot
 		int pm = robot.getPtMouvement();
-		
+
 		// Informations concernant la taille de la grille
 		int nbColonneMax = grille.getNbcolonnesmax();
 		int nbLigneMax = grille.getNblignesmax();
@@ -77,11 +77,11 @@ public class DeplacementDeBase implements IPluginDeplacement {
 					if (grille.getRobotFromPoint(new Point(row, col)) != null)
 						continue;
 				}
-				
-				if(isAtReachNoDiagonal(row, x, col, y, pm)){
+
+				if (isAtReachNoDiagonal(row, x, col, y, pm)) {
 					// Un déplacement possible
 					Point casePossible = new Point(row, col);
-	
+
 					// On l'ajoute à la liste
 					listPoints.add(casePossible);
 				}
@@ -130,5 +130,5 @@ public class DeplacementDeBase implements IPluginDeplacement {
 		else
 			return false;
 	}
-	
+
 }

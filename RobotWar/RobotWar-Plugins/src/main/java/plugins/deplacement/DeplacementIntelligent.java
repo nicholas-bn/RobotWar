@@ -17,7 +17,7 @@ public class DeplacementIntelligent implements IPluginDeplacement {
 	 * @param robot
 	 * @return Point
 	 */
-	public Point choisirDeplacement(IGrille grille, IRobot robot) {
+	public Point choisirDeplacement(IRobot robot, IGrille grille) {
 
 		// List des deplacements possibles
 		ArrayList<Point> listDeplacements = getListeDeplacementsPossibles(robot, grille);
@@ -185,7 +185,7 @@ public class DeplacementIntelligent implements IPluginDeplacement {
 		// Si l'addition des deux différence (X,Y) est inférieur ou égal à la
 		// portée cela signifie que le robot est à portée de mouvement
 		return (distanceNoDiagonal(x1, x2, y1, y2) <= portée);
-		
+
 	}
 
 	/**

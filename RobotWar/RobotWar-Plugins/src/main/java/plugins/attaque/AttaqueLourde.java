@@ -7,13 +7,12 @@ import interfacesMoteur.IGrille;
 import interfacesMoteur.IRobot;
 import interfacesPlugins.IPluginAttaque;
 
-
 public class AttaqueLourde implements IPluginAttaque {
 
 	private final int degats = 100;
 
-	private final int energie = 100; 
-	
+	private final int energie = 100;
+
 	private final int porteeAttaque = 2;
 
 	/**
@@ -23,7 +22,7 @@ public class AttaqueLourde implements IPluginAttaque {
 	 * @param robot
 	 * @return Robot
 	 */
-	public IRobot choisirCible(IGrille grille, IRobot robot) {
+	public IRobot choisirCible(IRobot robot, IGrille grille) {
 
 		// On récupere la liste des robots attaquable
 		ArrayList<IRobot> listRobotAttaquable = getListeAttaquesPossibles(robot, grille);
@@ -44,7 +43,7 @@ public class AttaqueLourde implements IPluginAttaque {
 				robot.setPtEnergie(robot.getPtEnergie() - energie);
 				// Le robot subit des dégats
 				r.setVie(r.getVie() - degats);
-			} else{
+			} else {
 				return null;
 			}
 			return r;
@@ -66,7 +65,6 @@ public class AttaqueLourde implements IPluginAttaque {
 		// On récupère les valeurs des attributs du Robot
 		int x = r.getPosition().x;
 		int y = r.getPosition().y;
-		
 
 		// Informations concernant la taille de la grille
 		int nbColonneMax = grille.getNbcolonnesmax();
@@ -90,7 +88,7 @@ public class AttaqueLourde implements IPluginAttaque {
 				// On regarde s'il y a un robot sur cette case
 				if (grille.getRobotFromPoint(new Point(row, col)) != null) {
 					// On vérifie qu'il soit à portée
-					if (isAtReachNoDiagonal(row, x, col, y,porteeAttaque)) {
+					if (isAtReachNoDiagonal(row, x, col, y, porteeAttaque)) {
 						listRobot.add(grille.getRobotFromPoint(new Point(row, col)));
 					}
 				}

@@ -27,7 +27,7 @@ public class AttaqueDeBase implements IPluginAttaque{
 	 * @param robot
 	 * @return Robot
 	 */
-	public IRobot choisirCible(IGrille grille, IRobot robot) {
+	public IRobot choisirCible(IRobot robot, IGrille grille) {
 
 		// On récupere la liste des robots attaquable
 		ArrayList<IRobot> listRobotAttaquable = getListeAttaquesPossibles(robot, grille);

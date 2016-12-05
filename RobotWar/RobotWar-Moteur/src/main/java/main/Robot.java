@@ -10,11 +10,11 @@ import interfacesMoteur.ICase;
 import interfacesMoteur.IRobot;
 import plugins.GestionnairePlugins;
 
-public class Robot implements IRobot{
+public class Robot implements IRobot {
 
 	/** Nombre de point de vie (PV) */
 	private int pv;
-	
+
 	/** Nombre de point d'énergie (PE) */
 	private int pe;
 
@@ -86,7 +86,7 @@ public class Robot implements IRobot{
 	public void setPtAction(int ptAction) {
 		pa = ptAction;
 	}
-	
+
 	public int getPtEnergie() {
 		return pe;
 	}
@@ -135,7 +135,7 @@ public class Robot implements IRobot{
 	public Robot attaquer(Grille grille) {
 
 		// On demande au gestionnaire le robot cible (peut etre null)
-		Robot robotCible = gestionnairePlugins.attaquer(grille, this);
+		Robot robotCible = gestionnairePlugins.attaquer(this, grille);
 
 		// Si un robot a été choisi
 		if (robotCible != null) {
@@ -154,7 +154,7 @@ public class Robot implements IRobot{
 	public void seDeplacer(Grille grille) {
 
 		// On demande au gestionnaire la nouvelle position
-		Point posChoisie = gestionnairePlugins.seDeplacer(grille, this);
+		Point posChoisie = gestionnairePlugins.seDeplacer(this, grille);
 
 		// On déplace le robot sur la grille
 		grille.deplacerRobot(this, posChoisie);
@@ -174,7 +174,7 @@ public class Robot implements IRobot{
 		// On demande au gestionnaire de dessiner le robot
 		gestionnairePlugins.dessiner(g, (Case) caseRobot);
 	}
-	
+
 	/**
 	 * Méthode qui permet de savoir si un robot est toujours vivant
 	 * 
@@ -193,7 +193,5 @@ public class Robot implements IRobot{
 		return "Robot " + this.getIndice() + "( X:" + this.getPosition().getX() + " Y:" + this.getPosition().getY()
 				+ ")";
 	}
-
-	
 
 }

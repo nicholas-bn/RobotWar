@@ -46,7 +46,7 @@ public class GestionnairePlugins {
 	/** Chemin vers le fichier pour stocker l'état des plugins */
 	public final File PATH_TO_FILE = new File(
 			Moteur.class.getClassLoader().getResource("Sauvegarde_Etat_Plugins.txt").getFile());
-	
+
 	/**
 	 * Constructeur de la classe {@link GestionnairePlugins}
 	 */
@@ -176,11 +176,13 @@ public class GestionnairePlugins {
 			// La méthode du plugin qui permet de choisir la couleur du robot
 			try {
 				// On r
-				Method[] methods = listPluginsGraphisme.get(0).getClass().getMethods();
+				Method[] methods = plugin.getClass().getMethods();
 
 				for (Method m : methods) {
+
 					if (m.getName().equals("getCouleur")) {
-						Color couleur = (Color) m.invoke(listPluginsGraphisme.get(0));
+						System.out.println(m.getName());
+						Color couleur = (Color) m.invoke(plugin);
 						return couleur;
 					}
 				}
@@ -205,13 +207,13 @@ public class GestionnairePlugins {
 	 * 
 	 * @param grille
 	 */
-	public Robot attaquer(Grille grille, Robot robot) {
+	public Robot attaquer(Robot robot, Grille grille) {
 		try {
 			// La méthode du plugin qui permet de choisir une cible
-			Method m = pluginAttaque.getClass().getMethod("choisirCible", IGrille.class, IRobot.class);
+			Method m = pluginAttaque.getClass().getMethod("choisirCible", IRobot.class, IGrille.class);
 
 			// Cette méthode retourne un robot "cible"
-			Robot robotCible = (Robot) m.invoke(pluginAttaque, grille, robot);
+			Robot robotCible = (Robot) m.invoke(pluginAttaque, robot, grille);
 
 			// On retourne le robot choisit (null si aucun)
 			return robotCible;
@@ -229,13 +231,13 @@ public class GestionnairePlugins {
 	 * 
 	 * @param grille
 	 */
-	public Point seDeplacer(Grille grille, Robot robot) {
+	public Point seDeplacer(Robot robot, Grille grille) {
 		try {
 			// La méthode du plugin qui permet de choisir un déplacement
-			Method m = pluginDeplacement.getClass().getMethod("choisirDeplacement", IGrille.class, IRobot.class);
+			Method m = pluginDeplacement.getClass().getMethod("choisirDeplacement", IRobot.class, IGrille.class);
 
 			// Point choisie par le plugin
-			Point posChoisie = (java.awt.Point) m.invoke(pluginDeplacement, grille, robot);
+			Point posChoisie = (java.awt.Point) m.invoke(pluginDeplacement, robot, grille);
 
 			return posChoisie;
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
@@ -278,7 +280,7 @@ public class GestionnairePlugins {
 		return listPlugins;
 
 	}
-	
+
 	/**
 	 * Instancie les plugins et retourne une liste dans le meme format que le
 	 * fichier de persistance avec uniquement les plugins s'étant bien
@@ -350,7 +352,7 @@ public class GestionnairePlugins {
 
 		return resultatFichier;
 	}
-	
+
 	/**
 	 * Permet de sauvegarder l'état des plugins
 	 * 

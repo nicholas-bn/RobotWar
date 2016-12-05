@@ -7,6 +7,6 @@ import interfacesMoteur.IRobot;
 
 public interface IPluginDeplacement {
 
-	public Point choisirDeplacement(IGrille grille, IRobot robot);
+	public Point choisirDeplacement(IRobot robot, IGrille grille);
 
 }
