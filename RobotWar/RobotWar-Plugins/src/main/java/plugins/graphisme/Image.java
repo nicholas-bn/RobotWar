@@ -37,14 +37,7 @@ public class Image implements IPluginGraphisme {
 		}
 	}
 
-	public Color getCouleur() {
-		Random rand = new Random();
-		float r = rand.nextFloat();
-		float g = rand.nextFloat();
-		float b = rand.nextFloat();
-
-		return new Color(r, g, b);
-	}
+	
 
 	/**
 	 * Méthode paintComponent de {@link Case}
