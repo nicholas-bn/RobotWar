@@ -30,7 +30,7 @@ public class PanelChoixRepertoire extends JPanel implements ActionListener {
 	private JLabel labelRepChoisi;
 
 	/** Texte du label */
-	private static final String textLabel = "JAR choisi : ";
+	private static final String textLabel = "Répertoire choisi : ";
 
 	/** Bouton pour choisir un répertoire */
 	private JButton bouton;
@@ -83,7 +83,8 @@ public class PanelChoixRepertoire extends JPanel implements ActionListener {
 	 * @return String - Chemin vers le répertoire des plugins
 	 */
 	private File choisirRepertoirePluginsJAR() {
-		JFileChooser jfc = new JFileChooser("../RobotWar-Plugins/target");
+		String cheminParDefaut = "./RobotWar-Plugins/target";
+		JFileChooser jfc = new JFileChooser(cheminParDefaut.replace("/", File.separator));
 		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		int returnVal = jfc.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {

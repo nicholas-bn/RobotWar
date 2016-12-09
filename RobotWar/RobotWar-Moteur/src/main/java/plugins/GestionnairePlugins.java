@@ -44,8 +44,10 @@ public class GestionnairePlugins {
 	ArrayList<File> listPlugins;
 
 	/** Chemin vers le fichier pour stocker l'état des plugins */
-	public final File PATH_TO_FILE = new File(
-			Moteur.class.getClassLoader().getResource("Sauvegarde_Etat_Plugins.txt").getFile());
+	// public final File PATH_TO_FILE = new File
+	// Moteur.class.getClassLoader().getResource("Sauvegarde_Etat_Plugins.txt").getFile());
+	private final String chemin = "./target/classes/Sauvegarde_Etat_Plugins.txt";
+	public final File PATH_TO_FILE = new File(chemin.replace("/", File.separator));
 
 	/**
 	 * Constructeur de la classe {@link GestionnairePlugins}
@@ -181,7 +183,6 @@ public class GestionnairePlugins {
 				for (Method m : methods) {
 
 					if (m.getName().equals("getCouleur")) {
-						System.out.println(m.getName());
 						Color couleur = (Color) m.invoke(plugin);
 						return couleur;
 					}
@@ -208,6 +209,9 @@ public class GestionnairePlugins {
 	 * @param grille
 	 */
 	public Robot attaquer(Robot robot, Grille grille) {
+		if (pluginAttaque == null) {
+			return null;
+		}
 		try {
 			// La méthode du plugin qui permet de choisir une cible
 			Method m = pluginAttaque.getClass().getMethod("choisirCible", IRobot.class, IGrille.class);
@@ -232,6 +236,9 @@ public class GestionnairePlugins {
 	 * @param grille
 	 */
 	public Point seDeplacer(Robot robot, Grille grille) {
+		if (pluginDeplacement == null) {
+			return robot.getPosition();
+		}
 		try {
 			// La méthode du plugin qui permet de choisir un déplacement
 			Method m = pluginDeplacement.getClass().getMethod("choisirDeplacement", IRobot.class, IGrille.class);

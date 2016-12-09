@@ -12,9 +12,7 @@
 
 
     <artifactId>RobotWar-InterfacesPlugins</artifactId>
-	<groupId>miage.projetRobotWar</groupId>
-    <packaging>jar</packaging>
-    <version>1.0</version>
+	<packaging>jar</packaging>
     <name>RobotWar-InterfacesPlugins</name>
 
     <build>

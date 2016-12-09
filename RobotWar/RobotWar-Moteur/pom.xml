@@ -1,42 +1,56 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-	  <parent>
-	    <groupId>miage.projetRobotWar</groupId>
-	    <artifactId>RobotWar</artifactId>
-	    <version>1.0</version>
-	  </parent>
+	<parent>
+		<groupId>miage.projetRobotWar</groupId>
+		<artifactId>RobotWar</artifactId>
+		<version>1.0</version>
+	</parent>
 
-    <artifactId>RobotWar-Moteur</artifactId>
-	<groupId>miage.projetRobotWar</groupId>
-    <packaging>jar</packaging>
-    <version>1.0</version>
-    <name>RobotWar-Moteur</name>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <source>1.7</source>
-                        <target>1.7</target>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-
-    <dependencies>
+	<artifactId>RobotWar-Moteur</artifactId>
+	<packaging>jar</packaging>
+	<name>RobotWar-Moteur</name>
+	<dependencies>
 		<dependency>
-            <groupId>miage.projetRobotWar</groupId>
-            <artifactId>RobotWar-InterfacesPlugins</artifactId>
-            <version>1.0</version>
-        </dependency>
-    
-    </dependencies>
+			<groupId>miage.projetRobotWar</groupId>
+			<artifactId>RobotWar-InterfacesPlugins</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+	</dependencies>
+	<build>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<appendAssemblyId>false</appendAssemblyId>
+					<finalName>${project.artifactId}</finalName>
+					<outputDirectory>${basedir}</outputDirectory>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>main.Launcher</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<id>package-jar-with-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+
 </project>

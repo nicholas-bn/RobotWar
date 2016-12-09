@@ -8,7 +8,7 @@
 	<groupId>miage.projetRobotWar</groupId>
     <packaging>pom</packaging>
     <version>1.0</version>
-    <name>Robot War</name>
+    <name>RobotWar</name>
 
     <modules>
         <module>RobotWar-InterfacesPlugins</module>
@@ -23,8 +23,14 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <configuration>
-                        <source>1.5</source>
-                        <target>1.5</target>
+                  	    <archive>
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<mainClass>RobotWar-Moteur/main/Launcher</mainClass>
+							</manifest>
+						</archive>
+                        <source>1.7</source>
+                        <target>1.7</target>
                     </configuration>
                 </plugin>
             </plugins>
